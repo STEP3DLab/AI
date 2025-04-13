@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Образовательный курс «Искусственный интеллект и практика его использования»" />
+  <title>Искусственный интеллект и практика его использования</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Кнопка переключения темы -->
+  <button class="theme-toggle" onclick="toggleTheme()">Темная/Светлая тема</button>
+
+  <!-- Back-to-top кнопка -->
+  <button class="back-to-top" onclick="scrollToTop()" aria-label="Наверх">↑</button>
+
+  <!-- Верхняя навигация -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#home">Главная</a>
+        <a href="#about">О курсе</a>
+        <a href="#teachers">Преподаватели</a>
+        <a href="#testimonials">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main>
+    <!-- Баннер -->
+    <section id="home" class="banner hidden">
+      <div class="container">
+        <h1>Искусственный интеллект и практика его использования</h1>
+        <p>Образовательный курс для студентов и начинающих специалистов, стремящихся освоить современные технологии ИИ.</p>
+        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+          Записаться
+        </button>
+      </div>
+    </section>
+
+    <!-- Раздел "О курсе" -->
+    <section id="about" class="hidden">
+      <div class="container">
+        <h2 class="section-title">О курсе</h2>
+        <p>
+          Курс предназначен для глубокого знакомства с современными концепциями искусственного интеллекта и машинного обучения. Студенты изучат теоретические основы, получат практические навыки работы с нейронными сетями и научатся реализовывать проекты в сфере AI.
+        </p>
+        <ul>
+          <li><strong>Цели курса:</strong> Изучить принципы работы ИИ и его применение в реальных задачах.</li>
+          <li><strong>Программа обучения:</strong> Теория, практические занятия, проектная работа.</li>
+          <li><strong>Необходимые навыки:</strong> Базовые знания программирования и интерес к новым технологиям.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Раздел "Преподаватели" -->
+    <section id="teachers" class="hidden">
+      <div class="container">
+        <h2 class="section-title">Преподаватели</h2>
+        <div class="teachers">
+          <!-- Карточка преподавателя Иван Иванов -->
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Преподаватель Иван Иванов" loading="lazy">
+            <h3>Иван Иванов</h3>
+            <p>Эксперт в области машинного обучения с более чем 10-летним опытом.</p>
+            <button class="btn teacher-details" onclick="openTeacherModal('Иван Иванов', 'Эксперт в области машинного обучения, специализирующийся на нейросетях и алгоритмах оптимизации.')">
+              Подробнее
+            </button>
+          </div>
+          <!-- Карточка преподавателя Мария Петрова -->
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Преподаватель Мария Петрова" loading="lazy">
+            <h3>Мария Петрова</h3>
+            <p>Специалист по нейронным сетям и обработке естественного языка.</p>
+            <button class="btn teacher-details" onclick="openTeacherModal('Мария Петрова', 'Специалист по нейронным сетям с акцентом на обработку естественного языка и разработку алгоритмов для анализа текстовых данных.')">
+              Подробнее
+            </button>
+          </div>
+          <!-- Карточка преподавателя Александр Сидоров -->
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Преподаватель Александр Сидоров" loading="lazy">
+            <h3>Александр Сидоров</h3>
+            <p>Разработчик и исследователь в области AI с опытом международных проектов.</p>
+            <button class="btn teacher-details" onclick="openTeacherModal('Александр Сидоров', 'Разработчик и исследователь с международным опытом в области искусственного интеллекта, участвующий в крупных проектах по внедрению AI-технологий.')">
+              Подробнее
+            </button>
+          </div>
+          <!-- Карточка преподавателя Ганьшин В.К. -->
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Преподаватель Ганьшин В.К." loading="lazy">
+            <h3>Ганьшин В.К.</h3>
+            <p>Руководитель технопарка ФГБОУ ВО РГСУ, педагог с более чем 12-летним опытом.</p>
+            <button class="btn teacher-details" onclick="openTeacherModal('Ганьшин В.К.', 'Ганьшин Владимир Константинович, 33 года. Руководитель технопарка ФГБОУ ВО РГСУ (с 2019 года). Выпускник МГТУ «Станкин»: бакалавр, магистр и аспирантура по направлениям, связанным с машиностроением. Педагогический опыт более 12 лет в вузах, колледжах и школах. Компетенции: CAD/CAM/CAE-моделирование, аддитивное производство (3D-печать), реверсивный инжиниринг, промышленный дизайн и прототипирование. Достижения: призовые места на чемпионатах мира и России, бронзовая медаль на чемпионате по изготовлению индивидуальных имплантов, главный эксперт в конкурсах профессионального мастерства.')">
+              Подробнее
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раздел "Отзывы" -->
+    <section id="testimonials" class="hidden">
+      <div class="container">
+        <h2 class="section-title">Отзывы студентов</h2>
+        <div class="testimonials">
+          <div class="testimonial-card">
+            <p>"Курс помог мне глубже понять технологии искусственного интеллекта — рекомендую!"</p>
+            <strong>Алексей</strong>
+          </div>
+          <div class="testimonial-card">
+            <p>"Практические задания и реальные проекты сделали обучение максимально полезным."</p>
+            <strong>Елена</strong>
+          </div>
+          <div class="testimonial-card">
+            <p>"Отличные преподаватели, доступное изложение сложных тем."</p>
+            <strong>Дмитрий</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раздел "FAQ" -->
+    <section id="faq" class="hidden">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-items">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>Как записаться на курс?</h3>
+            <p>Нажмите кнопку «Записаться» и заполните форму регистрации ниже.</p>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>Какие знания требуются?</h3>
+            <p>Базовые знания программирования будут преимуществом, но курс подходит и для новичков.</p>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>Есть ли гарантия возврата средств?</h3>
+            <p>Да, в течение первых 14 дней предусмотрен возврат при несоответствии ожиданиям.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раздел "Контакты" -->
+    <section id="contact" class="hidden">
+      <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <form action="#" method="POST">
+          <input type="text" name="name" placeholder="Ваше имя" required />
+          <input type="email" name="email" placeholder="Ваш email" required />
+          <textarea name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
+          <button type="submit" class="btn">Отправить</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Искусственный интеллект и практика его использования. Все права защищены.</p>
+      <p>
+        <a href="#">Facebook</a> |
+        <a href="#">Twitter</a> |
+        <a href="#">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Модальное окно для преподавателей -->
+  <div id="teacher-modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeTeacherModal()" aria-label="Закрыть">&times;</button>
+      <h2 id="teacher-modal-name">Имя Преподавателя</h2>
+      <p id="teacher-modal-info">Информация о преподавателе.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
