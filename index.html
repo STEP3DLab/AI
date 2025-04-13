@@ -3,110 +3,443 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Искусственный интеллект и практика его использования</title>
-  <!-- Подключаем стили -->
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Курс по искусственному интеллекту от РГСУ. 7 практических занятий. Преподаватель — Ганьшин В.К.">
+  <title>Курс по ИИ — РГСУ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: radial-gradient(circle at center, #222, #000);
+      border-bottom: 3px dashed #00ffe7;
+    }
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .glow {
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #00ffe7, 0 0 10px #00ffe7; }
+      to { text-shadow: 0 0 15px #00ccbb, 0 0 25px #00ccbb; }
+    }
+    .tagline {
+      font-size: 1rem;
+      color: #bbb;
+      font-family: monospace;
+    }
+    .info {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .highlight {
+      color: #00ffe7;
+      font-weight: bold;
+    }
+    /* Hover effect for standard links */
+    a:hover {
+      text-decoration: underline;
+    }
+    .cta {
+      text-align: center;
+    }
+    .cta a {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #00ffe7;
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: transform 0.2s;
+    }
+    .cta a:hover {
+      transform: translateY(-3px);
+    }
+    .form {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .form h2 {
+      margin-bottom: 1rem;
+    }
+    .form input, .form textarea, .form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    .form input, .form textarea {
+      border: 1px solid #555;
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .form input::placeholder,
+    .form textarea::placeholder {
+      color: #888;
+    }
+    .form input:focus,
+    .form textarea:focus {
+      outline: 2px solid #00ffe7;
+    }
+    .form button {
+      background-color: #00ffe7;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 1rem;
+    }
+    .form button:hover {
+      background: #00ccbb;
+    }
+    /* Trust section (logos or extra credibility info) */
+    .trust {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      border: 1px dashed #444;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .trust h3 {
+      font-family: 'Press Start 2P', cursive;
+      margin: 0 0 1rem;
+    }
+    .trust-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .trust-logos img {
+      width: 64px;
+      height: 64px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .trust-logos img:hover {
+      opacity: 1;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 1.5rem;
+      background: #1a1a1a;
+      border-top: 3px dashed #00ffe7;
+      margin-top: 3rem;
+    }
+    .assistant {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #111;
+      border: 2px solid #00ffe7;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffe7;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .assistant:hover {
+      transform: scale(1.1);
+    }
+    .assistant img {
+      width: 32px;
+      height: 32px;
+    }
+    .speech-bubble {
+      position: fixed;
+      bottom: 6rem;
+      right: 2rem;
+      background: #1a1a1a;
+      border: 1px solid #00ffe7;
+      border-radius: 10px;
+      padding: 1rem;
+      color: #00ffe7;
+      font-family: monospace;
+      font-size: 0.9rem;
+      max-width: 300px;
+      display: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .speech-bubble.visible {
+      display: block;
+      opacity: 1;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: #1a1a1a transparent transparent transparent;
+    }
+    .speech-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .speech-options button {
+      background: transparent;
+      border: 1px solid #00ffe7;
+      color: #00ffe7;
+      font-family: monospace;
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .speech-options button:hover {
+      background: #00ffe7;
+      color: #000;
+    }
+    .speech-close {
+      margin-top: 1rem;
+      text-align: right;
+    }
+    .speech-close button {
+      font-family: monospace;
+      background: none;
+      border: none;
+      color: #00ffe7;
+      cursor: pointer;
+      font-size: 0.8rem;
+      text-decoration: underline;
+    }
+    .speech-close button:hover {
+      color: #00ccbb;
+    }
+    .speech-response {
+      font-family: monospace;
+      color: #00ccff;
+      margin-top: 0.5rem;
+    }
+    .scroll-top {
+      display: none;
+      position: fixed;
+      right: 2rem;
+      bottom: 8rem;
+      background: #111;
+      border: 2px solid #00ffe7;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 5px #00ffe7;
+      transition: transform 0.3s;
+      z-index: 999;
+    }
+    .scroll-top img {
+      width: 24px;
+      height: 24px;
+    }
+    .scroll-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #00ffe7;
+    }
+
+    /* New styles for countdown, schedule, and price-block */
+    .countdown, .schedule, .price-block {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      text-align: center;
+      background: #1a1a1a;
+      border-radius: 8px;
+      border: 1px dashed #444;
+    }
+    .countdown h2, .schedule h2, .price-block h2 {
+      font-family: 'Press Start 2P', cursive;
+      margin: 0 0 1rem;
+    }
+    .countdown p, .schedule ul, .price-block p {
+      font-family: monospace;
+    }
+    .countdown span#timer {
+      color: #00ccff;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .schedule ul {
+      list-style-type: square;
+      margin: 0;
+      padding: 0;
+    }
+    .schedule ul li {
+      margin-bottom: 0.5rem;
+    }
+    .price-block .price {
+      color: #00ffe7;
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+  </style>
+  <script>
+    function toggleAssistantMessage() {
+      const bubble = document.getElementById('speech-bubble');
+      bubble.classList.toggle('visible');
+    }
+    function showAnswer(option) {
+      const response = document.getElementById('speech-response');
+      const responses = {
+        topics: "Курс охватывает GPT, DALL-E, Midjourney, Runway и многое другое.",
+        signup: "Для записи просто заполните форму на сайте, и мы свяжемся с вами!",
+        value: "Вы получите практические навыки работы с ИИ — от текстов до визуализации и аудио."
+      };
+      response.textContent = responses[option];
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollBtn = document.getElementById('scroll-top');
+      if (window.scrollY > 300) {
+        scrollBtn.style.display = 'flex';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Countdown to course start
+    const targetDate = new Date("2025-05-19T10:00:00+03:00").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const timerEl = document.getElementById('timer');
+
+      if (distance < 0) {
+        timerEl.textContent = "Курс уже начался!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timerEl.textContent = `${days} д. ${hours} ч. ${minutes} м. ${seconds} с.`;
+    }
+    setInterval(updateCountdown, 1000);
+    document.addEventListener('DOMContentLoaded', updateCountdown);
+  </script>
 </head>
 <body>
-  <!-- Шапка (header) -->
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">Искусственный интеллект и практика его использования</h1>
-      <p class="site-subtitle">Образовательный курс для студентов и начинающих специалистов, стремящихся освоить современные технологии ИИ.</p>
-    </div>
+  <header>
+    <h1 class="glow">Искусственный интеллект<br>и практика его использования</h1>
+    <p class="tagline">7 практических занятий от РГСУ. Минимализм. Глубина. Будущее рядом.</p>
   </header>
 
-  <!-- Блок "О курсе" -->
-  <section class="section about-section">
-    <div class="container">
-      <h2 class="section-title">О курсе</h2>
-      <p class="section-description">
-        Курс позволяет получить фундаментальные знания в области искусственного интеллекта и научиться решать практические задачи с использованием современных инструментов машинного обучения. 
-      </p>
+  <section class="info">
+    <p>Курс разработан <span class="highlight">Ганьшиным Владимиром Константиновичем</span>, специалистом в области искусственного интеллекта и цифровых технологий.</p>
+    <p>Образовательный партнёр — <span class="highlight">РГСУ</span> (Российский космосоциальный университет).</p>
+    <ul>
+      <li>Нейросетевое мышление</li>
+      <li>Создание ИИ-проектов</li>
+      <li>Работа с текстами, изображениями, звуком</li>
+      <li>GPT, DALL-E, Midjourney, Runway</li>
+    </ul>
+  </section>
+
+  <div class="cta">
+    <a href="#form">Записаться на курс</a>
+  </div>
+
+  <section class="countdown">
+    <h2>До начала курса осталось:</h2>
+    <p><span id="timer"></span></p>
+  </section>
+
+  <section class="schedule" id="schedule">
+    <h2>Расписание занятий</h2>
+    <ul>
+      <li>Занятие 1: Вводное в нейросетевое мышление</li>
+      <li>Занятие 2: Проектирование ИИ</li>
+      <li>Занятие 3: Работа с текстовыми данными</li>
+      <li>Занятие 4: Создание изображений (DALL-E, Midjourney)</li>
+      <li>Занятие 5: Управление аудио и видео (Runway)</li>
+      <li>Занятие 6: GPT-приложения для бизнеса</li>
+      <li>Занятие 7: Финальный проект и подведение итогов</li>
+    </ul>
+  </section>
+
+  <section class="price-block">
+    <h2>Стоимость участия</h2>
+    <p class="price">15 000 ₽</p>
+    <p>за полный курс из 7 занятий</p>
+  </section>
+
+  <section class="trust">
+    <h3>Почему нам доверяют?</h3>
+    <p>Наши партнёры и коллеги:</p>
+    <div class="trust-logos">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732084.png" alt="РГСУ">
+      <img src="https://cdn-icons-png.flaticon.com/512/1216/1216733.png" alt="AI Community">
+      <img src="https://cdn-icons-png.flaticon.com/512/4054/4054438.png" alt="Science Lab">
     </div>
   </section>
 
-  <!-- Блок "Преподаватели" -->
-  <section class="section teachers-section">
-    <div class="container">
-      <h2 class="section-title">Преподаватели</h2>
-      <div class="teachers-grid">
-        <!-- Преподаватель №1 -->
-        <div class="teacher-card">
-          <img src="https://via.placeholder.com/120" alt="Иван Иванов">
-          <h3>Иван Иванов</h3>
-          <p>Эксперт в области машинного обучения</p>
-        </div>
-        <!-- Преподаватель №2 -->
-        <div class="teacher-card">
-          <img src="https://via.placeholder.com/120" alt="Мария Регтова">
-          <h3>Мария Регтова</h3>
-          <p>Специалист по нейронным сетям</p>
-        </div>
-        <!-- Преподаватель №3 -->
-        <div class="teacher-card">
-          <img src="https://via.placeholder.com/120" alt="Александр Сидоров">
-          <h3>Александр Сидоров</h3>
-          <p>Разработчик и исследователь AI</p>
-        </div>
-        <!-- Преподаватель №4 (Ганьшин В.К.) -->
-        <div class="teacher-card">
-          <img src="https://via.placeholder.com/120" alt="Ганьшин В.К.">
-          <h3>Ганьшин В.К.</h3>
-          <p>Руководитель технопарка ФГБОУ ВО РГСУ</p>
-        </div>
+  <section class="form" id="form">
+    <h2>Форма записи</h2>
+    <form onsubmit="event.preventDefault(); alert('Спасибо за вашу заявку! Мы свяжемся с вами.');">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="4" placeholder="Комментарий (необязательно)"></textarea>
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+
+  <div class="footer">
+    © 2025 Курс ИИ | Ганьшин В.К. | РГСУ
+  </div>
+
+  <div class="assistant" title="Помощник курса" onclick="toggleAssistantMessage()">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" alt="AI Assistant">
+  </div>
+  <div class="speech-bubble" id="speech-bubble">
+    <div id="speech-base">
+      <div class="speech-options">
+        <button onclick="showAnswer('topics')">Какие темы в курсе?</button>
+        <button onclick="showAnswer('signup')">Как записаться?</button>
+        <button onclick="showAnswer('value')">Что я получу от курса?</button>
+      </div>
+      <div class="speech-response" id="speech-response"></div>
+      <div class="speech-close">
+        <button onclick="toggleAssistantMessage()">Скрыть</button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Блок "Отзывы студентов" -->
-  <section class="section testimonials-section">
-    <div class="container">
-      <h2 class="section-title">Отзывы студентов</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <blockquote>«Как записаться на курс ИИ? Очень просто — всё понравилось!»</blockquote>
-          <p class="testimonial-author">— Алексей</p>
-        </div>
-        <div class="testimonial-card">
-          <blockquote>«Какие знания требуются? Мне хватило базового Python и всё получилось!»</blockquote>
-          <p class="testimonial-author">— Елена</p>
-        </div>
-        <div class="testimonial-card">
-          <blockquote>«Есть ли гарантия возврата средств? Да, и это приятно!»</blockquote>
-          <p class="testimonial-author">— Дмитрий</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Блок "FAQ" -->
-  <section class="section faq-section">
-    <div class="container">
-      <h2 class="section-title">FAQ</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <h3>Как записаться на курс?</h3>
-          <p>Для записи на курс нужно заполнить форму регистрации и оплатить участие.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Какие знания требуются?</h3>
-          <p>Необходимо базовое знание Python и общее понимание математики.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Есть ли гарантия возврата средств?</h3>
-          <p>Да, в течение двух недель после старта занятий можно вернуть оплату.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Подвал (footer) -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <p>&copy; 2023 Искусственный интеллект и практика его использования</p>
-      <p>Все права защищены</p>
-    </div>
-  </footer>
+  <div class="scroll-top" id="scroll-top" onclick="scrollToTop()">
+    <img src="https://cdn-icons-png.flaticon.com/512/465/465447.png" alt="Scroll to top">
+  </div>
 </body>
 </html>
