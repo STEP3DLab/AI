@@ -3,94 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <title>Мастер-класс «Искусство промптов»</title>
-
-  <!-- SEO & OpenGraph -->
   <link rel="canonical" href="https://example.com/prompt-masterclass">
   <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер-класс 29 апреля 2025, онлайн + запись">
-  <meta name="keywords" content="промпты, нейросети, мастер-класс, онлайн, запись">
   <meta name="robots" content="index, follow">
   <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
   <meta name="theme-color" content="#6a0dad">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Preload fonts -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
   <style>
-    :root {
-      --color-bg: #fff;
-      --color-text: #333;
-      --color-accent: #6a0dad;
-      --color-accent-light: #ff7bac;
-      --color-cta: #ffd500;
-      --color-error: #e53935;
-      --color-discount-bg: #ffefc2;
-      --font-sans: 'Montserrat', sans-serif;
-    }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text);}
-    a,button{background:none;border:none;color:inherit;cursor:pointer;text-decoration:none;}
-    .container{max-width:800px;margin:0 auto;padding:60px 20px;}
-    header{background:linear-gradient(135deg,var(--color-accent),var(--color-accent-light));color:#fff;text-align:center;padding:80px 20px;}
-    header h1{font-size:2.5rem;font-weight:700;margin-bottom:.3em;}
-    header h2{font-size:3rem;font-weight:900;margin-bottom:.5em;}
-    header p{font-size:1.1rem;opacity:.9;}
-    .countdown{display:flex;justify-content:center;gap:10px;margin-top:1.5em;}
-    .countdown__item{background:rgba(255,255,255,0.25);padding:12px 16px;border-radius:8px;min-width:60px;}
-    .countdown__value{font-size:1.5rem;font-weight:700;color:#fff;}
-    .countdown__unit{font-size:.75rem;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-top:4px;}
-    h2.section-title{font-size:1.8rem;margin-bottom:1rem;color:var(--color-accent);}
-    section{padding:60px 0;}
-    #program ul{list-style:disc outside;margin-left:20px;}
-    .speaker{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
-    .speaker img{width:180px;height:180px;object-fit:cover;border-radius:50%;}
-    .bio h3{font-size:1.5rem;margin-bottom:.4em;color:var(--color-text);}
-    details{margin-bottom:15px;}
-    summary{cursor:pointer;padding:10px 14px;background:#f5f5f5;border-radius:6px;position:relative;}
-    summary::after{content:'▶';position:absolute;right:14px;}
-    details[open] summary::after{transform:rotate(90deg);}
-    details p{padding:10px 14px;background:#fafafa;border-radius:0 0 6px 6px;}
-    form.subscribe{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
-    form.subscribe input{padding:12px;border:1px solid #ccc;border-radius:25px;min-width:200px;flex:1;}
-    form.subscribe button{background:var(--color-accent);color:#fff;padding:12px 20px;border-radius:25px;}
-    /* Pricing Section */
-    #pricing{background:#fbfbfb;padding:40px 20px;border-radius:12px;text-align:center;}
-    .discount-label{display:inline-block;background:var(--color-discount-bg);color:var(--color-error);font-weight:600;padding:6px 12px;border-radius:20px;margin-bottom:16px;font-size:.9rem;}
-    .original-price{font-size:1rem;color:#888;text-decoration:line-through;margin-bottom:8px;display:block;}
-    .current-price{font-size:3rem;font-weight:700;color:var(--color-accent);margin-bottom:4px;}
-    .currency{font-size:1.5rem;vertical-align:super;}
-    .cta-buttons{display:flex;gap:16px;justify-content:center;margin-top:20px;}
-    .cta-buttons button{background:var(--color-cta);color:#000;padding:12px 24px;border-radius:25px;font-weight:600;}
-    .cta-buttons button:hover{background:#e6c700;}
+    :root { --bg:#fff;--text:#333;--accent:#6a0dad;--accent-light:#ff7bac;--cta:#ffd500;--error:#e53935;--discount-bg:#ffefc2;--font:'Montserrat',sans-serif; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text)}
+    .skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px;z-index:1001;}
+    .skip-link:focus{top:0;}
+    nav{position:sticky;top:0;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:10px;text-align:center;z-index:1000}
+    nav ul{list-style:none;display:inline-flex;gap:20px}
+    nav a{color:var(--accent);font-weight:600;text-decoration:none}
+    .container{max-width:800px;margin:0 auto;padding:60px 20px}
+    section{padding:60px 0}
+    h2.section-title{color:var(--accent);font-size:1.8rem;margin-bottom:1rem}
+    header{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;text-align:center;padding:80px 20px}
+    header h1{font-size:2.5rem;font-weight:700;margin-bottom:.3em}
+    header h2{font-size:3rem;font-weight:900;margin-bottom:.5em}
+    header p{font-size:1.1rem;opacity:.9}
+    .countdown{display:flex;justify-content:center;gap:10px;margin-top:1.5em}
+    .countdown__item{background:rgba(255,255,255,0.25);padding:12px 16px;border-radius:8px;min-width:60px}
+    .countdown__value{font-size:1.5rem;font-weight:700;color:#fff}
+    .countdown__unit{font-size:.75rem;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-top:4px}
+    #program ul{list-style:disc outside;margin-left:20px}
+    .speaker{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    .speaker img{width:180px;height:180px;object-fit:cover;border-radius:50%}
+    details{margin-bottom:15px}
+    summary{cursor:pointer;padding:10px 14px;background:#f5f5f5;border-radius:6px;position:relative}
+    summary::after{content:'▶';position:absolute;right:14px}
+    details[open] summary::after{transform:rotate(90deg)}
+    details p{padding:10px 14px;background:#fafafa;border-radius:0 0 6px 6px}
+    #registration{background:#fbfbfb;padding:40px 20px;border-radius:12px;text-align:center}
+    #registration-form{display:grid;gap:16px;max-width:400px;margin:0 auto}
+    .form-group{display:flex;flex-direction:column;text-align:left}
+    label{font-size:.9rem;font-weight:600}
+    input{padding:12px;border:1px solid #ccc;border-radius:6px;font-size:1rem}
+    button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:6px;font-size:1rem;cursor:pointer}
+    button:disabled{background:#aaa;cursor:default}
+    #form-status{min-height:1.2em;font-size:.9rem;margin-top:8px;color:var(--text)}
+    #pricing{background:#fbfbfb;padding:40px 20px;border-radius:12px;text-align:center}
+    .discount-label{background:var(--discount-bg);color:var(--error);padding:6px 12px;border-radius:20px;font-size:.9rem;margin-bottom:16px}
+    .original-price{font-size:1rem;color:#888;text-decoration:line-through;margin-bottom:8px;display:block}
+    .current-price{font-size:3rem;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .currency{font-size:1.5rem;vertical-align:super}
+    .cta-buttons{display:flex;gap:16px;justify-content:center;margin-top:20px}
+    .cta-buttons button:hover{background:#e6c700}
   </style>
 </head>
 <body>
-  <header>
+  <a href="#main-content" class="skip-link">Пропустить к контенту</a>
+  <nav role="navigation">
+    <ul>
+      <li><a href="#about">О мастер-классе</a></li>
+      <li><a href="#program">Программа</a></li>
+      <li><a href="#speaker">Спикер</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#registration">Регистрация</a></li>
+    </ul>
+  </nav>
+  <header role="banner">
     <h1>Мастер‑класс</h1>
     <h2>«Искусство промптов»</h2>
     <p>Как писать запросы к нейросетям, которые приносят результат</p>
-    <div class="countdown" id="countdown-start">
+    <div class="countdown" role="timer" aria-live="polite" id="countdown-start">
       <div class="countdown__item"><span class="countdown__value" id="days">--</span><span class="countdown__unit">дн</span></div>
       <div class="countdown__item"><span class="countdown__value" id="hours">--</span><span class="countdown__unit">ч</span></div>
       <div class="countdown__item"><span class="countdown__value" id="minutes">--</span><span class="countdown__unit">мин</span></div>
       <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
     </div>
   </header>
-  <main class="container">
-    <section id="about">
-      <h2 class="section-title">О мастер-классе</h2>
+  <main id="main-content" role="main" class="container">
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">О мастер-классе</h2>
       <p>29 апреля 2025, онлайн-трансляция + запись. Практические кейсы и чек-лист в подарок.</p>
     </section>
-
-    <section id="program">
-      <h2 class="section-title">Программа</h2>
+    <section id="program" aria-labelledby="program-title">
+      <h2 id="program-title" class="section-title">Программа</h2>
       <ul>
         <li>Введение в prompt engineering</li>
         <li>Типы промптов и лучшие практики</li>
@@ -98,65 +98,94 @@
         <li>Q&A и чек-лист по итогам</li>
       </ul>
     </section>
-
-    <section id="speaker">
-      <h2 class="section-title">Спикер</h2>
+    <section id="speaker" aria-labelledby="speaker-title">
+      <h2 id="speaker-title" class="section-title">Спикер</h2>
       <div class="speaker">
-        <img src="https://example.com/speaker.jpg" alt="Ганшин Владимир Александрович">
+        <img src="https://example.com/speaker-180.jpg" srcset="https://example.com/speaker-180.jpg 180w, https://example.com/speaker-360.jpg 360w, https://example.com/speaker-720.jpg 720w" sizes="(max-width:600px) 100vw, 180px" width="180" height="180" loading="lazy" alt="Ганшин Владимир Александрович">
         <div class="bio">
           <h3>Ганшин Владимир Александрович</h3>
           <p>Руководитель технопарка РГСУ, эксперт по AI-технологиям и prompt-инжинирингу.</p>
         </div>
       </div>
     </section>
-
-    <section id="faq">
-      <h2 class="section-title">Частые вопросы</h2>
+    <section id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section-title">Частые вопросы</h2>
       <details><summary>Формат проведения?</summary><p>Онлайн с доступом к записи.</p></details>
       <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
       <details><summary>Сертификат?</summary><p>Электронный сертификат всем участникам.</p></details>
     </section>
-
-    <section id="subscribe">
-      <h2 class="section-title">Бонус: чек‑лист</h2>
-      <form class="subscribe" action="#" onsubmit="alert('Чек‑лист отправлен!');return false;">
-        <input type="email" placeholder="Ваш e‑mail" required>
-        <button type="submit">Получить</button>
+    <section id="registration" aria-labelledby="registration-title">
+      <h2 id="registration-title" class="section-title">Регистрация на мастер-класс</h2>
+      <form id="registration-form" aria-live="polite">
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="name" placeholder="Имя" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label for="email">Ваш e‑mail</label>
+          <input type="email" id="email" name="email" placeholder="E-mail" required aria-required="true">
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+        <div id="form-status" aria-live="polite"></div>
       </form>
     </section>
-
-    <!-- Pricing -->
-    <section id="pricing">
-      <h2 class="section-title" id="pricing-title">Стоимость</h2>
+    <section id="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title" class="section-title">Стоимость</h2>
       <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
       <span class="original-price">2 990 ₽</span>
       <div class="current-price">2 691<span class="currency">₽</span></div>
       <div class="cta-buttons">
-        <button id="register">Зарегистрироваться</button>
         <button id="pay">Оплатить</button>
       </div>
     </section>
-
   </main>
-
-  <!-- Countdown Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded',()=>{
-      const updateTimer=(end, ids)=>{ const timer=setInterval(()=>{
-        const diff=end-Date.now();
-        const d=Math.floor(diff/86400000);
-        const h=Math.floor((diff%86400000)/3600000);
-        const m=Math.floor((diff%3600000)/60000);
-        const s=Math.floor((diff%60000)/1000);
-        document.getElementById(ids.days).textContent=d;
-        document.getElementById(ids.hours).textContent=h;
-        document.getElementById(ids.minutes).textContent=m;
-        document.getElementById(ids.seconds).textContent=s;
-        if(diff<=0) clearInterval(timer);
-      },1000);};
-      updateTimer(new Date('2025-04-29T19:00:00+03:00'),{days:'days',hours:'hours',minutes:'minutes',seconds:'seconds'});
+  <footer role="contentinfo" class="container">
+    <p>&copy; 2025 Мастер‑класс «Искусство промптов». Все права защищены.</p>
+  </footer>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const updateTimer = (end, ids) => {
+        const timer = setInterval(() => {
+          const diff = end - Date.now();
+          const d = Math.max(Math.floor(diff/86400000),0);
+          const h = Math.max(Math.floor((diff%86400000)/3600000),0);
+          const m = Math.max(Math.floor((diff%3600000)/60000),0);
+          const s = Math.max(Math.floor((diff%60000)/1000),0);
+          document.getElementById(ids.days).textContent = d;
+          document.getElementById(ids.hours).textContent = h;
+          document.getElementById(ids.minutes).textContent = m;
+          document.getElementById(ids.seconds).textContent = s;
+          if(diff<=0) clearInterval(timer);
+        },1000);
+      };
+      updateTimer(new Date('2025-04-29T19:00:00+03:00'), {days:'days',hours:'hours',minutes:'minutes',seconds:'seconds'});
+      const scriptURL = 'https://script.google.com/macros/s/DEPLOYMENT_ID/exec';
+      const form = document.getElementById('registration-form');
+      const status = document.getElementById('form-status');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        btn.disabled = true;
+        status.textContent = 'Отправка...';
+        fetch(scriptURL, { method:'POST', body:new FormData(form), signal:controller.signal })
+          .then(r => r.json())
+          .then(data => {
+            if(data.result==='success'){
+              status.style.color='green';
+              status.textContent='Спасибо! Вы зарегистрированы.';
+              form.reset();
+            } else throw new Error(data.message||'Error');
+          })
+          .catch(err=>{
+            status.style.color='var(--error)';
+            if(err.name==='AbortError') status.textContent='Превышено время ожидания. Попробуйте снова.';
+            else status.textContent='Ошибка отправки. Попробуйте позже.';
+          })
+          .finally(()=>{ btn.disabled=false; clearTimeout(timeoutId); });
+      });
     });
   </script>
 </body>
 </html>
-
