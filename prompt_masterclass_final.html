@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Мастер‑класс «Искусство промптов»</title>
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс 29 апреля 2025, онлайн + запись" />
+  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family:'Montserrat',sans-serif; margin:0; padding:0; color:#1a1a1a; background:#fff; scroll-behavior:smooth; }
+    header {
+      background: linear-gradient(135deg,#9b4de0,#bd66ff);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+    }
+    header h1 { font-size: 2.8rem; font-weight: 700; }
+    header h2 { font-size: 3rem; font-weight: 900; color: #ffd500; margin: 10px 0; }
+    header p { font-size: 1.1rem; opacity: 0.9; }
+    #countdown {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #fff;
+      color: #9b4de0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+    nav a:hover { background: #f3f3f3; }
+    .btn { background: #ffd500; color: #000; }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+    h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+    ul.benefits, ul.program {
+      list-style: none;
+      display: grid;
+      gap: 20px;
+      padding-left: 0;
+    }
+    ul.benefits li, ul.program li {
+      padding: 16px 24px;
+      background: #f7f7f7;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      font-size: 1rem;
+    }
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta button {
+      padding: 14px 36px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: #ffd500;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .3s;
+    }
+    .cta button:hover { transform: translateY(-3px); background:#ffcc00; }
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-style: italic;
+    }
+    .reviews blockquote {
+      padding: 20px;
+      background: #f9f9f9;
+      border-left: 5px solid #9b4de0;
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      header h2 { font-size: 2.2rem; }
+      .cta button { width: 100%; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#benefits">Преимущества</a>
+    <a href="#program">Программа</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#register" class="btn">Записаться</a>
+  </nav>
+  <header>
+    <h1>Мастер‑класс</h1>
+    <h2>«Искусство промптов»</h2>
+    <p>Как писать запросы к нейросетям, которые приносят результат</p>
+    <div id="countdown">До старта: <span id="timer">загрузка...</span></div>
+  </header>
+  <main>
+    <section id="benefits" class="container">
+      <h2>Что вы получите</h2>
+      <ul class="benefits">
+        <li>📄 Навык написания эффективных промптов</li>
+        <li>🧠 PDF-чек-листы и шаблоны</li>
+        <li>🎓 Сертификат об участии</li>
+        <li>💾 Доступ к записи мастер-класса</li>
+        <li>💬 Личную консультацию от эксперта</li>
+      </ul>
+    
+<section class="container" id="speaker">
+  <h2>Преподаватель</h2>
+  <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <img src="ganjin_vk.png" alt="Ганьшин Владимир Александрович" style="max-width:180px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+    <div>
+      <h3 style="margin-bottom:10px;font-size:1.4rem;">Ганьшин Владимир Александрович</h3>
+      <p>Руководитель технопарка РГСУ, эксперт по AI и промпт-инжинирингу. Преподаватель мастер-класса с опытом более 10 лет в области цифровых технологий и нейросетей.</p>
+    </div>
+  </div>
+</section>
+
+</section>
+    <div class="cta">
+      <button id="register">Записаться сейчас</button>
+    </div>
+    <section id="program" class="container">
+      <h2>Программа мастер‑класса</h2>
+      <ul class="program">
+        <li>🧠 Введение в работу с нейросетями</li>
+        <li>✍️ Типология промптов</li>
+        <li>🔍 Примеры хороших и плохих запросов</li>
+        <li>🎯 Практика + разбор кейсов</li>
+        <li>📦 Бонусы, разбор ваших задач</li>
+      </ul>
+    </section>
+    <section id="reviews" class="container">
+      <h2>Отзывы участников</h2>
+      <div class="reviews">
+        <blockquote>«После мастер‑класса я стал понимать, как правильно писать запросы. Отличный формат!» — Ирина К.</blockquote>
+        <blockquote>«Полезно, чётко, с практикой. Чек‑листы — супер!» — Алексей В.</blockquote>
+      </div>
+    </section>
+  </main>
+  <script>
+    function startCountdown(el, end, callback){
+      setInterval(()=>{
+        const diff = end - Date.now();
+        if(diff<=0){ el.textContent = callback(); return; }
+        const d=Math.floor(diff/86400000),
+              h=Math.floor((diff%86400000)/3600000);
+        el.textContent = `${d}д ${h}ч`;
+      },1000);
+    }
+    startCountdown(document.getElementById('timer'), new Date('2025-04-29T19:00:00+03:00').getTime(), ()=>'началось!');
+  </script>
+</body>
+</html>
