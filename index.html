@@ -1,175 +1,171 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Мастер‑класс «Искусство промптов»</title>
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), оффлайн + запись">
-  <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
-  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Оффлайн 19:00–20:30 (МСК) + запись.">
-  <meta property="og:image" content="https://example.com/og-image.jpg">
-  <meta property="og:url" content="https://example.com/prompt-masterclass">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс 29 апреля 2025, онлайн + запись" />
+  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/styles.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Мастер‑класс «Искусство промптов»",
-    "startDate": "2025-04-29T19:00:00+03:00",
-    "endDate":   "2025-04-29T20:30:00+03:00",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "location": {
-      "@type": "Place",
-      "name": "ул. Беговая, д. 12",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Беговая, д. 12",
-        "addressLocality": "Москва",
-        "addressCountry": "RU"
-      }
-    },
-    "image": [ "https://example.com/og-image.jpg" ],
-    "description": "Как писать запросы к нейросетям, которые приносят результат, оффлайн + запись.",
-    "organizer": {
-      "@type": "Organization",
-      "name": "РГСУ Технопарк",
-      "url": "https://example.com"
+  <style>
+    body { font-family:'Montserrat',sans-serif; margin:0; padding:0; color:#1a1a1a; background:#fff; scroll-behavior:smooth; }
+    header {
+      background: linear-gradient(135deg,#9b4de0,#bd66ff);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
     }
-  }
-  </script>
+    header h1 { font-size: 2.8rem; font-weight: 700; }
+    header h2 { font-size: 3rem; font-weight: 900; color: #ffd500; margin: 10px 0; }
+    header p { font-size: 1.1rem; opacity: 0.9; }
+    #countdown {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #fff;
+      color: #9b4de0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+    nav a:hover { background: #f3f3f3; }
+    .btn { background: #ffd500; color: #000; }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+    h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+    ul.benefits, ul.program {
+      list-style: none;
+      display: grid;
+      gap: 20px;
+      padding-left: 0;
+    }
+    ul.benefits li, ul.program li {
+      padding: 16px 24px;
+      background: #f7f7f7;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      font-size: 1rem;
+    }
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta button {
+      padding: 14px 36px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: #ffd500;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .3s;
+    }
+    .cta button:hover { transform: translateY(-3px); background:#ffcc00; }
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-style: italic;
+    }
+    .reviews blockquote {
+      padding: 20px;
+      background: #f9f9f9;
+      border-left: 5px solid #9b4de0;
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      header h2 { font-size: 2.2rem; }
+      .cta button { width: 100%; margin-top: 10px; }
+    }
+  </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Пропустить к контенту</a>
-
-  <button class="burger" aria-label="Открыть меню" aria-expanded="false">
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-  </button>
-  <nav class="nav" role="navigation" aria-label="Главное меню">
-    <ul class="nav__list">
-      <li><a href="#about">О мастер‑классе</a></li>
-      <li><a href="#program">Программа</a></li>
-      <li><a href="#speaker">Спикер</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#registration">Регистрация</a></li>
-      <li><a href="#pricing">Стоимость</a></li>
-      <li><a href="#contact">Контакты</a></li>
-    </ul>
+  <nav>
+    <a href="#benefits">Преимущества</a>
+    <a href="#program">Программа</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#register" class="btn">Записаться</a>
   </nav>
-
-  <header role="banner">
+  <header>
     <h1>Мастер‑класс</h1>
     <h2>«Искусство промптов»</h2>
     <p>Как писать запросы к нейросетям, которые приносят результат</p>
-    <p class="header-info"><strong>Среда, 29 апреля 2025 • 19:00–20:30 (МСК)</strong></p>
-    <div class="countdown" role="timer" aria-live="polite">
-      <div class="countdown__item"><span class="countdown__value" id="days">--</span><span class="countdown__unit">дн</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="hours">--</span><span class="countdown__unit">ч</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="minutes">--</span><span class="countdown__unit">мин</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
-    </div>
+    <div id="countdown">До старта: <span id="timer">загрузка...</span></div>
   </header>
-
-  <main id="main-content" class="container" role="main">
-    <section id="about" aria-labelledby="about-title" class="card">
-      <h2 id="about-title" class="section-title">О мастер‑классе</h2>
-      <p>
-        <strong>Среда, 29 апреля 2025</strong>, оффлайн‑трансляция 19:00–20:30 (МСК) + запись.<br>
-        Практические кейсы и чек‑лист в подарок.
-      </p>
-    </section>
-
-    <section id="program" aria-labelledby="program-title" class="container">
-      <h2 id="program-title" class="section-title">Программа</h2>
-      <ul>
-        <li>Введение в prompt engineering</li>
-        <li>Типы промптов и лучшие практики</li>
-        <li>Живой разбор кейсов участников</li>
-        <li class="coffee-break">Кофе‑брейк</li>
-        <li>Q&A и чек‑лист по итогам</li>
+  <main>
+    <section id="benefits" class="container">
+      <h2>Что вы получите</h2>
+      <ul class="benefits">
+        <li>📄 Навык написания эффективных промптов</li>
+        <li>🧠 PDF-чек-листы и шаблоны</li>
+        <li>🎓 Сертификат об участии</li>
+        <li>💾 Доступ к записи мастер-класса</li>
+        <li>💬 Личную консультацию от эксперта</li>
       </ul>
     </section>
-
-    <section id="speaker" aria-labelledby="speaker-title" class="card">
-      <h2 id="speaker-title" class="section-title">Спикер</h2>
-      <div class="speaker">
-        <img src="img/speaker.jpg"
-             srcset="img/speaker.jpg 180w, img/speaker@2x.jpg 360w"
-             sizes="(max-width:600px) 100vw, 180px"
-             width="180" height="180"
-             loading="lazy"
-             decoding="async"
-             alt="Ганшин Владимир Константинович">
-        <div class="bio">
-          <h3>Ганшин Владимир Константинович</h3>
-          <p>Руководитель технопарка РГСУ, эксперт по AI‑технологиям и prompt‑инжинирингу.</p>
-        </div>
-      </div>
+    <div class="cta">
+      <button id="register">Записаться сейчас</button>
+    </div>
+    <section id="program" class="container">
+      <h2>Программа мастер‑класса</h2>
+      <ul class="program">
+        <li>🧠 Введение в работу с нейросетями</li>
+        <li>✍️ Типология промптов</li>
+        <li>🔍 Примеры хороших и плохих запросов</li>
+        <li>🎯 Практика + разбор кейсов</li>
+        <li>📦 Бонусы, разбор ваших задач</li>
+      </ul>
     </section>
-
-    <section id="faq" aria-labelledby="faq-title" class="container">
-      <h2 id="faq-title" class="section-title">Частые вопросы</h2>
-      <details><summary>Формат проведения?</summary><p>Очно</p></details>
-      <details><summary>Сертификат?</summary>
-        <p>Электронный сертификат всем участникам. Те, кто посетит минимум 7 занятий, получат сертификат РГСУ «Повышение квалификации».</p>
-      </details>
-      <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
-      <details><summary>Q&A и чек‑лист?</summary><p>В конце мастер‑класса будет сессия вопросов и ответов и раздача чек‑листа.</p></details>
-    </section>
-
-    <section id="registration" aria-labelledby="registration-title" class="card">
-      <h2 id="registration-title" class="section-title">Регистрация на мастер‑класс</h2>
-      <form id="registration-form">
-        <div class="form-group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" placeholder="Имя" required>
-          <span class="input-error" aria-live="polite"></span>
-        </div>
-        <div class="form-group">
-          <label for="email">Ваш e‑mail</label>
-          <input type="email" id="email" name="email" placeholder="E‑mail" required>
-          <span class="input-error" aria-live="polite"></span>
-        </div>
-        <button class="btn" type="submit">Зарегистрироваться</button>
-        <div id="form-status" aria-live="polite"></div>
-      </form>
-    </section>
-
-    <section id="pricing" aria-labelledby="pricing-title" class="card">
-      <h2 id="pricing-title" class="section-title">Стоимость</h2>
-      <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
-      <span class="original-price">2 990 ₽</span>
-      <div class="current-price">2 691<span class="currency">₽</span></div>
-      <div class="cta-buttons"><button class="btn" id="pay">Оплатить</button></div>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-title" class="card">
-      <h2 id="contact-title" class="section-title">Контакты</h2>
-      <p>Место проведения:<br><strong>ул. Беговая, д. 12</strong></p>
-      <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=55.7806,37.5800" target="_blank" rel="noopener">Открыть в Google Картах</a></p>
-      <div class="map-wrapper">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.123456789!2d37.577812!3d55.780606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab123456789ab%3A0xc0ffee123456789!2z0YPQuy4g0JrQsNGI0YLRgNCwLCDQkNGA0LXQutC4LCDQk9C10YDQsNC90L3Ri9C5!5e0!3m2!1sru!2sru!4v1610000000000!5m2!1sru!2sru"
-          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" title="Карта: ул. Беговая, д. 12">
-        </iframe>
+    <section id="reviews" class="container">
+      <h2>Отзывы участников</h2>
+      <div class="reviews">
+        <blockquote>«После мастер‑класса я стал понимать, как правильно писать запросы. Отличный формат!» — Ирина К.</blockquote>
+        <blockquote>«Полезно, чётко, с практикой. Чек‑листы — супер!» — Алексей В.</blockquote>
       </div>
     </section>
   </main>
-
-  <footer role="contentinfo" class="container">
-    <p>&copy; 2025 Мастер‑класс «Искусство промптов». Все права защищены.</p>
-  </footer>
-
-  <script src="js/main.js" defer
+  <script>
+    function startCountdown(el, end, callback){
+      setInterval(()=>{
+        const diff = end - Date.now();
+        if(diff<=0){ el.textContent = callback(); return; }
+        const d=Math.floor(diff/86400000),
+              h=Math.floor((diff%86400000)/3600000);
+        el.textContent = `${d}д ${h}ч`;
+      },1000);
+    }
+    startCountdown(document.getElementById('timer'), new Date('2025-04-29T19:00:00+03:00').getTime(), ()=>'началось!');
+  </script>
+</body>
+</html>
