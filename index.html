@@ -5,19 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- SEO & Open Graph -->
   <title>Мастер‑класс «Искусство промптов»</title>
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), онлайн + запись">
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), оффлайн + запись">
   <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
-  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн 19:00–20:30 (МСК) + запись.">
+  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Оффлайн 19:00–20:30 (МСК) + запись.">
   <meta property="og:image" content="https://example.com/og-image.jpg">
   <meta property="og:url" content="https://example.com/prompt-masterclass">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- JSON‑LD микроразметка события -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -81,7 +83,7 @@
   </header>
 
   <main id="main-content" class="container" role="main">
-    <section id="about" aria-labelledby="about-title">
+    <section id="about" aria-labelledby="about-title" class="card">
       <h2 id="about-title" class="section-title">О мастер‑классе</h2>
       <p>
         <strong>Среда, 29 апреля 2025</strong>, оффлайн‑трансляция 19:00–20:30 (МСК) + запись.<br>
@@ -89,18 +91,18 @@
       </p>
     </section>
 
-    <section id="program" aria-labelledby="program-title">
+    <section id="program" aria-labelledby="program-title" class="container">
       <h2 id="program-title" class="section-title">Программа</h2>
       <ul>
         <li>Введение в prompt engineering</li>
         <li>Типы промптов и лучшие практики</li>
         <li>Живой разбор кейсов участников</li>
-        <li>Кофе‑брейк</li>
+        <li class="coffee-break">Кофе‑брейк</li>
         <li>Q&A и чек‑лист по итогам</li>
       </ul>
     </section>
 
-    <section id="speaker" aria-labelledby="speaker-title">
+    <section id="speaker" aria-labelledby="speaker-title" class="card">
       <h2 id="speaker-title" class="section-title">Спикер</h2>
       <div class="speaker">
         <img src="img/speaker.jpg"
@@ -108,15 +110,16 @@
              sizes="(max-width:600px) 100vw, 180px"
              width="180" height="180"
              loading="lazy"
-             alt="Ганшин Владимир Александрович">
+             decoding="async"
+             alt="Ганшин Владимир Константинович">
         <div class="bio">
-          <h3>Ганшин Владимир Александрович</h3>
+          <h3>Ганшин Владимир Константинович</h3>
           <p>Руководитель технопарка РГСУ, эксперт по AI‑технологиям и prompt‑инжинирингу.</p>
         </div>
       </div>
     </section>
 
-    <section id="faq" aria-labelledby="faq-title">
+    <section id="faq" aria-labelledby="faq-title" class="container">
       <h2 id="faq-title" class="section-title">Частые вопросы</h2>
       <details><summary>Формат проведения?</summary><p>Очно</p></details>
       <details><summary>Сертификат?</summary>
@@ -126,7 +129,7 @@
       <details><summary>Q&A и чек‑лист?</summary><p>В конце мастер‑класса будет сессия вопросов и ответов и раздача чек‑листа.</p></details>
     </section>
 
-    <section id="registration" aria-labelledby="registration-title">
+    <section id="registration" aria-labelledby="registration-title" class="card">
       <h2 id="registration-title" class="section-title">Регистрация на мастер‑класс</h2>
       <form id="registration-form">
         <div class="form-group">
@@ -139,30 +142,28 @@
           <input type="email" id="email" name="email" placeholder="E‑mail" required>
           <span class="input-error" aria-live="polite"></span>
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button class="btn" type="submit">Зарегистрироваться</button>
         <div id="form-status" aria-live="polite"></div>
       </form>
     </section>
 
-    <section id="pricing" aria-labelledby="pricing-title">
+    <section id="pricing" aria-labelledby="pricing-title" class="card">
       <h2 id="pricing-title" class="section-title">Стоимость</h2>
       <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
       <span class="original-price">2 990 ₽</span>
       <div class="current-price">2 691<span class="currency">₽</span></div>
-      <div class="cta-buttons"><button id="pay">Оплатить</button></div>
+      <div class="cta-buttons"><button class="btn" id="pay">Оплатить</button></div>
     </section>
 
-    <section id="contact" aria-labelledby="contact-title" class="container">
+    <section id="contact" aria-labelledby="contact-title" class="card">
       <h2 id="contact-title" class="section-title">Контакты</h2>
       <p>Место проведения:<br><strong>ул. Беговая, д. 12</strong></p>
-      <p><a href="https://www.google.com/maps/search/?api=1&query=55.7806,37.5800"
-            target="_blank" rel="noopener" class="map-link">Открыть в Google Картах</a></p>
+      <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=55.7806,37.5800" target="_blank" rel="noopener">Открыть в Google Картах</a></p>
       <div class="map-wrapper">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!...."
-          width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Карта: ул. Беговая, д. 12"></iframe>
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.123456789!2d37.577812!3d55.780606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab123456789ab%3A0xc0ffee123456789!2z0YPQuy4g0JrQsNGI0YLRgNCwLCDQkNGA0LXQutC4LCDQk9C10YDQsNC90L3Ri9C5!5e0!3m2!1sru!2sru!4v1610000000000!5m2!1sru!2sru"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" title="Карта: ул. Беговая, д. 12">
+        </iframe>
       </div>
     </section>
   </main>
@@ -171,6 +172,4 @@
     <p>&copy; 2025 Мастер‑класс «Искусство промптов». Все права защищены.</p>
   </footer>
 
-  <script src="js/main.js" defer></script>
-</body>
-</html>
+  <script src="js/main.js" defer
