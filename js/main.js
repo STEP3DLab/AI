@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) Таймер
+  // Таймер
   const updateTimer = (end, ids) => {
     const t = setInterval(() => {
       const diff = end - Date.now();
@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if(diff<=0) clearInterval(t);
     },1000);
   };
-  updateTimer(new Date('2025-04-29T19:00:00+03:00'), {
-    days:'days', hours:'hours', minutes:'minutes', seconds:'seconds'
-  });
+  updateTimer(new Date('2025-04-29T19:00:00+03:00'), { days:'days', hours:'hours', minutes:'minutes', seconds:'seconds' });
 
-  // 2) Меню
+  // Меню
   const burger = document.querySelector('.burger');
   const nav    = document.querySelector('.nav');
   burger.addEventListener('click', () => {
@@ -27,21 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.classList.toggle('nav--open');
   });
 
-  // 3) Плавный скролл
+  // Плавный скролл
   document.querySelectorAll('.nav__list a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const tgt    = document.querySelector(link.getAttribute('href'));
       const offset = nav.offsetHeight;
-      window.scrollTo({
-        top: tgt.getBoundingClientRect().top + window.scrollY - offset,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: tgt.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
       if(nav.classList.contains('nav--open')) burger.click();
     });
   });
 
-  // 4) Форма
+  // Форма
   const form   = document.getElementById('registration-form');
   const btn    = form.querySelector('button[type="submit"]');
   const status = document.getElementById('form-status');
@@ -55,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!form.checkValidity()) {
       Array.from(form.elements).forEach(el => {
-        if (el.tagName==='INPUT' && !el.checkValidity()) {
+        if(el.tagName==='INPUT' && !el.checkValidity()) {
           el.classList.add('invalid');
           el.nextElementSibling.textContent = el.validationMessage;
         }
@@ -71,13 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const resp = await fetch(SCRIPT_URL, { method:'POST', mode:'cors', body:new FormData(form) });
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
-
       if (data.result==='success') {
-        form.innerHTML = `
-          <p style="color:green;font-weight:600;">
-            Спасибо, <strong>${form.name.value}</strong>!<br>
-            Подтверждение отправлено на <strong>${form.email.value}</strong>.
-          </p>`;
+        form.innerHTML = `<p style="color:green;font-weight:600;">
+          Спасибо, <strong>${form.name.value}</strong>!<br>
+          Подтверждение отправлено на <strong>${form.email.value}</strong>.
+        </p>`;
       } else {
         throw new Error(data.message||'Ошибка сервера');
       }
