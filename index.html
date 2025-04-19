@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-  <title>Мастер-класс «Искусство промптов»</title>
-  <link rel="canonical" href="https://example.com/prompt-masterclass">
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер-класс 29 апреля 2025, онлайн + запись">
-  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO & Open Graph -->
+  <title>Мастер‑класс «Искусство промптов»</title>
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс 29 апреля 2025, онлайн + запись">
+  <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
+  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн + запись.">
+  <meta property="og:image" content="https://example.com/og-image.jpg">
+  <meta property="og:url" content="https://example.com/prompt-masterclass">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-  <meta name="theme-color" content="#6a0dad">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { --bg:#fff;--text:#333;--accent:#6a0dad;--accent-light:#ff7bac;--cta:#ffd500;--error:#e53935;--discount-bg:#ffefc2;--font:'Montserrat',sans-serif; }
+    /* Стили как в предыдущем примере ... */
+    :root{--bg:#fff;--text:#333;--accent:#6a0dad;--accent-light:#ff7bac;--cta:#ffd500;--error:#e53935;--discount-bg:#ffefc2;--font:'Montserrat',sans-serif}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{font-family:var(--font);background:var(--bg);color:var(--text)}
-    .skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px;z-index:1001;}
-    .skip-link:focus{top:0;}
-    nav{position:sticky;top:0;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:10px;text-align:center;z-index:1000}
-    nav ul{list-style:none;display:inline-flex;gap:20px}
-    nav a{color:var(--accent);font-weight:600;text-decoration:none}
-    .container{max-width:800px;margin:0 auto;padding:60px 20px}
-    section{padding:60px 0}
-    h2.section-title{color:var(--accent);font-size:1.8rem;margin-bottom:1rem}
+    a:focus,button:focus,input:focus{outline:2px dashed var(--accent);outline-offset:2px}
+    .skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px;z-index:1001}
+    .skip-link:focus{top:0}
+    .burger{position:fixed;top:16px;right:16px;display:none;flex-direction:column;gap:4px;background:transparent;border:none;cursor:pointer;z-index:1001}
+    .burger__line{width:24px;height:3px;background:var(--accent);border-radius:2px}
+    .nav{position:sticky;top:0;background:var(--bg);box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:10px;text-align:center;z-index:1000}
+    .nav__list{list-style:none;display:flex;gap:20px;justify-content:center}
+    .nav__list a{color:var(--accent);font-weight:600;text-decoration:none}
+    @media(max-width:768px){.burger{display:flex}.nav__list{position:fixed;top:0;right:-100%;height:100%;width:240px;background:var(--bg);flex-direction:column;padding-top:60px;gap:16px;transition:right .3s ease}.nav.nav--open .nav__list{right:0}}
     header{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;text-align:center;padding:80px 20px}
     header h1{font-size:2.5rem;font-weight:700;margin-bottom:.3em}
     header h2{font-size:3rem;font-weight:900;margin-bottom:.5em}
@@ -37,12 +38,14 @@
     .countdown__item{background:rgba(255,255,255,0.25);padding:12px 16px;border-radius:8px;min-width:60px}
     .countdown__value{font-size:1.5rem;font-weight:700;color:#fff}
     .countdown__unit{font-size:.75rem;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-top:4px}
-    #program ul{list-style:disc outside;margin-left:20px}
+    .container{max-width:800px;margin:0 auto;padding:60px 20px}
+    section{padding:60px 0}
+    .section-title{color:var(--accent);font-size:1.8rem;margin-bottom:1rem}
     .speaker{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
     .speaker img{width:180px;height:180px;object-fit:cover;border-radius:50%}
     details{margin-bottom:15px}
     summary{cursor:pointer;padding:10px 14px;background:#f5f5f5;border-radius:6px;position:relative}
-    summary::after{content:'▶';position:absolute;right:14px}
+    summary::after{content:'▶';position:absolute;right:14px;transition:transform .2s}
     details[open] summary::after{transform:rotate(90deg)}
     details p{padding:10px 14px;background:#fafafa;border-radius:0 0 6px 6px}
     #registration{background:#fbfbfb;padding:40px 20px;border-radius:12px;text-align:center}
@@ -64,8 +67,14 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Пропустить к контенту</a>
-  <nav role="navigation">
-    <ul>
+
+  <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+  </button>
+  <nav class="nav" role="navigation" aria-label="Главное меню">
+    <ul class="nav__list">
       <li><a href="#about">О мастер-классе</a></li>
       <li><a href="#program">Программа</a></li>
       <li><a href="#speaker">Спикер</a></li>
@@ -73,6 +82,7 @@
       <li><a href="#registration">Регистрация</a></li>
     </ul>
   </nav>
+
   <header role="banner">
     <h1>Мастер‑класс</h1>
     <h2>«Искусство промптов»</h2>
@@ -84,66 +94,34 @@
       <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
     </div>
   </header>
-  <main id="main-content" role="main" class="container">
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title" class="section-title">О мастер-классе</h2>
-      <p>29 апреля 2025, онлайн-трансляция + запись. Практические кейсы и чек-лист в подарок.</p>
-    </section>
-    <section id="program" aria-labelledby="program-title">
-      <h2 id="program-title" class="section-title">Программа</h2>
-      <ul>
-        <li>Введение в prompt engineering</li>
-        <li>Типы промптов и лучшие практики</li>
-        <li>Живой разбор кейсов участников</li>
-        <li>Q&A и чек-лист по итогам</li>
-      </ul>
-    </section>
-    <section id="speaker" aria-labelledby="speaker-title">
-      <h2 id="speaker-title" class="section-title">Спикер</h2>
-      <div class="speaker">
-        <img src="https://example.com/speaker-180.jpg" srcset="https://example.com/speaker-180.jpg 180w, https://example.com/speaker-360.jpg 360w, https://example.com/speaker-720.jpg 720w" sizes="(max-width:600px) 100vw, 180px" width="180" height="180" loading="lazy" alt="Ганшин Владимир Александрович">
-        <div class="bio">
-          <h3>Ганшин Владимир Александрович</h3>
-          <p>Руководитель технопарка РГСУ, эксперт по AI-технологиям и prompt-инжинирингу.</p>
-        </div>
-      </div>
-    </section>
-    <section id="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="section-title">Частые вопросы</h2>
-      <details><summary>Формат проведения?</summary><p>Онлайн с доступом к записи.</p></details>
-      <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
-      <details><summary>Сертификат?</summary><p>Электронный сертификат всем участникам.</p></details>
-    </section>
+
+  <main id="main-content" class="container" role="main">
+    <!-- ... остальные секции ... -->
+
     <section id="registration" aria-labelledby="registration-title">
-      <h2 id="registration-title" class="section-title">Регистрация на мастер-класс</h2>
-      <form id="registration-form" aria-live="polite">
+      <h2 id="registration-title" class="section-title">Регистрация на мастер‑класс</h2>
+      <form id="registration-form"
+            action="https://script.google.com/macros/s/AKfycbwgAUEz5PIkSGFtu28LNZB9J7L5nF7AGHfkesGPrRz4Iju-G0upbBYPuzwm4rT7N1YUyw/exec"
+            method="POST" novalidate>
         <div class="form-group">
           <label for="name">Ваше имя</label>
           <input type="text" id="name" name="name" placeholder="Имя" required aria-required="true">
         </div>
         <div class="form-group">
           <label for="email">Ваш e‑mail</label>
-          <input type="email" id="email" name="email" placeholder="E-mail" required aria-required="true">
+          <input type="email" id="email" name="email" placeholder="E‑mail" required aria-required="true">
         </div>
         <button type="submit">Зарегистрироваться</button>
         <div id="form-status" aria-live="polite"></div>
       </form>
     </section>
-    <section id="pricing" aria-labelledby="pricing-title">
-      <h2 id="pricing-title" class="section-title">Стоимость</h2>
-      <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
-      <span class="original-price">2 990 ₽</span>
-      <div class="current-price">2 691<span class="currency">₽</span></div>
-      <div class="cta-buttons">
-        <button id="pay">Оплатить</button>
-      </div>
-    </section>
+
+    <!-- ... раздел с ценой, футер и т.д. ... -->
   </main>
-  <footer role="contentinfo" class="container">
-    <p>&copy; 2025 Мастер‑класс «Искусство промптов». Все права защищены.</p>
-  </footer>
-  <script defer>
+
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Countdown
       const updateTimer = (end, ids) => {
         const timer = setInterval(() => {
           const diff = end - Date.now();
@@ -158,32 +136,31 @@
           if(diff<=0) clearInterval(timer);
         },1000);
       };
-      updateTimer(new Date('2025-04-29T19:00:00+03:00'), {days:'days',hours:'hours',minutes:'minutes',seconds:'seconds'});
-      const scriptURL = 'https://script.google.com/macros/s/DEPLOYMENT_ID/exec';
-      const form = document.getElementById('registration-form');
-      const status = document.getElementById('form-status');
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        const btn = form.querySelector('button');
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
-        btn.disabled = true;
-        status.textContent = 'Отправка...';
-        fetch(scriptURL, { method:'POST', body:new FormData(form), signal:controller.signal })
-          .then(r => r.json())
-          .then(data => {
-            if(data.result==='success'){
-              status.style.color='green';
-              status.textContent='Спасибо! Вы зарегистрированы.';
-              form.reset();
-            } else throw new Error(data.message||'Error');
-          })
-          .catch(err=>{
-            status.style.color='var(--error)';
-            if(err.name==='AbortError') status.textContent='Превышено время ожидания. Попробуйте снова.';
-            else status.textContent='Ошибка отправки. Попробуйте позже.';
-          })
-          .finally(()=>{ btn.disabled=false; clearTimeout(timeoutId); });
+      updateTimer(new Date('2025-04-29T19:00:00+03:00'), {
+        days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds'
+      });
+
+      // Burger menu
+      const burger = document.querySelector('.burger');
+      const nav = document.querySelector('.nav');
+      burger.addEventListener('click', () => {
+        const expanded = burger.getAttribute('aria-expanded') === 'true';
+        burger.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('nav--open');
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          const offset = document.querySelector('.nav').offsetHeight;
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - offset,
+            behavior: 'smooth'
+          });
+          if(nav.classList.contains('nav--open')) burger.click();
+        });
       });
     });
   </script>
