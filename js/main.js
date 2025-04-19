@@ -1,94 +1,80 @@
-// Скрытие загрузчика после загрузки страницы
-window.addEventListener('load', function () {
-  const loader = document.getElementById('page-loader');
-  loader.style.opacity = '0';
-  setTimeout(() => { loader.style.display = 'none'; }, 500);
-});
-
-// Переключение темы с сохранением в localStorage
-function toggleTheme() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-}
-(function () {
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
-})();
-
-// FAQ: плавное раскрытие/сжатие
-function toggleFaq(item) {
-  item.classList.toggle('open');
-}
-
-// Sticky header, Back-to-top и параллакс для баннера
-window.addEventListener('scroll', function () {
-  const header = document.getElementById('header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-  // Back-to-top кнопка
-  document.querySelector('.back-to-top').style.display = window.scrollY > 300 ? 'block' : 'none';
-  // Параллакс-эффект для баннера
-  const banner = document.querySelector('.banner');
-  if (banner) {
-    banner.style.backgroundPositionY = -(window.scrollY * 0.3) + 'px';
-  }
-});
-
-// Back-to-top функция
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Анимация появления секций при прокрутке (IntersectionObserver)
-const sections = document.querySelectorAll('section');
-const observerOptions = { threshold: 0.2 };
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      sectionObserver.unobserve(entry.target);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  // Countdown
+  const updateTimer = (end, ids) => {
+    const t = setInterval(() => {
+      const diff = end - Date.now();
+      const d = Math.max(Math.floor(diff/86400000),0);
+      const h = Math.max(Math.floor((diff%86400000)/3600000),0);
+      const m = Math.max(Math.floor((diff%3600000)/60000),0);
+      const s = Math.max(Math.floor((diff%60000)/1000),0);
+      document.getElementById(ids.days).textContent    = d;
+      document.getElementById(ids.hours).textContent   = h;
+      document.getElementById(ids.minutes).textContent = m;
+      document.getElementById(ids.seconds).textContent = s;
+      if(diff<=0) clearInterval(t);
+    },1000);
+  };
+  updateTimer(new Date('2025-04-29T19:00:00+03:00'), {
+    days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds'
   });
-}, observerOptions);
-sections.forEach(section => {
-  sectionObserver.observe(section);
-});
 
-// Модальное окно для преподавателей
-function openTeacherModal(name, info) {
-  document.getElementById('teacher-modal-name').textContent = name;
-  document.getElementById('teacher-modal-info').textContent = info;
-  document.getElementById('teacher-modal').style.display = 'flex';
-  document.getElementById('teacher-modal').setAttribute('aria-hidden', 'false');
-}
-function closeTeacherModal() {
-  document.getElementById('teacher-modal').style.display = 'none';
-  document.getElementById('teacher-modal').setAttribute('aria-hidden', 'true');
-}
-// Закрытие модального окна при клике вне его содержимого
-window.addEventListener('click', function (e) {
-  const modal = document.getElementById('teacher-modal');
-  if (e.target === modal) {
-    closeTeacherModal();
-  }
-});
+  // Burger menu
+  const burger = document.querySelector('.burger');
+  const nav    = document.querySelector('.nav');
+  burger.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('nav--open');
+  });
 
-// Ripple-эффект для кнопок
-document.querySelectorAll('.btn').forEach(button => {
-  button.addEventListener('click', function (e) {
-    const rect = this.getBoundingClientRect();
-    const ripple = document.createElement('span');
-    ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
-    ripple.style.left = e.clientX - rect.left - (rect.width / 2) + 'px';
-    ripple.style.top = e.clientY - rect.top - (rect.height / 2) + 'px';
-    ripple.className = 'ripple';
-    this.appendChild(ripple);
-    setTimeout(() => {
-      ripple.remove();
-    }, 600);
+  // Smooth scroll
+  document.querySelectorAll('.nav__list a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const tgt = document.querySelector(link.getAttribute('href'));
+      const offset = nav.offsetHeight;
+      window.scrollTo({
+        top: tgt.getBoundingClientRect().top + window.scrollY - offset,
+        behavior: 'smooth'
+      });
+      if (nav.classList.contains('nav--open')) burger.click();
+    });
+  });
+
+  // AJAX‑form
+  const form   = document.getElementById('registration-form');
+  const btn    = form.querySelector('button[type="submit"]');
+  const status = document.getElementById('form-status');
+  const URL    = 'https://script.google.com/macros/s/AKfycbwgAUEz5PIkSGFtu28LNZB9J7L5nF7AGHfkesGPrRz4Iju-G0upbBYPuzwm4rT7N1YUyw/exec';
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btn.disabled = true;
+    status.style.color = 'var(--text)';
+    status.textContent = 'Отправка…';
+
+    fetch(URL, {
+      method: 'POST',
+      mode:   'cors',
+      body:   new FormData(form)
+    })
+    .then(r => r.json())
+    .then(d => {
+      if (d.result === 'success') {
+        const params = new URLSearchParams({
+          name:  form.name.value,
+          email: form.email.value
+        });
+        window.location.href = `thankyou.html?${params.toString()}`;
+      } else {
+        throw new Error(d.message || 'Ошибка сервера');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      status.style.color = 'var(--error)';
+      status.textContent = 'Ошибка отправки. Попробуйте позже.';
+    })
+    .finally(() => btn.disabled = false);
   });
 });
