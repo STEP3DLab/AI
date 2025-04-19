@@ -7,22 +7,12 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <main class="container" role="main">
+  <main class="container">
     <h1 class="section-title">Спасибо за регистрацию!</h1>
-    <p id="thank-text">
-      Мы отправили подтверждение на указанный адрес.
-    </p>
+    <p id="thank-text">Мы отправили подтверждение на указанный адрес.</p>
   </main>
   <script>
-    const p = new URLSearchParams(window.location.search);
-    const name  = p.get('name');
-    const email = p.get('email');
-    if (name && email) {
-      document.getElementById('thank-text').innerHTML =
-        `Здравствуйте, <strong>${name}</strong>!<br>
-         Подтверждение отправлено на <strong>${email}</strong>.<br>
-         Ждём вас 29 апреля 2025 в 19:00 (МСК).`;
-    }
+    // получение name/email из URL и вставка в #thank-text
   </script>
 </body>
 </html>
