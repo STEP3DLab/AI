@@ -7,9 +7,9 @@
 
   <!-- SEO & Open Graph -->
   <title>Мастер‑класс «Искусство промптов»</title>
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс 29 апреля 2025, онлайн + запись">
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), онлайн + запись">
   <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
-  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн + запись.">
+  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн 19:00–20:30 (МСК) + запись.">
   <meta property="og:image" content="https://example.com/og-image.jpg">
   <meta property="og:url" content="https://example.com/prompt-masterclass">
   <meta name="twitter:card" content="summary_large_image">
@@ -39,18 +39,34 @@
     <h1>Мастер‑класс</h1>
     <h2>«Искусство промптов»</h2>
     <p>Как писать запросы к нейросетям, которые приносят результат</p>
+    <p class="header-info"><strong>Среда, 29 апреля 2025 • 19:00–20:30 (МСК)</strong></p>
     <div class="countdown" role="timer" aria-live="polite">
-      <div class="countdown__item"><span class="countdown__value" id="days">--</span><span class="countdown__unit">дн</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="hours">--</span><span class="countdown__unit">ч</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="minutes">--</span><span class="countdown__unit">мин</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="days">--</span>
+        <span class="countdown__unit">дн</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="hours">--</span>
+        <span class="countdown__unit">ч</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="minutes">--</span>
+        <span class="countdown__unit">мин</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="seconds">--</span>
+        <span class="countdown__unit">сек</span>
+      </div>
     </div>
   </header>
 
   <main id="main-content" class="container" role="main">
     <section id="about" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title">О мастер‑классе</h2>
-      <p>29 апреля 2025, онлайн‑трансляция + запись. Практические кейсы и чек‑лист в подарок.</p>
+      <p>
+        <strong>Среда, 29 апреля 2025</strong>, онлайн‑трансляция 19:00–20:30 (МСК) + запись.<br>
+        Практические кейсы и чек‑лист в подарок.
+      </p>
     </section>
 
     <section id="program" aria-labelledby="program-title">
@@ -81,20 +97,22 @@
     <section id="faq" aria-labelledby="faq-title">
       <h2 id="faq-title" class="section-title">Частые вопросы</h2>
       <details><summary>Формат проведения?</summary><p>Онлайн с доступом к записи.</p></details>
-      <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
+      <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
       <details><summary>Сертификат?</summary><p>Электронный сертификат всем участникам.</p></details>
     </section>
 
     <section id="registration" aria-labelledby="registration-title">
       <h2 id="registration-title" class="section-title">Регистрация на мастер‑класс</h2>
-      <form id="registration-form" novalidate>
+      <form id="registration-form">
         <div class="form-group">
           <label for="name">Ваше имя</label>
           <input type="text" id="name" name="name" placeholder="Имя" required aria-required="true">
+          <span class="input-error" aria-live="polite"></span>
         </div>
         <div class="form-group">
           <label for="email">Ваш e‑mail</label>
           <input type="email" id="email" name="email" placeholder="E‑mail" required aria-required="true">
+          <span class="input-error" aria-live="polite"></span>
         </div>
         <button type="submit">Зарегистрироваться</button>
         <div id="form-status" aria-live="polite"></div>
@@ -103,12 +121,10 @@
 
     <section id="pricing" aria-labelledby="pricing-title">
       <h2 id="pricing-title" class="section-title">Стоимость</h2>
-      <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
+      <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
       <span class="original-price">2 990 ₽</span>
       <div class="current-price">2 691<span class="currency">₽</span></div>
-      <div class="cta-buttons">
-        <button id="pay">Оплатить</button>
-      </div>
+      <div class="cta-buttons"><button id="pay">Оплатить</button></div>
     </section>
   </main>
 
