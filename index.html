@@ -7,7 +7,7 @@
 
   <!-- SEO & Open Graph -->
   <title>Мастер‑класс «Искусство промптов»</title>
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), онлайн + запись">
+  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс Среда, 29 апреля 2025 • 19:00–20:30 (МСК), онлайн + запись">
   <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
   <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн 19:00–20:30 (МСК) + запись.">
   <meta property="og:image" content="https://example.com/og-image.jpg">
@@ -16,6 +16,36 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- JSON‑LD микроразметка события -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Мастер‑класс «Искусство промптов»",
+    "startDate": "2025-04-29T19:00:00+03:00",
+    "endDate":   "2025-04-29T20:30:00+03:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "ул. Беговая, д. 12",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Беговая, д. 12",
+        "addressLocality": "Москва",
+        "addressCountry": "RU"
+      }
+    },
+    "image": [ "https://example.com/og-image.jpg" ],
+    "description": "Как писать запросы к нейросетям, которые приносят результат, оффлайн + запись.",
+    "organizer": {
+      "@type": "Organization",
+      "name": "РГСУ Технопарк",
+      "url": "https://example.com"
+    }
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Пропустить к контенту</a>
@@ -32,6 +62,8 @@
       <li><a href="#speaker">Спикер</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#registration">Регистрация</a></li>
+      <li><a href="#pricing">Стоимость</a></li>
+      <li><a href="#contact">Контакты</a></li>
     </ul>
   </nav>
 
@@ -41,22 +73,10 @@
     <p>Как писать запросы к нейросетям, которые приносят результат</p>
     <p class="header-info"><strong>Среда, 29 апреля 2025 • 19:00–20:30 (МСК)</strong></p>
     <div class="countdown" role="timer" aria-live="polite">
-      <div class="countdown__item">
-        <span class="countdown__value" id="days">--</span>
-        <span class="countdown__unit">дн</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__value" id="hours">--</span>
-        <span class="countdown__unit">ч</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__value" id="minutes">--</span>
-        <span class="countdown__unit">мин</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__value" id="seconds">--</span>
-        <span class="countdown__unit">сек</span>
-      </div>
+      <div class="countdown__item"><span class="countdown__value" id="days">--</span><span class="countdown__unit">дн</span></div>
+      <div class="countdown__item"><span class="countdown__value" id="hours">--</span><span class="countdown__unit">ч</span></div>
+      <div class="countdown__item"><span class="countdown__value" id="minutes">--</span><span class="countdown__unit">мин</span></div>
+      <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
     </div>
   </header>
 
@@ -64,7 +84,7 @@
     <section id="about" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title">О мастер‑классе</h2>
       <p>
-        <strong>Среда, 29 апреля 2025</strong>, онлайн‑трансляция 19:00–20:30 (МСК) + запись.<br>
+        <strong>Среда, 29 апреля 2025</strong>, оффлайн‑трансляция 19:00–20:30 (МСК) + запись.<br>
         Практические кейсы и чек‑лист в подарок.
       </p>
     </section>
@@ -75,6 +95,7 @@
         <li>Введение в prompt engineering</li>
         <li>Типы промптов и лучшие практики</li>
         <li>Живой разбор кейсов участников</li>
+        <li>Кофе‑брейк</li>
         <li>Q&A и чек‑лист по итогам</li>
       </ul>
     </section>
@@ -85,7 +106,8 @@
         <img src="img/speaker.jpg"
              srcset="img/speaker.jpg 180w, img/speaker@2x.jpg 360w"
              sizes="(max-width:600px) 100vw, 180px"
-             width="180" height="180" loading="lazy"
+             width="180" height="180"
+             loading="lazy"
              alt="Ганшин Владимир Александрович">
         <div class="bio">
           <h3>Ганшин Владимир Александрович</h3>
@@ -96,9 +118,12 @@
 
     <section id="faq" aria-labelledby="faq-title">
       <h2 id="faq-title" class="section-title">Частые вопросы</h2>
-      <details><summary>Формат проведения?</summary><p>Онлайн с доступом к записи.</p></details>
+      <details><summary>Формат проведения?</summary><p>Очно</p></details>
+      <details><summary>Сертификат?</summary>
+        <p>Электронный сертификат всем участникам. Те, кто посетит минимум 7 занятий, получат сертификат РГСУ «Повышение квалификации».</p>
+      </details>
       <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
-      <details><summary>Сертификат?</summary><p>Электронный сертификат всем участникам.</p></details>
+      <details><summary>Q&A и чек‑лист?</summary><p>В конце мастер‑класса будет сессия вопросов и ответов и раздача чек‑листа.</p></details>
     </section>
 
     <section id="registration" aria-labelledby="registration-title">
@@ -106,12 +131,12 @@
       <form id="registration-form">
         <div class="form-group">
           <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" placeholder="Имя" required aria-required="true">
+          <input type="text" id="name" name="name" placeholder="Имя" required>
           <span class="input-error" aria-live="polite"></span>
         </div>
         <div class="form-group">
           <label for="email">Ваш e‑mail</label>
-          <input type="email" id="email" name="email" placeholder="E‑mail" required aria-required="true">
+          <input type="email" id="email" name="email" placeholder="E‑mail" required>
           <span class="input-error" aria-live="polite"></span>
         </div>
         <button type="submit">Зарегистрироваться</button>
@@ -125,6 +150,20 @@
       <span class="original-price">2 990 ₽</span>
       <div class="current-price">2 691<span class="currency">₽</span></div>
       <div class="cta-buttons"><button id="pay">Оплатить</button></div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title" class="container">
+      <h2 id="contact-title" class="section-title">Контакты</h2>
+      <p>Место проведения:<br><strong>ул. Беговая, д. 12</strong></p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=55.7806,37.5800"
+            target="_blank" rel="noopener" class="map-link">Открыть в Google Картах</a></p>
+      <div class="map-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!...."
+          width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Карта: ул. Беговая, д. 12"></iframe>
+      </div>
     </section>
   </main>
 
