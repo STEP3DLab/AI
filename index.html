@@ -2,120 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- SEO & Open Graph -->
   <title>Мастер‑класс «Искусство промптов»</title>
-  <meta name="description" content="Научитесь писать эффективные промпты для нейросетей: мастер‑класс 29 апреля 2025, онлайн + запись">
-  <meta property="og:title" content="Искусство промптов — мастер‑класс 29 апреля 2025">
-  <meta property="og:description" content="Практические кейсы и чек‑лист в подарок. Онлайн + запись.">
-  <meta property="og:image" content="https://example.com/og-image.jpg">
-  <meta property="og:url" content="https://example.com/prompt-masterclass">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <!-- ваши мета OG/Twitter -->
 
+  <!-- Правильно подключаем CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Пропустить к контенту</a>
+  <!-- навигация, шапка, секции … -->
 
-  <button class="burger" aria-label="Открыть меню" aria-expanded="false">
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-  </button>
-  <nav class="nav" role="navigation" aria-label="Главное меню">
-    <ul class="nav__list">
-      <li><a href="#about">О мастер‑классе</a></li>
-      <li><a href="#program">Программа</a></li>
-      <li><a href="#speaker">Спикер</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#registration">Регистрация</a></li>
-    </ul>
-  </nav>
-
-  <header role="banner">
-    <h1>Мастер‑класс</h1>
-    <h2>«Искусство промптов»</h2>
-    <p>Как писать запросы к нейросетям, которые приносят результат</p>
-    <div class="countdown" role="timer" aria-live="polite">
-      <div class="countdown__item"><span class="countdown__value" id="days">--</span><span class="countdown__unit">дн</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="hours">--</span><span class="countdown__unit">ч</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="minutes">--</span><span class="countdown__unit">мин</span></div>
-      <div class="countdown__item"><span class="countdown__value" id="seconds">--</span><span class="countdown__unit">сек</span></div>
-    </div>
-  </header>
-
-  <main id="main-content" class="container" role="main">
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title" class="section-title">О мастер‑классе</h2>
-      <p>29 апреля 2025, онлайн‑трансляция + запись. Практические кейсы и чек‑лист в подарок.</p>
-    </section>
-
-    <section id="program" aria-labelledby="program-title">
-      <h2 id="program-title" class="section-title">Программа</h2>
-      <ul>
-        <li>Введение в prompt engineering</li>
-        <li>Типы промптов и лучшие практики</li>
-        <li>Живой разбор кейсов участников</li>
-        <li>Q&A и чек‑лист по итогам</li>
-      </ul>
-    </section>
-
-    <section id="speaker" aria-labelledby="speaker-title">
-      <h2 id="speaker-title" class="section-title">Спикер</h2>
-      <div class="speaker">
-        <img src="img/speaker.jpg"
-             srcset="img/speaker.jpg 180w, img/speaker@2x.jpg 360w"
-             sizes="(max-width:600px) 100vw, 180px"
-             width="180" height="180" loading="lazy"
-             alt="Ганшин Владимир Александрович">
-        <div class="bio">
-          <h3>Ганшин Владимир Александрович</h3>
-          <p>Руководитель технопарка РГСУ, эксперт по AI‑технологиям и prompt‑инжинирингу.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="section-title">Частые вопросы</h2>
-      <details><summary>Формат проведения?</summary><p>Онлайн с доступом к записи.</p></details>
-      <details><summary>Требования?</summary><p>Современный браузер, интернет от 5 Мбит/с.</p></details>
-      <details><summary>Сертификат?</summary><p>Электронный сертификат всем участникам.</p></details>
-    </section>
-
-    <section id="registration" aria-labelledby="registration-title">
-      <h2 id="registration-title" class="section-title">Регистрация на мастер‑класс</h2>
-      <form id="registration-form" novalidate>
-        <div class="form-group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" placeholder="Имя" required aria-required="true">
-        </div>
-        <div class="form-group">
-          <label for="email">Ваш e‑mail</label>
-          <input type="email" id="email" name="email" placeholder="E‑mail" required aria-required="true">
-        </div>
-        <button type="submit">Зарегистрироваться</button>
-        <div id="form-status" aria-live="polite"></div>
-      </form>
-    </section>
-
-    <section id="pricing" aria-labelledby="pricing-title">
-      <h2 id="pricing-title" class="section-title">Стоимость</h2>
-      <div class="discount-label">Ранняя пташка: −10% до 20 апреля</div>
-      <span class="original-price">2 990 ₽</span>
-      <div class="current-price">2 691<span class="currency">₽</span></div>
-      <div class="cta-buttons">
-        <button id="pay">Оплатить</button>
-      </div>
-    </section>
-  </main>
-
-  <footer role="contentinfo" class="container">
-    <p>&copy; 2025 Мастер‑класс «Искусство промптов». Все права защищены.</p>
-  </footer>
-
+  <!-- Скрипт -->
   <script src="js/main.js" defer></script>
 </body>
 </html>
