@@ -11,19 +11,20 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Промтинжиниринг — мастер-класс">
   <meta name="twitter:description" content="Научитесь формулировать промты и протестируйте топ-AI-модели 11 июня 2025 г. в РГСУ или онлайн.">
-  <!-- При желании замените URL плейсхолдера на своё превью-изображение -->
+  <!-- Если есть своё превью-изображение, замените ниже URL -->
   <meta name="twitter:image" content="https://via.placeholder.com/180">
 
-  <!-- Цвет заголовка браузера -->
+  <!-- Цвет адресной строки мобильных браузеров -->
   <meta name="theme-color" id="meta-theme" content="#ffffff">
 
-  <!-- Подключение шрифта -->
-  <link rel="preload" as="font" href="/fonts/Inter.var.woff2" type="font/woff2" crossorigin>
+  <!-- Предзагрузка шрифта (необходимо, если он у вас лежит по указанному пути) -->
+  <!-- Если нет папки fonts/Inter.var.woff2, либо уберите этот тег, либо поправьте путь -->
+  <link rel="preload" as="font" href="fonts/Inter.var.woff2" type="font/woff2" crossorigin>
 
-  <!-- Внешний CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Подключаем внешний CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Зарезервированный стиль для шума -->
+  <!-- Заранее выделенный style для «шума» (noise) -->
   <style id="noise-style"></style>
 </head>
 <body>
@@ -60,8 +61,8 @@
     </ul>
 
     <p class="muted">
-      На занятии вы научитесь формулировать запросы (промты) и опробуете следующие модели:
-      <strong>GPT-o4 и 3o, Gemini, Claude, Qwen 3, Grok 3, DeepSeek и GigaChat</strong>.
+      На занятии вы научитесь формулировать запросы (промты) и опробуете
+      следующие модели: <strong>GPT-o4 и 3o, Gemini, Claude, Qwen 3, Grok 3, DeepSeek и GigaChat</strong>.
     </p>
     <p class="muted">
       Формат: оффлайн/онлайн • 16+ лет
@@ -76,9 +77,8 @@
 
     <aside class="callout">
       <strong>По завершении мастер-класса все участники получат сертификат о прохождении.</strong><br>
-      Если в течение года суммарно будет набрано 24 часа учебной деятельности (сертификаты),
-      выдается свидетельство о повышении квалификации ФГБОУ ВО РГСУ по курсу «Практика применения ИИ
-      в профессиональной деятельности».
+      Если в течение года суммарно будет набрано 24 часа учебной деятельности (сертификаты),<br>
+      выдается свидетельство о повышении квалификации ФГБОУ ВО РГСУ по курсу «Практика применения ИИ в профессиональной деятельности».
     </aside>
 
     <div class="action-row">
@@ -92,7 +92,7 @@
     </div>
 
     <form id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-      <!-- Honeypot-поле для защиты от спама -->
+      <!-- Honeypot-поле (спрятанное) для защиты от ботов -->
       <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
       <label for="name-input" class="visually-hidden">Ваше имя</label>
       <input id="name-input" type="text" name="name" placeholder="Ваше имя" required>
@@ -105,29 +105,26 @@
     <div id="offer-text" style="display: none; border: 1px solid var(--muted); padding: var(--space-2);">
       <h2>Публичная оферта</h2>
       <p>
-        Здесь размещён текст публичной оферты. Пользователь должен ознакомиться с
-        условиями и согласиться с ними перед оплатой или регистрацией. Оферта содержит
-        все необходимые юридические положения, включая условия возврата,
-        ответственность сторон и порядок оказания услуг.
+        Здесь размещён текст публичной оферты. Пользователь должен ознакомиться с условиями и согласиться
+        с ними перед оплатой или регистрацией. Оферта содержит все необходимые юридические положения,
+        включая условия возврата, ответственность сторон и порядок оказания услуг.
       </p>
     </div>
 
     <p style="font-size: 0.9rem;">
-      Есть вопросы?
-      <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a>
-      или <a href="tel:+70200000000">+7 020 000 00 00</a> (Telegram: @step_3d_mngr).
-      — Никита, AI-ассистент
+      Есть вопросы? <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a>
+      или <a href="tel:+70200000000">+7 020 000 00 00</a> (Telegram: @step_3d_mngr). — Никита, AI-ассистент
     </p>
     <p style="margin-top: var(--space-2);">
       <button id="nl-open" class="btn" style="border-style: dashed;">Получать анонсы</button>
     </p>
   </main>
 
-  <!-- Кнопка "Наверх" и прогресс-бар прокрутки -->
+  <!-- Кнопка «Наверх» и прогресс-бар прокрутки -->
   <button id="top-btn" aria-label="Наверх">▲</button>
   <div id="scroll-progress"></div>
 
   <!-- Подключаем внешний JS -->
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
