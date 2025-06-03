@@ -2,19 +2,25 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const MAX_OFFLINE = 16;
-  const MAX_ONLINE  = 20;
+  const MAX_ONLINE = 20;
 
-  // Замените на URL вашего веб-приложения Google Script (doGet/doPost)
-  const SCRIPT_URL = "https://script.google.com/macros/s/ВАШ_СКРИПТ_ID/exec";
+  // Вставьте сюда URL вашего развернутого Google Apps Script (Web App)
+  const SCRIPT_URL = "https://script.google.com/macros/s/ВАШ_ID_СКРИПТА/exec";
 
-  const offlineCountEl  = document.getElementById("offline-count");
-  const onlineCountEl   = document.getElementById("online-count");
-  const form            = document.getElementById("reg-form");
+  const offlineCountEl = document.getElementById("offline-count");
+  const onlineCountEl = document.getElementById("online-count");
+  const form = document.getElementById("reg-form");
   const statusMessageEl = document.getElementById("status-message");
-  const modeInputs      = form.querySelectorAll('input[name="mode"]');
-  const submitBtn       = form.querySelector('button[type="submit"]');
+  const modeInputs = form.querySelectorAll('input[name="mode"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  // GET-запрос для получения текущих счётчиков (offline/online)
+  // Спиннер, который добавляется внутрь кнопки при отправке
+  const spinner = document.createElement("span");
+  spinner.classList.add("spinner");
+
+  /**
+   * Запрос к Google Apps Script (GET) — получает текущее число участников
+   */
   async function fetchCounts() {
     try {
       const response = await fetch(SCRIPT_URL, { method: "GET" });
@@ -26,16 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Обновляем UI: вставляем числа в <span> и блокируем режимы, если лимит достигнут
+  /**
+   * Обновление UI: вставляем цифры и при необходимости блокируем режимы/кнопку
+   */
   async function updateUICounts() {
     const counts = await fetchCounts();
-
     offlineCountEl.textContent = counts.offline;
-    onlineCountEl.textContent  = counts.online;
+    onlineCountEl.textContent = counts.online;
 
-    // Если офлайн заполнено, отключаем радио «offline»
+    // Если оффлайн заполнено, отключаем радио «очно»
     if (counts.offline >= MAX_OFFLINE) {
-      modeInputs.forEach(inp => {
+      modeInputs.forEach((inp) => {
         if (inp.value === "offline") inp.disabled = true;
       });
       if (form.mode.value === "offline") {
@@ -43,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Если онлайн заполнено, отключаем радио «online»
+    // Если онлайн заполнено, отключаем радио «онлайн»
     if (counts.online >= MAX_ONLINE) {
-      modeInputs.forEach(inp => {
+      modeInputs.forEach((inp) => {
         if (inp.value === "online") inp.disabled = true;
       });
       if (form.mode.value === "online") {
@@ -53,11 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Если обе группы заполнены, блокируем кнопку и показываем сообщение
+    // Если оба режима заполнены, блокируем кнопку
     if (counts.offline >= MAX_OFFLINE && counts.online >= MAX_ONLINE) {
       submitBtn.disabled = true;
-      statusMessageEl.textContent = "Все оффлайн и онлайн места заняты.";
-      statusMessageEl.style.color = "red";
+      statusMessageEl.textContent = "Все очные и онлайн-места заняты.";
     }
   }
 
@@ -68,43 +74,46 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    // Сбор данных формы
     const formData = new FormData(form);
-    const name    = formData.get("name").trim();
+    const name = formData.get("name").trim();
     const contact = formData.get("contact").trim();
-    const mode    = formData.get("mode");
+    const mode = formData.get("mode");
 
     if (!name || !contact) {
       statusMessageEl.textContent = "Пожалуйста, заполните все поля.";
-      statusMessageEl.style.color = "red";
       return;
     }
 
+    // Отключаем кнопку и добавляем спиннер
     submitBtn.disabled = true;
-    statusMessageEl.textContent = "Отправка...";
-    statusMessageEl.style.color = "black";
+    submitBtn.textContent = "Отправка";
+    submitBtn.appendChild(spinner);
+    statusMessageEl.textContent = "";
 
     try {
       const payload = { name, contact, mode };
       const response = await fetch(SCRIPT_URL, {
-        method:  "POST",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
       const result = await response.json();
 
       if (response.ok && result.message) {
-        statusMessageEl.textContent = result.message;
-        statusMessageEl.style.color = "green";
-        // После успешной отправки обновляем счётчики
-        await updateUICounts();
+        // Если успешно, показываем «Успешно!» и делаем редирект
+        submitBtn.textContent = "Успешно!";
+        setTimeout(() => {
+          window.location.href = "thankyou.html";
+        }, 1500);
       } else {
         throw new Error(result.message || "Неизвестная ошибка");
       }
     } catch (err) {
       console.error("Ошибка при отправке формы:", err);
-      statusMessageEl.textContent = "Ошибка при отправке: " + err.message;
-      statusMessageEl.style.color = "red";
+      statusMessageEl.textContent = "Ошибка: " + err.message;
       submitBtn.disabled = false;
+      submitBtn.textContent = "Записаться";
     }
   });
 });
