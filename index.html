@@ -7,46 +7,75 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="card fade-in-up">
-    <h1><span class="icon">🧠</span>Мастер-класс «Промтинжиниринг»</h1>
-    <p class="fade-in-up"><strong>Спикер:</strong> В. К. Ганьшин</p>
-    <ul class="fade-in-up">
-      <li><strong>📅 Когда:</strong> 11 июня 2025 г., 19:00–20:30</li>
-      <li><strong>📍 Где:</strong> Ул. Беговая 12, РГСУ + онлайн (Google Meet)</li>
-      <li><strong>💰 Стоимость:</strong> 5 000 ₽</li>
-      <li><strong>🏢 Мест оффлайн:</strong> 14 из 16</li>
-      <li><strong>🌐 Онлайн:</strong> 16 из 20</li>
-    </ul>
-    <p class="fade-in-up">Вы научитесь формулировать запросы и протестируете <strong>GPT-4o, Gemini, Claude, Qwen, Grok, DeepSeek, GigaChat</strong>.</p>
-    <p class="fade-in-up">Формат: оффлайн/онлайн • 16+</p>
+  <main class="card">
+    <!-- Заголовок и спикер -->
+    <header class="header-section fade-in-up">
+      <h1 class="event-title"><span class="icon">🧠</span>Мастер-класс «Промтинжиниринг»</h1>
+      <h2 class="speaker">Спикер: <span class="speaker-name">В. К. Ганьшин</span></h2>
+    </header>
 
-    <p class="fade-in-up"><strong>После мастер-класса:</strong></p>
-    <ul class="fade-in-up">
-      <li>📘 PDF-гайд по нейросетям</li>
-      <li>💬 Доступ в закрытую Telegram-группу</li>
-      <li>🛡️ Годовой VPN для всех устройств</li>
-    </ul>
+    <!-- Информация о дате/месте/цене -->
+    <section class="schedule-section fade-in-up">
+      <ul class="schedule-list">
+        <li><span class="icon-item">📅</span><strong>Когда:</strong> 11 июня 2025 г., 19:00–20:30 (МСК)</li>
+        <li><span class="icon-item">📍</span><strong>Где:</strong> Ул. Беговая 12, РГСУ + онлайн (Google Meet)</li>
+        <li><span class="icon-item">💰</span><strong>Стоимость:</strong> 5 000 ₽</li>
+        <li><span class="icon-item">🏢</span><strong>Мест оффлайн:</strong> <span class="seats seats-ok">14 из 16</span></li>
+        <li><span class="icon-item">🌐</span><strong>Онлайн:</strong> <span class="seats seats-ok">16 из 20</span></li>
+      </ul>
+      <p>Вы научитесь формулировать запросы и протестируете <strong>GPT-4o, Gemini, Claude, Qwen, Grok, DeepSeek, GigaChat</strong>.</p>
+      <p>Формат: оффлайн/онлайн • 16+</p>
+    </section>
 
-    <aside class="fade-in-up">
-      📄 Сертификат всем участникам.<br>
-      📚 При 24+ часах — свидетельство повышения квалификации РГСУ.
-    </aside>
+    <!-- После мастер-класса -->
+    <section class="post-benefits fade-in-up">
+      <h3>После мастер-класса вы получите:</h3>
+      <ul>
+        <li>📘 <strong>PDF-гид</strong> по нейросетям</li>
+        <li>💬 Доступ в закрытую Telegram-группу</li>
+        <li>🛡️ Годовой VPN для всех устройств</li>
+      </ul>
+      <aside>
+        📄 Сертификат всем участникам.<br>
+        📚 При 24+ часах — свидетельство повышения квалификации РГСУ.
+      </aside>
+    </section>
 
-    <form id="reg-form" class="fade-in-up">
-      <input type="text" name="name" placeholder="Ваше имя" required />
-      <input type="text" name="contact" placeholder="E-mail, телефон или Telegram" required />
-      <button type="submit">Записаться</button>
-    </form>
-    <div id="status-message" class="fade-in-up"></div>
-    <p class="fade-in-up"><a href="https://pay.example.com/step3d" target="_blank" class="btn">💳 Оплатить участие</a></p>
-
-    <p class="fade-in-up"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Промтинжиниринг&dates=20250611T160000Z/20250611T173000Z&location=РГСУ|Google+Meet" target="_blank">🗓 Добавить в Google Календарь</a></p>
-
-    <p class="fade-in-up" style="font-size:0.9rem;">
-      Есть вопросы? <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a> или
-      <a href="tel:+70200000000">+7 020 000 00 00</a> (Telegram: @step_3d_mngr) — Никита, AI-ассистент
-    </p>
+    <!-- Форма регистрации -->
+    <section class="form-section fade-in-up">
+      <form id="reg-form">
+        <div class="form-group">
+          <label for="name">Ваше имя<span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
+        </div>
+        <div class="form-group">
+          <label for="contact">E-mail, телефон или Telegram<span class="required">*</span></label>
+          <input type="text" id="contact" name="contact" placeholder="example@mail.com или +7 999 123 45 67 или @username" required />
+        </div>
+        <div class="form-group privacy-group">
+          <input type="checkbox" id="agree" name="agree" required />
+          <label for="agree">Я согласен на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="btn-submit" disabled>Записаться</button>
+        <div id="status-message" aria-live="polite"></div>
+      </form>
+      <p class="mt-medium">
+        <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">💳 Оплатить участие</a>
+      </p>
+      <p class="mt-small">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Промтинжиниринг&dates=20250611T160000Z/20250611T173000Z&location=РГСУ|Google+Meet"
+           target="_blank"
+           class="btn-add-calendar">
+          <span class="icon-item">🗓</span>Добавить в Google Календарь
+        </a>
+      </p>
+      <p class="contacts-info" style="font-size:0.9rem;">
+        Есть вопросы? <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a> или
+        <a href="tel:+70200000000">+7 020 000 00 00</a> (Telegram: @step_3d_mngr) — Никита, AI-ассистент
+      </p>
+    </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
