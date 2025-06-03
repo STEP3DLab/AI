@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* style.css */
 
+/* Переменные для отступов */
+:root {
+  --gap-small: 0.5rem;
+  --gap-medium: 1rem;
+  --gap-large: 1.5rem;
+  --color-primary: #007aff;
+  --color-primary-dark: #005fcc;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+}
+
+/* Базовые стили страницы */
 body {
   font-family: 'Inter', sans-serif;
   background: #f0f2f5;
   padding: 2rem;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
   align-items: center;
+  min-height: 100vh;
   animation: fadeInBody 1s ease;
 }
 @keyframes fadeInBody {
@@ -15,13 +27,14 @@ body {
   to { opacity: 1; }
 }
 
+/* Карточка (контейнер) */
 .card {
-  background: white;
-  padding: 2rem;
+  background: #ffffff;
+  padding: var(--gap-large);
   border-radius: 1.5rem;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
   animation: slideUp 0.8s ease;
 }
 @keyframes slideUp {
@@ -35,94 +48,231 @@ body {
   }
 }
 
-h1 {
+/* Заголовки */
+.event-title {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: var(--gap-small);
+}
+.speaker {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--gap-large);
+  color: #555;
+}
+.speaker-name {
+  color: #000;
 }
 
-p, li {
+/* Секция с расписанием */
+.schedule-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap-medium);
+  margin-bottom: var(--gap-large);
+}
+.schedule-list li {
+  display: flex;
+  align-items: center;
   font-size: 1rem;
-  line-height: 1.5;
   color: #333;
 }
+.schedule-list li .icon-item {
+  margin-right: var(--gap-small);
+  font-size: 1.1rem;
+}
+.seats {
+  font-weight: 600;
+}
+.seats-ok { color: #388e3c; }
+.seats-low { color: #e65100; }
+.seats-full { color: #d32f2f; }
 
-ul {
-  padding-left: 1.2rem;
-  margin-bottom: 1rem;
+/* Блок преимуществ после мастер-класса */
+.post-benefits {
+  background: #eef7ff;
+  padding: var(--gap-medium);
+  border-radius: 0.8rem;
+  margin-bottom: var(--gap-large);
+}
+.post-benefits h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--gap-small);
+}
+.post-benefits li {
+  margin-bottom: var(--gap-small);
 }
 
-li {
-  margin-bottom: 0.5rem;
+/* Секция формы */
+.form-section .form-group {
+  margin-bottom: var(--gap-medium);
+  display: flex;
+  flex-direction: column;
+}
+.form-section label {
+  font-size: 0.95rem;
+  margin-bottom: var(--gap-small);
+  color: #333;
+}
+.form-section input[type="text"],
+.form-section input[type="checkbox"] {
+  font-size: 1rem;
+}
+.form-section input {
+  border: 1px solid #ccc;
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-section input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+}
+.form-section .privacy-group {
+  flex-direction: row;
+  align-items: center;
+}
+.form-section .privacy-group input[type="checkbox"] {
+  margin-right: var(--gap-small);
+  width: auto;
+}
+.required {
+  color: #d32f2f;
+  margin-left: 0.2rem;
 }
 
-input, button {
-  display: block;
-  width: 100%;
-  margin-bottom: 1rem;
+/* Кнопка «Записаться» */
+.btn-submit {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 0.6rem;
-}
-
-input {
-  border: 1px solid #ccc;
-  transition: border-color 0.3s ease;
-}
-input:focus {
-  outline: none;
-  border-color: #007aff;
-}
-
-button {
-  background: #000;
-  color: white;
-  border: none;
+  width: 100%;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn-submit:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+.btn-submit:disabled {
+  background-color: #a0cfff;
+  cursor: not-allowed;
+}
+.btn-submit.loading {
+  color: transparent;
+  position: relative;
+}
+.btn-submit.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Статус сообщения */
+#status-message {
+  margin-top: var(--gap-medium);
+  font-size: 0.95rem;
+  text-align: center;
+}
+#status-message.success {
+  color: var(--color-success);
+}
+#status-message.error {
+  color: var(--color-error);
+}
+
+/* Кнопки «Оплатить» и «Добавить в календарь» */
+.btn-pay {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  text-decoration: none;
   font-weight: 600;
   transition: background 0.3s ease;
 }
-button:hover {
-  background: #333;
+.btn-pay:hover {
+  background: var(--color-primary-dark);
 }
-
-aside {
-  background: #f9f9f9;
-  padding: 1rem;
-  border-left: 4px solid #007aff;
-  margin-bottom: 1.5rem;
+.btn-add-calendar {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
   font-size: 0.95rem;
-}
-
-a {
-  color: #007aff;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
 }
-a:hover {
+.btn-add-calendar:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-add-calendar .icon-item {
+  margin-right: var(--gap-small);
+}
+
+/* Информация о контактах */
+.contacts-info a {
+  color: var(--color-primary);
+}
+.contacts-info a:hover {
   text-decoration: underline;
 }
 
-#status-message {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: green;
-  text-align: center;
-}
-
+/* Анимации всего блока */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 .fade-in-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Иконки Lucide (если нужно использовать SVG или через CDN) */
-.icon {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 0.5rem;
+/* Адаптивность */
+@media (max-width: 380px) {
+  .card {
+    padding: var(--gap-medium);
+  }
+  .event-title {
+    font-size: 1.5rem;
+  }
+  .schedule-list {
+    grid-template-columns: 1fr;
+  }
+  .btn-submit {
+    padding: 0.6rem;
+  }
+}
+
+/* Уважение к запросу на отсутствие анимаций */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .card,
+  body {
+    animation: none;
+    transition: none;
+  }
 }
