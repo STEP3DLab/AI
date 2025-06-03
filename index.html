@@ -1,118 +1,129 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>«Проминжиниринг» — мастер-класс</title>
-  
-  <!-- Подключаем CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мастер-класс «Промтинжиниринг»</title>
+
+  <!-- Метаданные для соцсетей -->
+  <meta property="og:title" content="Промтинжиниринг — мастер-класс">
+  <meta property="og:description" content="Научитесь формулировать промты и протестируйте топ-AI-модели 11 июня 2025 г. в РГСУ или онлайн.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Промтинжиниринг — мастер-класс">
+  <meta name="twitter:description" content="Научитесь формулировать промты и протестируйте топ-AI-модели 11 июня 2025 г. в РГСУ или онлайн.">
+  <!-- Если у вас есть своё превью-изображение, замените URL -->
+  <meta name="twitter:image" content="https://via.placeholder.com/180">
+
+  <!-- Цвет заголовка браузера -->
+  <meta name="theme-color" id="meta-theme" content="#ffffff">
+
+  <!-- Подключаем шрифт -->
+  <link rel="preload" as="font" href="/fonts/Inter.var.woff2" type="font/woff2" crossorigin>
+
+  <!-- Ссылка на внешний CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Заранее зарезервированный стиль для шума -->
+  <style id="noise-style"></style>
 </head>
 <body>
-  <!-- Ваш контент: header, секции, и т.д. -->
-  
-  <header class="header">
-    <div class="logo">Проминжиниринг</div>
-    <!-- Навигация, переключатель темы и т.д. -->
-  </header>
-  
-  <main>
-    <!-- HERO -->
-    <section class="section hero" id="hero" tabindex="-1">
-      <h1 class="title">«Проминжиниринг»</h1>
-      <!-- ... -->
-      <button class="btn primary" id="open-modal">Записаться</button>
-    </section>
-    
-    <!-- PROGRAM -->
-    <section class="section program" id="program" tabindex="-1">
-      <h2 class="h2">Программа дня</h2>
-      <!-- ... -->
-    </section>
-    
-    <!-- SPEAKER -->
-    <section class="section speaker" id="speaker" tabindex="-1">
-      <h2 class="h2">О спикере</h2>
-      <div class="speaker-card">
-        <!-- Обратите внимание на путь к картинке: img/speaker-avatar.jpg -->
-        <img src="img/speaker-avatar.jpg" alt="Иван Иванов" class="speaker-img" loading="lazy" />
-        <div>
-          <p>Иван Иванов — ведущий инженер-исследователь...</p>
-          <h3>Контакты спикера</h3>
-          <p>
-            <a href="https://linkedin.com/in/ivan-ivanov" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/ivan-ivanov" target="_blank">GitHub</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- FAQ -->
-    <section class="section faq" id="faq" tabindex="-1">
-      <h2 class="h2">Частые вопросы</h2>
-      <!-- ... -->
-    </section>
-    
-    <!-- Модальное окно регистрации -->
-    <div class="modal" id="modal" aria-hidden="true">
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
-        <h2 id="modal-title" class="h2">Регистрация</h2>
-        <form id="regForm" class="form" novalidate>
-          <!-- Поля формы: имя, email, телефон -->
-          <div class="field">
-            <label for="name">Имя <span aria-hidden="true">*</span></label>
-            <input type="text" id="name" name="name" required placeholder="Иван Иванов" />
-            <span class="error" id="error-name">Введите имя</span>
-          </div>
-          <div class="field">
-            <label for="email">E-mail <span aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" required placeholder="example@mail.com" />
-            <span class="error" id="error-email">Введите корректный email</span>
-          </div>
-          <div class="field">
-            <label for="phone">Телефон <span aria-hidden="true">*</span></label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              placeholder="+7 (999) 123-45-67"
-              pattern="^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$"
-            />
-            <span class="error" id="error-phone">Введите номер в формате +7 (XXX) XXX-XX-XX</span>
-          </div>
-          <button type="submit" class="btn primary">Отправить</button>
-          <div id="thank-you" style="display: none; margin-top: 1rem; color: var(--accent); font-weight: 600;">
-            Спасибо! Ваша заявка принята.
-          </div>
-        </form>
-      </div>
+  <!-- Кнопка переключения темы -->
+  <button id="theme-switch" aria-label="Переключить тему">🌙</button>
+
+  <main class="card" id="main-card">
+    <div class="title-bar" aria-hidden="true"></div>
+
+    <h1>Мастер-класс «Промтинжиниринг»</h1>
+    <div class="speaker-name">Спикер В. К. Ганьшин</div>
+
+    <ul class="info-list">
+      <li>
+        <span class="label">Когда:</span>
+        <span>11 июня 2025 г., 19:00–20:30</span>
+      </li>
+      <li>
+        <span class="label">Где:</span>
+        <span>Ул. Беговая 12, РГСУ + онлайн (Google Meet)</span>
+      </li>
+      <li>
+        <span class="label">Стоимость:</span>
+        <span>5 000 ₽</span>
+      </li>
+      <li>
+        <span class="label">Свободных мест (оффлайн):</span>
+        <span><strong>14 из 16</strong></span>
+      </li>
+      <li>
+        <span class="label">Свободных мест (онлайн):</span>
+        <span><strong>16 из 20</strong></span>
+      </li>
+    </ul>
+
+    <p class="muted">
+      На занятии вы научитесь формулировать запросы (промты) и опробуете следующие модели:
+      <strong>GPT-o4 и 3o, Gemini, Claude, Qwen 3, Grok 3, DeepSeek и GigaChat</strong>.
+    </p>
+    <p class="muted">
+      Формат: оффлайн/онлайн • 16+ лет
+    </p>
+
+    <p><strong>После мастер-класса участники получат:</strong></p>
+    <ul class="benefits">
+      <li>PDF-гайд со всеми рассмотренными нейросетями и примерами эффективных промтов.</li>
+      <li>Доступ в закрытую Telegram-группу на год для консультаций по задачам, связанным с AI.</li>
+      <li>Годовой платный VPN-сервис для установки на телефон и ПК.</li>
+    </ul>
+
+    <aside class="callout">
+      <strong>По завершении мастер-класса все участники получат сертификат о прохождении.</strong><br>
+      Если в течение года суммарно будет набрано 24 часа учебной деятельности (сертификаты),
+      выдается свидетельство о повышении квалификации ФГБОУ ВО РГСУ по курсу «Практика применения ИИ в профессиональной деятельности».
+    </aside>
+
+    <div class="action-row">
+      <a
+        class="btn"
+        role="button"
+        aria-label="Добавить мастер-класс в Google Календарь"
+        target="_blank"
+        href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D0%9F%D1%80%D0%BE%D0%BC%D1%82%D0%B8%D0%BD%D0%B6%D0%B8%D0%BD%D0%B8%D1%80%D0%B8%D0%BD&amp;dates=20250611T160000Z/20250611T173000Z&amp;location=%D0%A0%D0%93%D0%A1%D0%A3|Google+Meet"
+      >🗓 Добавить в Google Календарь</a>
     </div>
+
+    <form id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+      <!-- Honeypot-поле для защиты от ботов -->
+      <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+      <label for="name-input" class="visually-hidden">Ваше имя</label>
+      <input id="name-input" type="text" name="name" placeholder="Ваше имя" required>
+      <label for="contact-input" class="visually-hidden">E-mail, телефон или никнейм в Telegram</label>
+      <input id="contact-input" type="text" name="_replyto" placeholder="E-mail, телефон или никнейм в Telegram" required>
+      <button type="submit">Записаться</button>
+    </form>
+
+    <p><a href="#" id="offer-link">Публичная оферта</a></p>
+    <div id="offer-text" style="display: none; border: 1px solid var(--muted); padding: var(--space-2);">
+      <h2>Публичная оферта</h2>
+      <p>
+        Здесь размещен текст публичной оферты. Пользователь должен ознакомиться с условием и согласиться с ними
+        перед оплатой или регистрацией. Оферта содержит все необходимые юридические положения, включая
+        условия возврата, ответственность сторон и порядок оказания услуг.
+      </p>
+    </div>
+
+    <p style="font-size: 0.9rem;">
+      Есть вопросы? <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a>
+      или <a href="tel:+70200000000">+7 020 000 00 00</a> (Telegram: @step_3d_mngr). — Никита, AI-ассистент
+    </p>
+    <p style="margin-top: var(--space-2);">
+      <button id="nl-open" class="btn" style="border-style: dashed;">Получать анонсы</button>
+    </p>
   </main>
 
-  <!-- Плавающие иконки соцсетей -->
-  <div class="social-floating" aria-label="Социальные сети">
-    <a href="https://instagram.com/ваш_аккаунт" aria-label="Instagram" target="_blank">
-      <!-- SVG Instagram -->
-    </a>
-    <a href="https://vk.com/ваш_аккаунт" aria-label="VK" target="_blank">
-      <!-- SVG VK -->
-    </a>
-    <a href="https://t.me/ваш_канал" aria-label="Telegram" target="_blank">
-      <!-- SVG Telegram -->
-    </a>
-  </div>
-
-  <!-- Кнопка «Наверх» -->
-  <button id="back-to-top" aria-label="Наверх">↑</button>
-
-  <!-- Footer -->
-  <footer class="section footer">
-    <p>© 2025 «Проминжиниринг». Все права защищены.</p>
-  </footer>
+  <!-- Кнопка "Наверх" и прогресс-бар прокрутки -->
+  <button id="top-btn" aria-label="Наверх">▲</button>
+  <div id="scroll-progress"></div>
 
   <!-- Подключаем внешний JS -->
-  <script src="js/script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
