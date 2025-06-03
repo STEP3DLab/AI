@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const MAX_ONLINE  = 20;
 
   // Замените на URL вашего веб-приложения Google Script (doGet/doPost)
-  const SCRIPT_URL = "https://script.google.com/macros/s/ВАШ_ИД_СКРИПТА/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/ВАШ_СКРИПТ_ID/exec";
 
   const offlineCountEl  = document.getElementById("offline-count");
   const onlineCountEl   = document.getElementById("online-count");
@@ -19,24 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(SCRIPT_URL, { method: "GET" });
       const data = await response.json();
-      return {
-        offline: data.offline,
-        online: data.online
-      };
+      return { offline: data.offline, online: data.online };
     } catch (err) {
       console.error("Ошибка при получении счётчиков:", err);
       return { offline: 0, online: 0 };
     }
   }
 
-  // Обновление UI: ставим числа в <span> и блокируем, если лимит достигнут
+  // Обновляем UI: вставляем числа в <span> и блокируем режимы, если лимит достигнут
   async function updateUICounts() {
     const counts = await fetchCounts();
 
     offlineCountEl.textContent = counts.offline;
     onlineCountEl.textContent  = counts.online;
 
-    // Если оффлайн заполнено, отключаем radio[offline]
+    // Если офлайн заполнено, отключаем радио «offline»
     if (counts.offline >= MAX_OFFLINE) {
       modeInputs.forEach(inp => {
         if (inp.value === "offline") inp.disabled = true;
@@ -46,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Если онлайн заполнено, отключаем radio[online]
+    // Если онлайн заполнено, отключаем радио «online»
     if (counts.online >= MAX_ONLINE) {
       modeInputs.forEach(inp => {
         if (inp.value === "online") inp.disabled = true;
@@ -56,18 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Если обе группы заполнены — блокируем кнопку и показываем сообщение
-    if (
-      counts.offline >= MAX_OFFLINE &&
-      counts.online  >= MAX_ONLINE
-    ) {
+    // Если обе группы заполнены, блокируем кнопку и показываем сообщение
+    if (counts.offline >= MAX_OFFLINE && counts.online >= MAX_ONLINE) {
       submitBtn.disabled = true;
-      statusMessageEl.textContent = "К сожалению, и оффлайн, и онлайн группы уже заполнены.";
+      statusMessageEl.textContent = "Все оффлайн и онлайн места заняты.";
       statusMessageEl.style.color = "red";
     }
   }
 
-  // Сразу при загрузке страницы показываем текущее состояние
+  // При загрузке страницы сразу обновляем счётчики
   updateUICounts();
 
   // Обработчик отправки формы
@@ -101,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok && result.message) {
         statusMessageEl.textContent = result.message;
         statusMessageEl.style.color = "green";
-        // После успешного добавления перезапрашиваем счётчики
+        // После успешной отправки обновляем счётчики
         await updateUICounts();
       } else {
         throw new Error(result.message || "Неизвестная ошибка");
