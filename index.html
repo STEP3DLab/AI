@@ -3,195 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Мастер-класс «Проминжиниринг» — узнайте о передовых технологиях в промышленной инженерии. Дата, время, место проведения, программа и спикеры.">
-  <meta property="og:title" content="«Проминжиниринг» — мастер-класс">
-  <meta property="og:description" content="Присоединяйтесь к мастер-классу «Проминжиниринг» 15 июля 2025 в Москве. Программа, спикеры и ответы на часто задаваемые вопросы.">
-  <meta property="og:image" content="https://example.com/og-image.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com/promengineering">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-  <!-- Оптимизированная загрузка шрифтов -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  </noscript>
-
   <title>«Проминжиниринг» — мастер-класс</title>
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Подключаем CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader" aria-hidden="true">
-    <div class="spinner" role="status"></div>
-  </div>
-
-  <!-- Scroll progress bar -->
-  <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-hidden="true"></div>
-
-  <!-- Header with sticky -->
+  <!-- Ваш контент: header, секции, и т.д. -->
+  
   <header class="header">
     <div class="logo">Проминжиниринг</div>
-    <button id="hamburger" aria-label="Открыть меню" aria-controls="navigation" aria-expanded="false">☰</button>
-    <nav class="nav-links" id="navigation">
-      <ul>
-        <li><a href="#hero" class="nav-link">Главная</a></li>
-        <li><a href="#program" class="nav-link">Программа</a></li>
-        <li><a href="#speaker" class="nav-link">Спикер</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-        <li><a href="#register" class="nav-link">Регистрация</a></li>
-      </ul>
-    </nav>
-    <label class="theme-switch">
-      <input type="checkbox" id="theme-toggle" aria-label="Переключить тёмную тему">
-      Тёмная
-    </label>
+    <!-- Навигация, переключатель темы и т.д. -->
   </header>
-
+  
   <main>
-    <div class="container">
-      <!-- HERO -->
-      <section class="section hero" id="hero" tabindex="-1">
-        <h1 class="title">«Проминжиниринг»</h1>
-        <div class="countdown" id="countdown">До события: <span id="countdown-timer">загрузка...</span></div>
-        <p class="subtitle">
-          <time datetime="2025-07-15T11:00">15 июля 2025, 11:00—18:00</time> • Москва, ул. Примерная, д. 10
-        </p>
-        <p class="usp">Уникальный мастер-класс по промышленной инженерии с ведущими экспертами отрасли.</p>
-        <button class="btn primary" id="open-modal" aria-label="Открыть форму регистрации">Записаться</button>
-      </section>
-
-      <!-- PROGRAM -->
-      <section class="section program" id="program" tabindex="-1">
-        <h2 class="h2">Программа дня</h2>
-        <div class="program-list">
-          <div class="program-item">
-            <div class="item-title">11:00 — Вступительное слово</div>
-            <div class="item-desc">Открытие, знакомство с командой организаторов и обзор дня.</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">11:15 — Лекция: Инновации в автоматизации</div>
-            <div class="item-desc">Спикер расскажет о последних достижениях в области автоматизации производства.</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">12:30 — Кофе-брейк</div>
-            <div class="item-desc">Небольшая пауза для общения и нетворкинга за чашкой кофе.</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">13:00 — Практическая сессия: Внедрение роботов</div>
-            <div class="item-desc">Участники попробуют работать с реальными роботами: настройка, программирование и тесты.</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">15:00 — Обед</div>
-            <div class="item-desc">Перерыв на обед (предоставляется кейтеринг).</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">16:00 — Дискуссия с экспертами</div>
-            <div class="item-desc">Формат Q&amp;A: слушатели задают вопросы спикерам и получают развернутые ответы.</div>
-          </div>
-          <div class="program-item">
-            <div class="item-title">17:30 — Заключительное слово</div>
-            <div class="item-desc">Подведение итогов, планы на будущее и сертификаты участникам.</div>
-          </div>
+    <!-- HERO -->
+    <section class="section hero" id="hero" tabindex="-1">
+      <h1 class="title">«Проминжиниринг»</h1>
+      <!-- ... -->
+      <button class="btn primary" id="open-modal">Записаться</button>
+    </section>
+    
+    <!-- PROGRAM -->
+    <section class="section program" id="program" tabindex="-1">
+      <h2 class="h2">Программа дня</h2>
+      <!-- ... -->
+    </section>
+    
+    <!-- SPEAKER -->
+    <section class="section speaker" id="speaker" tabindex="-1">
+      <h2 class="h2">О спикере</h2>
+      <div class="speaker-card">
+        <!-- Обратите внимание на путь к картинке: img/speaker-avatar.jpg -->
+        <img src="img/speaker-avatar.jpg" alt="Иван Иванов" class="speaker-img" loading="lazy" />
+        <div>
+          <p>Иван Иванов — ведущий инженер-исследователь...</p>
+          <h3>Контакты спикера</h3>
+          <p>
+            <a href="https://linkedin.com/in/ivan-ivanov" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/ivan-ivanov" target="_blank">GitHub</a>
+          </p>
         </div>
-      </section>
-
-      <!-- SPEAKER -->
-      <section class="section speaker" id="speaker" tabindex="-1">
-        <h2 class="h2">О спикере</h2>
-        <div class="speaker-card">
-          <img src="img/speaker-avatar.jpg" alt="Иван Иванов" class="speaker-img" loading="lazy">
-          <div>
-            <p>Иван Иванов — ведущий инженер-исследователь в области автоматизации производства, автор более 20 научных публикаций и руководитель проектов крупных промышленных предприятий.</p>
-            <h3>Контакты спикера</h3>
-            <p>
-              <a href="https://linkedin.com/in/ivan-ivanov" target="_blank" rel="noopener noreferrer" title="Перейти в LinkedIn">LinkedIn</a> |
-              <a href="https://github.com/ivan-ivanov" target="_blank" rel="noopener noreferrer" title="Перейти в GitHub">GitHub</a>
-            </p>
+      </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="section faq" id="faq" tabindex="-1">
+      <h2 class="h2">Частые вопросы</h2>
+      <!-- ... -->
+    </section>
+    
+    <!-- Модальное окно регистрации -->
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
+        <h2 id="modal-title" class="h2">Регистрация</h2>
+        <form id="regForm" class="form" novalidate>
+          <!-- Поля формы: имя, email, телефон -->
+          <div class="field">
+            <label for="name">Имя <span aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="Иван Иванов" />
+            <span class="error" id="error-name">Введите имя</span>
           </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section faq" id="faq" tabindex="-1">
-        <h2 class="h2">Частые вопросы</h2>
-        <div class="faq-search">
-          <input type="text" id="faq-filter" placeholder="Поиск по вопросам…" aria-label="Поиск вопросов">
-        </div>
-
-        <div class="faq-group">
-          <h3>Регистрация</h3>
-          <details class="faq-item">
-            <summary>Как зарегистрироваться на мастер-класс?</summary>
-            <p>Нажмите кнопку «Записаться» и заполните форму. Подтверждение придёт на почту.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Сколько стоит участие?</summary>
-            <p>Участие бесплатное, но по предварительной регистрации.</p>
-          </details>
-        </div>
-
-        <div class="faq-group">
-          <h3>Участие</h3>
-          <details class="faq-item">
-            <summary>Нужно ли приносить с собой что-то?</summary>
-            <p>Возьмите ноутбук для практических заданий и блокнот для заметок.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Будет ли выдаваться сертификат?</summary>
-            <p>Да, после мероприятия все участники получат электронный сертификат.</p>
-          </details>
-        </div>
-      </section>
-
-      <!-- REGISTRATION (модальное окно) -->
-      <div class="modal" id="modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-          <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
-          <h2 id="modal-title" class="h2">Регистрация</h2>
-          <form id="regForm" action="#" method="post" class="form" novalidate>
-            <div class="field">
-              <label for="name">Имя <span aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" required autocomplete="name" aria-required="true" placeholder="Иван Иванов">
-              <span class="error" id="error-name">Введите имя</span>
-            </div>
-
-            <div class="field">
-              <label for="email">E-mail <span aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" placeholder="example@mail.com">
-              <span class="error" id="error-email">Введите корректный email</span>
-            </div>
-
-            <div class="field">
-              <label for="phone">Телефон <span aria-hidden="true">*</span></label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel" aria-required="true" placeholder="+7 (999) 123-45-67" pattern="^\\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$" inputmode="tel" maxlength="18">
-              <span class="error" id="error-phone">Введите номер в формате +7 (XXX) XXX-XX-XX</span>
-            </div>
-
-            <button type="submit" class="btn primary">Отправить</button>
-            <div id="thank-you" style="display: none; margin-top: 1rem; color: var(--accent); font-weight: 600;">
-              Спасибо! Ваша заявка принята.
-            </div>
-          </form>
-        </div>
+          <div class="field">
+            <label for="email">E-mail <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+            <span class="error" id="error-email">Введите корректный email</span>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон <span aria-hidden="true">*</span></label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="+7 (999) 123-45-67"
+              pattern="^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$"
+            />
+            <span class="error" id="error-phone">Введите номер в формате +7 (XXX) XXX-XX-XX</span>
+          </div>
+          <button type="submit" class="btn primary">Отправить</button>
+          <div id="thank-you" style="display: none; margin-top: 1rem; color: var(--accent); font-weight: 600;">
+            Спасибо! Ваша заявка принята.
+          </div>
+        </form>
       </div>
     </div>
   </main>
 
-  <!-- Floating social icons -->
+  <!-- Плавающие иконки соцсетей -->
   <div class="social-floating" aria-label="Социальные сети">
-    <a href="https://instagram.com/ваш_аккаунт" aria-label="Instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="24" height="24" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+    <a href="https://instagram.com/ваш_аккаунт" aria-label="Instagram" target="_blank">
+      <!-- SVG Instagram -->
     </a>
-    <a href="https://vk.com/ваш_аккаунт" aria-label="VK" target="_blank" rel="noopener noreferrer" title="VK">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h4.6s.499 1.5-.833 2.833c-1.331 1.334-.913 2.035-.913 2.035S13.167 11 16.5 6c1.5-2.3-.5-2-2-2H3z"/><path d="M25 6h-4.6s-.499 1.5.833 2.833c1.331 1.334.913 2.035.913 2.035S14.833 11 11.5 6c-1.5-2.3.5-2 2-2H25z"/><path d="M3 22h6.5v-5.917h2.583L13 22h6l-4.833-6L19 6h-6l2.739 6z"/></svg>
+    <a href="https://vk.com/ваш_аккаунт" aria-label="VK" target="_blank">
+      <!-- SVG VK -->
     </a>
-    <a href="https://t.me/ваш_канал" aria-label="Telegram" target="_blank" rel="noopener noreferrer" title="Telegram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L3 10l5 2 2 7 3-4 4 3 5-15z"/><path d="M10 13l2 7 2-4 4 3"/></svg>
+    <a href="https://t.me/ваш_канал" aria-label="Telegram" target="_blank">
+      <!-- SVG Telegram -->
     </a>
   </div>
 
-  <!-- Back to top button -->
+  <!-- Кнопка «Наверх» -->
   <button id="back-to-top" aria-label="Наверх">↑</button>
 
   <!-- Footer -->
@@ -199,6 +112,7 @@
     <p>© 2025 «Проминжиниринг». Все права защищены.</p>
   </footer>
 
+  <!-- Подключаем внешний JS -->
   <script src="js/script.js" defer></script>
 </body>
 </html>
