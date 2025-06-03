@@ -8,7 +8,6 @@
 </head>
 <body>
   <div class="container">
-
     <main class="card fade-in-up">
       <header class="card-header">
         <h1 class="card-title">МАСТЕР-КЛАСС «ПРОМТИНЖИНИРИНГ»</h1>
@@ -17,12 +16,26 @@
 
       <section class="details">
         <ul class="info-list">
-          <li><span class="label">Когда</span> 11 июня 2025 г. ∙ 19:00 – 20:30</li>
-          <li><span class="label">Где</span> Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</li>
-          <li><span class="label">Стоимость</span> 5 000 ₽</li>
-          <li><span class="label">Мест очно</span> <span id="offline-count" class="count">—</span> / 16</li>
-          <li><span class="label">Онлайн</span> <span id="online-count" class="count">—</span> / 20</li>
+          <li>
+            <span class="label">Когда</span>
+            <span class="subtext">11 июня 2025 г. ∙ 19:00 – 20:30</span>
+          </li>
+          <li>
+            <span class="label">Где</span>
+            <span class="subtext">Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</span>
+          </li>
+          <li>
+            <span class="label">Стоимость</span>
+            <span class="subtext">5 000 ₽</span>
+          </li>
+          <li>
+            <span class="label">Свободные места</span>
+            <span class="subtext">
+              Очно <span id="offline-count">—</span> / 16 ∙ Онлайн <span id="online-count">—</span> / 20
+            </span>
+          </li>
         </ul>
+        <hr class="divider" />
         <p class="description">
           Вы научитесь правильно формулировать запросы и протестируете:
           <br />
@@ -34,13 +47,15 @@
       <section class="benefits">
         <h2 class="section-title">После мастер-класса вы получите:</h2>
         <ul class="benefits-list">
-          <li>PDF-гайд по нейросетям</li>
+          <li>PDF-гaйд по нейросетям</li>
           <li>Доступ в закрытую Telegram-группу</li>
           <li>Годовой VPN для всех устройств</li>
           <li>Сертификат участника</li>
           <li>Свидетельство РГСУ при 24+ часах</li>
         </ul>
       </section>
+
+      <hr class="divider" />
 
       <section class="registration">
         <form id="reg-form" class="reg-form">
@@ -81,26 +96,33 @@
         </form>
       </section>
 
+      <hr class="divider divider--light" />
+
       <footer class="card-footer">
         <div class="actions">
-          <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">Оплатить участие</a>
+          <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">
+            Оплатить участие
+            <span class="btn-icon">→</span>
+          </a>
           <a
             href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Промтинжиниринг&amp;dates=20250611T160000Z/20250611T173000Z&amp;location=РГСУ|Google+Meet"
             target="_blank"
             class="btn-calendar"
           >
             Добавить в Google Календарь
+            <span class="btn-icon">→</span>
           </a>
         </div>
         <p class="contact-info">
-          Есть вопросы? <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a> ∙ 
-          <a href="tel:+70200000000">+7 020 000 00 00</a> ∙ 
-          @step_3d_mngr (Telegram)
+          Есть вопросы?
+          <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a> ∙ 
+          <a href="tel:+70200000000">+7 020 000 00 00</a> ∙ 
+          <a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a> (Telegram)
         </p>
       </footer>
     </main>
-
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
