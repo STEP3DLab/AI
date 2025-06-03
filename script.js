@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const modeInputs = form.querySelectorAll('input[name="mode"]');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // Спиннер, который добавляется внутрь кнопки при отправке
+  // Cоздаём спиннер для кнопки
   const spinner = document.createElement("span");
   spinner.classList.add("spinner");
 
   /**
-   * Запрос к Google Apps Script (GET) — получает текущее число участников
+   * GET-запрос для получения текущих счётчиков (offline/online)
    */
   async function fetchCounts() {
     try {
@@ -33,48 +33,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Обновление UI: вставляем цифры и при необходимости блокируем режимы/кнопку
+   * Обновляем UI: устанавливаем числа и блокируем режимы при достижении лимита
    */
   async function updateUICounts() {
     const counts = await fetchCounts();
     offlineCountEl.textContent = counts.offline;
     onlineCountEl.textContent = counts.online;
 
-    // Если оффлайн заполнено, отключаем радио «очно»
+    // Блокируем «Очно», если лимит достигнут
     if (counts.offline >= MAX_OFFLINE) {
       modeInputs.forEach((inp) => {
         if (inp.value === "offline") inp.disabled = true;
       });
-      if (form.mode.value === "offline") {
-        form.mode.value = "online";
-      }
+      if (form.mode.value === "offline") form.mode.value = "online";
     }
-
-    // Если онлайн заполнено, отключаем радио «онлайн»
+    // Блокируем «Онлайн», если лимит достигнут
     if (counts.online >= MAX_ONLINE) {
       modeInputs.forEach((inp) => {
         if (inp.value === "online") inp.disabled = true;
       });
-      if (form.mode.value === "online") {
-        form.mode.value = "offline";
-      }
+      if (form.mode.value === "online") form.mode.value = "offline";
     }
-
-    // Если оба режима заполнены, блокируем кнопку
+    // Если оба режима заполнены — блокируем кнопку
     if (counts.offline >= MAX_OFFLINE && counts.online >= MAX_ONLINE) {
       submitBtn.disabled = true;
       statusMessageEl.textContent = "Все очные и онлайн-места заняты.";
     }
   }
 
-  // При загрузке страницы сразу обновляем счётчики
+  // При загрузке страницы обновляем счётчики
   updateUICounts();
 
   // Обработчик отправки формы
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Сбор данных формы
     const formData = new FormData(form);
     const name = formData.get("name").trim();
     const contact = formData.get("contact").trim();
@@ -85,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Отключаем кнопку и добавляем спиннер
+    // Блокируем кнопку и добавляем к ней спиннер
     submitBtn.disabled = true;
     submitBtn.textContent = "Отправка";
     submitBtn.appendChild(spinner);
@@ -101,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok && result.message) {
-        // Если успешно, показываем «Успешно!» и делаем редирект
         submitBtn.textContent = "Успешно!";
         setTimeout(() => {
           window.location.href = "thankyou.html";
