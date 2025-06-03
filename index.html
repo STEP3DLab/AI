@@ -5,24 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мастер-класс «Промтинжиниринг»</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Подключаем Lottie Player (CDN) -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
   <div class="container">
     <main class="card fade-in-up">
       <header class="card-header">
-        <!-- Локальный файл brain.json вместо внешней ссылки -->
-        <div class="icon-wrapper">
-          <lottie-player
-            src="assets/brain.json"
-            background="transparent"
-            speed="1"
-            loop
-            autoplay
-            style="width: 40px; height: 40px;"
-          ></lottie-player>
-        </div>
         <h1 class="card-title">Мастер-класс «Промтинжиниринг»</h1>
         <p class="speaker"><strong>Спикер:</strong> В. К. Ганьшин</p>
       </header>
@@ -30,80 +17,25 @@
       <section class="details">
         <ul class="info-list">
           <li>
-            <div class="icon-wrapper">
-              <!-- Локальный файл calendar.json -->
-              <lottie-player
-                src="assets/calendar.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 30px; height: 30px;"
-              ></lottie-player>
-            </div>
             <div class="info-text"><strong>Когда:</strong> 11 июня 2025 г., 19:00–20:30</div>
           </li>
           <li>
-            <div class="icon-wrapper">
-              <!-- Локальный файл location.json -->
-              <lottie-player
-                src="assets/location.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 30px; height: 30px;"
-              ></lottie-player>
-            </div>
             <div class="info-text">
               <strong>Где:</strong> Ул. Беговая 12, РГСУ + онлайн (Google Meet)
             </div>
           </li>
           <li>
-            <div class="icon-wrapper">
-              <!-- Локальный файл money.json -->
-              <lottie-player
-                src="assets/money.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 30px; height: 30px;"
-              ></lottie-player>
-            </div>
             <div class="info-text"><strong>Стоимость:</strong> 5 000 ₽</div>
           </li>
           <li>
-            <div class="icon-wrapper">
-              <!-- Локальный файл office.json -->
-              <lottie-player
-                src="assets/office.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 30px; height: 30px;"
-              ></lottie-player>
-            </div>
             <div class="info-text">
-              <strong>Мест оффлайн:</strong> 
+              <strong>Мест оффлайн:</strong>
               <span id="offline-count" class="count">—</span> из 16
             </div>
           </li>
           <li>
-            <div class="icon-wrapper">
-              <!-- Локальный файл globe.json -->
-              <lottie-player
-                src="assets/globe.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 30px; height: 30px;"
-              ></lottie-player>
-            </div>
             <div class="info-text">
-              <strong>Онлайн:</strong> 
+              <strong>Онлайн:</strong>
               <span id="online-count" class="count">—</span> из 20
             </div>
           </li>
@@ -118,76 +50,11 @@
       <section class="benefits">
         <h2 class="section-title">После мастер-класса:</h2>
         <ul class="benefits-list">
-          <li>
-            <div class="icon-wrapper-inline">
-              <!-- Локальный файл book.json -->
-              <lottie-player
-                src="assets/book.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 24px; height: 24px;"
-              ></lottie-player>
-            </div>
-            PDF-гайд по нейросетям
-          </li>
-          <li>
-            <div class="icon-wrapper-inline">
-              <!-- Локальный файл chat.json -->
-              <lottie-player
-                src="assets/chat.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 24px; height: 24px;"
-              ></lottie-player>
-            </div>
-            Доступ в закрытую Telegram-группу
-          </li>
-          <li>
-            <div class="icon-wrapper-inline">
-              <!-- Локальный файл shield.json -->
-              <lottie-player
-                src="assets/shield.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 24px; height: 24px;"
-              ></lottie-player>
-            </div>
-            Годовой VPN для всех устройств
-          </li>
-          <li>
-            <div class="icon-wrapper-inline">
-              <!-- Локальный файл certificate.json -->
-              <lottie-player
-                src="assets/certificate.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 24px; height: 24px;"
-              ></lottie-player>
-            </div>
-            Сертификат всем участникам
-          </li>
-          <li>
-            <div class="icon-wrapper-inline">
-              <!-- Локальный файл diploma.json -->
-              <lottie-player
-                src="assets/diploma.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style="width: 24px; height: 24px;"
-              ></lottie-player>
-            </div>
-            При 24+ часах — свидетельство повышения квалификации РГСУ
-          </li>
+          <li>PDF-гайд по нейросетям</li>
+          <li>Доступ в закрытую Telegram-группу</li>
+          <li>Годовой VPN для всех устройств</li>
+          <li>Сертификат всем участникам</li>
+          <li>При 24+ часах — свидетельство повышения квалификации РГСУ</li>
         </ul>
       </section>
 
@@ -232,22 +99,21 @@
 
       <footer class="card-footer">
         <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">
-          💳 Оплатить участие
+          Оплатить участие
         </a>
         <a
           href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Промтинжиниринг&amp;dates=20250611T160000Z/20250611T173000Z&amp;location=РГСУ|Google+Meet"
           target="_blank"
           class="btn-calendar"
         >
-          🗓 Добавить в Google Календарь
+          Добавить в Google Календарь
         </a>
         <p class="contact-info">
-          Есть вопросы?
+          Есть вопросы? 
           <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a>
-          или
+          или 
           <a href="tel:+70200000000">+7 020 000 00 00</a>
-          (<a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a>) — 
-          Никита, AI-ассистент
+          (<a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a>) — Никита, AI-ассистент
         </p>
       </footer>
     </main>
