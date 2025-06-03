@@ -1,402 +1,204 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мастер‑класс «Промтинжиниринг»</title>
-  <script src="https://cdn.tailwindcss.com">
-    function openQRPopup() {
-      document.getElementById('qrPopup').classList.remove('hidden');
-      document.getElementById('qrPopup').classList.add('flex');
-    }
-    function closeQRPopup() {
-      document.getElementById('qrPopup').classList.remove('flex');
-      document.getElementById('qrPopup').classList.add('hidden');
-    }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Manrope', sans-serif;
-    }
-    .rotate-y-180 {
-      transform: rotateY(180deg);
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Мастер-класс «Проминжиниринг» — узнайте о передовых технологиях в промышленной инженерии. Дата, время, место проведения, программа и спикеры.">
+  <meta property="og:title" content="«Проминжиниринг» — мастер-класс">
+  <meta property="og:description" content="Присоединяйтесь к мастер-классу «Проминжиниринг» 15 июля 2025 в Москве. Программа, спикеры и ответы на часто задаваемые вопросы.">
+  <meta property="og:image" content="https://example.com/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/promengineering">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Оптимизированная загрузка шрифтов -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <title>«Проминжиниринг» — мастер-класс</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gradient-to-b from-white via-indigo-50 to-purple-100 text-gray-800 relative overflow-x-hidden">
-
-  <!-- Декоративный градиент -->
-  <div class="absolute top-0 left-0 w-full h-[300px] bg-gradient-to-tr from-purple-200 via-indigo-100 to-white -z-10 blur-2xl opacity-30"></div>
-
-  <main class="max-w-3xl mx-auto px-6 pt-24 pb-20 space-y-24">
-    <!-- Заголовок -->
-    <section class="text-center flex flex-col items-center gap-4" data-aos="fade-down">
-  <div>
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">Мастер‑класс<br><span class="text-purple-800">«Промтинжиниринг»</span></h1>
-    <p class="text-sm text-gray-600 tracking-wide uppercase flex flex-col sm:flex-row items-center justify-center gap-2 mt-4">
-      <span>🕓 19:00 — 20:30</span>
-      <span>/ техносреда</span>
-      <span>/ 29 апреля 2025</span>
-      <span class="text-xs text-purple-600">📍 Москва, ул. Беговая, 12</span>
-    </p>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <div class="spinner" role="status"></div>
   </div>
-  <div>
-    <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition text-white text-sm font-semibold py-2 px-6 rounded-full shadow-md">
-      Зарегистрироваться
-    </button>
-  </div>
-    </section>
 
-    <!-- Спикер с кнопками -->
-    <section class="text-center relative" data-aos="fade-up" data-aos-delay="200">
-      <div class="relative inline-block transform transition-transform duration-700" id="speakerWrapper">
-        <div class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-yellow-400 p-1 mx-auto shadow-md overflow-hidden" id="speakerImageWrapper">
-          <img id="speakerImage" src="https://github.com/STEP3DLab/AI/blob/main/img/speaker.jpg?raw=true" alt="Спикер" class="w-full h-full object-cover rounded-full">
+  <!-- Scroll progress bar -->
+  <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-hidden="true"></div>
+
+  <!-- Header with sticky -->
+  <header class="header">
+    <div class="logo">Проминжиниринг</div>
+    <button id="hamburger" aria-label="Открыть меню" aria-controls="navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navigation">
+      <ul>
+        <li><a href="#hero" class="nav-link">Главная</a></li>
+        <li><a href="#program" class="nav-link">Программа</a></li>
+        <li><a href="#speaker" class="nav-link">Спикер</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#register" class="nav-link">Регистрация</a></li>
+      </ul>
+    </nav>
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle" aria-label="Переключить тёмную тему">
+      Тёмная
+    </label>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- HERO -->
+      <section class="section hero" id="hero" tabindex="-1">
+        <h1 class="title">«Проминжиниринг»</h1>
+        <div class="countdown" id="countdown">До события: <span id="countdown-timer">загрузка...</span></div>
+        <p class="subtitle">
+          <time datetime="2025-07-15T11:00">15 июля 2025, 11:00—18:00</time> • Москва, ул. Примерная, д. 10
+        </p>
+        <p class="usp">Уникальный мастер-класс по промышленной инженерии с ведущими экспертами отрасли.</p>
+        <button class="btn primary" id="open-modal" aria-label="Открыть форму регистрации">Записаться</button>
+      </section>
+
+      <!-- PROGRAM -->
+      <section class="section program" id="program" tabindex="-1">
+        <h2 class="h2">Программа дня</h2>
+        <div class="program-list">
+          <div class="program-item">
+            <div class="item-title">11:00 — Вступительное слово</div>
+            <div class="item-desc">Открытие, знакомство с командой организаторов и обзор дня.</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">11:15 — Лекция: Инновации в автоматизации</div>
+            <div class="item-desc">Спикер расскажет о последних достижениях в области автоматизации производства.</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">12:30 — Кофе-брейк</div>
+            <div class="item-desc">Небольшая пауза для общения и нетворкинга за чашкой кофе.</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">13:00 — Практическая сессия: Внедрение роботов</div>
+            <div class="item-desc">Участники попробуют работать с реальными роботами: настройка, программирование и тесты.</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">15:00 — Обед</div>
+            <div class="item-desc">Перерыв на обед (предоставляется кейтеринг).</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">16:00 — Дискуссия с экспертами</div>
+            <div class="item-desc">Формат Q&amp;A: слушатели задают вопросы спикерам и получают развернутые ответы.</div>
+          </div>
+          <div class="program-item">
+            <div class="item-title">17:30 — Заключительное слово</div>
+            <div class="item-desc">Подведение итогов, планы на будущее и сертификаты участникам.</div>
+          </div>
         </div>
-        <button onclick="rotateImage(-1)" class="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full bg-white rounded-full shadow-lg p-2 hover:scale-110 transition">
-          <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M12.293 16.293a1 1 0 010-1.414L15.586 12H4a1 1 0 110-2h11.586l-3.293-2.879a1 1 0 011.32-1.497l5 4.5a1 1 0 010 1.494l-5 4.5a1 1 0 01-1.32-1.415z" clip-rule="evenodd"/>
-          </svg>
-        </button>
-        <button onclick="rotateImage(1)" class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-full bg-white rounded-full shadow-lg p-2 hover:scale-110 transition">
-          <svg class="w-5 h-5 text-purple-600 rotate-180" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M12.293 16.293a1 1 0 010-1.414L15.586 12H4a1 1 0 110-2h11.586l-3.293-2.879a1 1 0 011.32-1.497l5 4.5a1 1 0 010 1.494l-5 4.5a1 1 0 01-1.32-1.415z" clip-rule="evenodd"/>
-          </svg>
-        </button>
-      </div>
-      <p class="text-xl font-bold mb-4 text-gray-900">29 апреля 2025</p>
+      </section>
 
-      <div class="text-left max-w-xl mx-auto space-y-4">
-        <h2 class="text-lg font-semibold">StepAI</h2>
-        <p class="text-sm text-gray-700">Ганьшин Владимир — руководитель Технопарка РГСУ, эксперт в области нейротехнологий и ИИ-образования.</p>
-        <blockquote class="border-l-4 border-purple-500 pl-4 italic text-gray-600 text-sm relative">
-          <svg class="absolute -left-5 top-0 w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7.17 6A5.978 5.978 0 004 12v6h6v-6H7.17a3.978 3.978 0 013.83-6H7.17zM17.17 6A5.978 5.978 0 0014 12v6h6v-6h-2.83a3.978 3.978 0 013.83-6h-3.83z"/>
-          </svg>
-          <span class="ml-2 block">«Промт — это мост между идеей и её реализацией. Мы научим вас управлять потенциалом нейросетей.»</span>
-        </blockquote>
-        <div id="moreText" class="hidden overflow-hidden transition-all duration-500 ease-in-out text-sm text-gray-600">
-          <p class="mt-2">Мы подробно рассмотрим типы промтов, разницу между zero-shot и few-shot обучением, работу с ролями и стилями генерации, а также как интегрировать генеративные ИИ в реальные сценарии. Это будет живое занятие с демонстрациями и возможностью задать вопросы.</p>
+      <!-- SPEAKER -->
+      <section class="section speaker" id="speaker" tabindex="-1">
+        <h2 class="h2">О спикере</h2>
+        <div class="speaker-card">
+          <img src="img/speaker-avatar.jpg" alt="Иван Иванов" class="speaker-img" loading="lazy">
+          <div>
+            <p>Иван Иванов — ведущий инженер-исследователь в области автоматизации производства, автор более 20 научных публикаций и руководитель проектов крупных промышленных предприятий.</p>
+            <h3>Контакты спикера</h3>
+            <p>
+              <a href="https://linkedin.com/in/ivan-ivanov" target="_blank" rel="noopener noreferrer" title="Перейти в LinkedIn">LinkedIn</a> |
+              <a href="https://github.com/ivan-ivanov" target="_blank" rel="noopener noreferrer" title="Перейти в GitHub">GitHub</a>
+            </p>
+          </div>
         </div>
-        <button onclick="toggleMore()" class="text-sm text-purple-700 hover:text-purple-900 font-semibold mt-2">Читать подробнее ↓</button>
-      </div>
-    </section>
+      </section>
 
-  <!-- Блок "Годнота / Ну такое" -->
-  <section class="max-w-2xl mx-auto text-center space-y-10 mt-24" data-aos="fade-up" data-aos-delay="300">
-    <h3 class="text-2xl font-semibold">Что вы узнаете?</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
-      <div onclick="rateFact('good')" class="cursor-pointer select-none bg-green-100 hover:bg-green-200 transition p-4 rounded-xl shadow-md flex flex-col items-center">
-        <div class="w-8 h-8">
-          <i data-lucide="thumbs-up" class="w-8 h-8 text-green-800"></i>
+      <!-- FAQ -->
+      <section class="section faq" id="faq" tabindex="-1">
+        <h2 class="h2">Частые вопросы</h2>
+        <div class="faq-search">
+          <input type="text" id="faq-filter" placeholder="Поиск по вопросам…" aria-label="Поиск вопросов">
         </div>
-        <p class="mt-2 font-medium text-green-800">Годнота</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow hover:shadow-lg transition text-sm text-gray-700">
-        <p id="factText">💡 Знаете ли вы, что ChatGPT может анализировать эмоциональную окраску текстов?</p>
-      </div>
-      <div onclick="rateFact('meh')" class="cursor-pointer select-none bg-red-100 hover:bg-red-200 transition p-4 rounded-xl shadow-md flex flex-col items-center">
-        <div class="w-8 h-8">
-          <i data-lucide="thumbs-down" class="w-8 h-8 text-red-800"></i>
+
+        <div class="faq-group">
+          <h3>Регистрация</h3>
+          <details class="faq-item">
+            <summary>Как зарегистрироваться на мастер-класс?</summary>
+            <p>Нажмите кнопку «Записаться» и заполните форму. Подтверждение придёт на почту.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Сколько стоит участие?</summary>
+            <p>Участие бесплатное, но по предварительной регистрации.</p>
+          </details>
         </div>
-        <p class="mt-2 font-medium text-red-800">Ну такоеее..</p>
-      </div>
-    </div>
-  </section>
 
-  <script>
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById("progressBar").style.width = scrolled + "%";
-    });
-
-    lucide.createIcons();
-
-    const facts = [
-      "🧠 GPT может писать креативные тексты в любом стиле.",
-      "🤖 Нейросети учат не только писать, но и программировать.",
-      "📊 Вы можете анализировать данные с помощью ChatGPT!",
-      "🎨 AI способен генерировать арт по вашим описаниям.",
-      "💬 Вы можете обучать ИИ вашему стилю общения."
-    ];
-
-    function rateFact(feedback) {
-      const factText = document.getElementById("factText");
-      const newFact = facts[Math.floor(Math.random() * facts.length)];
-      factText.style.transition = 'opacity 0.3s';
-      factText.style.opacity = 0;
-      setTimeout(() => {
-        factText.textContent = newFact;
-        factText.style.opacity = 1;
-      }, 300);
-    }
-  </script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script>AOS.init();</script>
-</body>
-</html>
-
-    <!-- Блок стоимости с QR-кодом -->
-    <section class="text-center" data-aos="fade-in" data-aos-delay="350">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center justify-center">
-        <div>
-          <p class="text-lg text-gray-700">Стоимость участия:</p>
-          <p class="text-3xl font-bold text-purple-700 mt-2">2 500 ₽ <span class="text-sm font-medium text-gray-500">по акции до 25 апреля</span></p>
-          <p class="text-sm text-pink-600 mt-1">Осталось всего 7 мест</p>
+        <div class="faq-group">
+          <h3>Участие</h3>
+          <details class="faq-item">
+            <summary>Нужно ли приносить с собой что-то?</summary>
+            <p>Возьмите ноутбук для практических заданий и блокнот для заметок.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Будет ли выдаваться сертификат?</summary>
+            <p>Да, после мероприятия все участники получат электронный сертификат.</p>
+          </details>
         </div>
-        <div class="flex justify-center">
-          <div class="relative group cursor-pointer" onclick="openQRPopup()">
-  <img src="/mnt/data/d0186429-8ef8-4beb-9dfc-12f47cd31c6b.png" alt="QR-код для оплаты" class="w-48 h-48 rounded-xl shadow-md">
-  <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-white text-sm text-gray-700 border border-gray-300 px-3 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-    Наведите, чтобы оплатить через СБП
-  </div>
-</div>
+      </section>
 
-<!-- QR Popup -->
-<div id="qrPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-  <div class="bg-white rounded-2xl p-4 shadow-xl relative w-[320px]">
-    <button onclick="closeQRPopup()" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-2xl">×</button>
-    <img src="/mnt/data/d0186429-8ef8-4beb-9dfc-12f47cd31c6b.png" alt="QR крупно" class="w-full h-auto rounded-xl">
-    <p class="text-center text-sm text-gray-600 mt-2">Отсканируйте QR для оплаты через СБП</p>
-  </div>
-</div>
+      <!-- REGISTRATION (модальное окно) -->
+      <div class="modal" id="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
+          <h2 id="modal-title" class="h2">Регистрация</h2>
+          <form id="regForm" action="#" method="post" class="form" novalidate>
+            <div class="field">
+              <label for="name">Имя <span aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" required autocomplete="name" aria-required="true" placeholder="Иван Иванов">
+              <span class="error" id="error-name">Введите имя</span>
+            </div>
+
+            <div class="field">
+              <label for="email">E-mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" placeholder="example@mail.com">
+              <span class="error" id="error-email">Введите корректный email</span>
+            </div>
+
+            <div class="field">
+              <label for="phone">Телефон <span aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" aria-required="true" placeholder="+7 (999) 123-45-67" pattern="^\\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$" inputmode="tel" maxlength="18">
+              <span class="error" id="error-phone">Введите номер в формате +7 (XXX) XXX-XX-XX</span>
+            </div>
+
+            <button type="submit" class="btn primary">Отправить</button>
+            <div id="thank-you" style="display: none; margin-top: 1rem; color: var(--accent); font-weight: 600;">
+              Спасибо! Ваша заявка принята.
+            </div>
+          </form>
         </div>
       </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
-      <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition text-white text-base font-semibold py-3 px-8 rounded-2xl shadow-xl">
-        Зарегистрироваться
-      </button>
     </div>
   </main>
 
-  <!-- Modal -->
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm hidden items-center justify-center z-50">
-    <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">×</button>
-      <h3 class="text-xl font-semibold mb-4 text-center">Регистрация на мастер‑класс</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Ваше имя" class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-        <input type="email" placeholder="Email" class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-        <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded-xl hover:bg-purple-900 transition">Отправить</button>
-      </form>
-    </div>
+  <!-- Floating social icons -->
+  <div class="social-floating" aria-label="Социальные сети">
+    <a href="https://instagram.com/ваш_аккаунт" aria-label="Instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="24" height="24" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+    </a>
+    <a href="https://vk.com/ваш_аккаунт" aria-label="VK" target="_blank" rel="noopener noreferrer" title="VK">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h4.6s.499 1.5-.833 2.833c-1.331 1.334-.913 2.035-.913 2.035S13.167 11 16.5 6c1.5-2.3-.5-2-2-2H3z"/><path d="M25 6h-4.6s-.499 1.5.833 2.833c1.331 1.334.913 2.035.913 2.035S14.833 11 11.5 6c-1.5-2.3.5-2 2-2H25z"/><path d="M3 22h6.5v-5.917h2.583L13 22h6l-4.833-6L19 6h-6l2.739 6z"/></svg>
+    </a>
+    <a href="https://t.me/ваш_канал" aria-label="Telegram" target="_blank" rel="noopener noreferrer" title="Telegram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L3 10l5 2 2 7 3-4 4 3 5-15z"/><path d="M10 13l2 7 2-4 4 3"/></svg>
+    </a>
   </div>
 
-  <script>
-    function openModal() {
-      document.getElementById('modal').classList.remove('hidden');
-      document.getElementById('modal').classList.add('flex');
-    }
-    function closeModal() {
-      document.getElementById('modal').classList.remove('flex');
-      document.getElementById('modal').classList.add('hidden');
-    }
-    function toggleMore() {
-      const text = document.getElementById('moreText');
-      if (text.classList.contains('hidden')) {
-        text.classList.remove('hidden');
-        text.style.maxHeight = '1000px';
-      } else {
-        text.classList.add('hidden');
-        text.style.maxHeight = '0';
-      }
-    }
+  <!-- Back to top button -->
+  <button id="back-to-top" aria-label="Наверх">↑</button>
 
-    const images = [
-      "https://github.com/STEP3DLab/AI/blob/main/img/speaker.jpg?raw=true",
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1531891437562-5e8a9fc0f4a2?auto=format&fit=crop&w=400&q=80"
-    ];
-    let currentIndex = 0;
+  <!-- Footer -->
+  <footer class="section footer">
+    <p>© 2025 «Проминжиниринг». Все права защищены.</p>
+  </footer>
 
-    function rotateImage(direction) {
-      const wrapper = document.getElementById("speakerWrapper");
-      const img = document.getElementById("speakerImage");
-      wrapper.classList.add("rotate-y-180");
-      setTimeout(() => {
-        currentIndex = (currentIndex + direction + images.length) % images.length;
-        img.src = images[currentIndex];
-        wrapper.classList.remove("rotate-y-180");
-      }, 400);
-    }
-
-    const facts = [
-      "🧠 GPT может писать креативные тексты в любом стиле.",
-      "🤖 Нейросети учат не только писать, но и программировать.",
-      "📊 Вы можете анализировать данные с помощью ChatGPT!",
-      "🎨 AI способен генерировать арт по вашим описаниям.",
-      "💬 Вы можете обучать ИИ вашему стилю общения."
-    ];
-    function rateFact(feedback) {
-      const factText = document.getElementById("factText");
-      const newFact = facts[Math.floor(Math.random() * facts.length)];
-      factText.classList.add("opacity-0");
-      setTimeout(() => {
-        factText.textContent = newFact;
-        factText.classList.remove("opacity-0");
-        factText.classList.add("opacity-100");
-      }, 300);
-    }
-  </script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script>AOS.init();</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мастер‑класс «Промтинжиниринг»</title>
-  <meta name="description" content="Узнай, как эффективно использовать нейросети с помощью промт-инжиниринга. Практический мастер‑класс от экспертов StepAI.">
-  <meta property="og:title" content="Мастер‑класс «Промтинжиниринг»">
-  <meta property="og:description" content="Практика, живые примеры, нейросети и генерация контента — научим использовать ИИ.">
-  <meta property="og:image" content="https://step3d.ru/promo-img.jpg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Manrope', sans-serif;
-    }
-    .rotate-y-180 {
-      transform: rotateY(180deg);
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-b from-white via-indigo-50 to-purple-100 text-gray-800 relative overflow-x-hidden">
-  <!-- Главный контент и ранее существующий код (заголовок, спикер, блок фактов, QR) — остаётся -->
-
-  <!-- Программа курса -->
-  <section class="max-w-3xl mx-auto mt-24 px-6" data-aos="fade-up">
-    <h3 class="text-2xl font-semibold text-center mb-8">Программа мастер‑класса</h3>
-    <ul class="space-y-4">
-      <li class="bg-white p-4 rounded-xl shadow flex gap-3 items-start">
-        <span class="text-purple-600 font-bold">1</span>
-        <p>Введение в промт-инжиниринг. Как работает нейросеть?</p>
-      </li>
-      <li class="bg-white p-4 rounded-xl shadow flex gap-3 items-start">
-        <span class="text-purple-600 font-bold">2</span>
-        <p>Типы промтов: zero-shot, few-shot, chain-of-thought</p>
-      </li>
-      <li class="bg-white p-4 rounded-xl shadow flex gap-3 items-start">
-        <span class="text-purple-600 font-bold">3</span>
-        <p>Практика. Как делать запросы, которые работают</p>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Кейсы участников -->
-  <section class="bg-white py-16 px-6 mt-24" data-aos="fade-up">
-    <h3 class="text-2xl font-semibold text-center mb-10">Что дало участникам?</h3>
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <div class="bg-purple-50 p-4 rounded-xl shadow-sm text-sm">
-        <p>💼 После мастер-класса я смог переписать все описания продуктов через ChatGPT — стало в 3 раза понятнее.</p>
-        <p class="mt-2 font-semibold text-purple-700">— Евгений, продюсер курсов</p>
-      </div>
-      <div class="bg-purple-50 p-4 rounded-xl shadow-sm text-sm">
-        <p>📈 Благодаря AI-промтам я сократил время написания постов с 2 часов до 20 минут. Ракета!</p>
-        <p class="mt-2 font-semibold text-purple-700">— Дарья, smm-менеджер</p>
-      </div>
-      <div class="bg-purple-50 p-4 rounded-xl shadow-sm text-sm">
-        <p>🎨 Раньше не знал, как просить нейросеть сделать картинку. Теперь могу сам — легко и быстро.</p>
-        <p class="mt-2 font-semibold text-purple-700">— Максим, иллюстратор</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Отзывы -->
-  <section class="bg-purple-50 py-12 px-6 mt-24" data-aos="fade-up">
-    <h3 class="text-2xl font-semibold text-center mb-8">Отзывы участников</h3>
-    <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-      <div class="bg-white p-4 rounded-xl shadow text-sm">
-        <p>🔥 Это был мой первый опыт работы с ChatGPT — и теперь я не представляю свою работу без него!</p>
-        <p class="mt-2 font-semibold text-purple-700">— Мария, дизайнер</p>
-      </div>
-      <div class="bg-white p-4 rounded-xl shadow text-sm">
-        <p>Курс дал понятный и чёткий подход. Не вода, а практика!</p>
-        <p class="mt-2 font-semibold text-purple-700">— Алексей, мар
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мастер‑класс «Промтинжиниринг»</title>
-  <meta name="description" content="Узнай, как эффективно использовать нейросети с помощью промт-инжиниринга. Практический мастер‑класс от экспертов StepAI.">
-  <meta property="og:title" content="Мастер‑класс «Промтинжиниринг»">
-  <meta property="og:description" content="Практика, живые примеры, нейросети и генерация контента — научим использовать ИИ.">
-  <meta property="og:image" content="https://step3d.ru/promo-img.jpg">
-  <link rel="icon" type="image/png" href="https://step3d.ru/favicon.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <script async src="https://mc.yandex.ru/metrika/tag.js"></script>
-  <script>
-    try {
-      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-      k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
-      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-      ym(95555555, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-      });
-    } catch (e) {}
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/95555555" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Manrope', sans-serif;
-    }
-    .rotate-y-180 {
-      transform: rotateY(180deg);
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-b from-white via-indigo-50 to-purple-100 text-gray-800 relative overflow-x-hidden">
-  <!-- Контент сайта остаётся без изменений -->
-
-  <!-- E-mail CTA -->
-  <section class="max-w-xl mx-auto text-center mt-24 mb-12 px-6" data-aos="zoom-in">
-    <h2 class="text-xl font-bold mb-4">Хотите напоминание на почту?</h2>
-    <form class="flex flex-col sm:flex-row gap-3 items-center justify-center">
-      <input type="email" placeholder="Ваш email" class="w-full sm:w-auto flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-      <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">Прислать напоминание</button>
-    </form>
-    <p class="text-xs text-gray-500 mt-2">Без спама. Только одно письмо за день до мастер‑класса.</p>
-  </section>
-
-  <!-- Фиксированная кнопка CTA на мобильных -->
-  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden">
-    <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg">
-      Записаться
-    </button>
-  </div>
-
-  <script>
-    AOS.init();
-  </script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
