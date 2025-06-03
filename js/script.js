@@ -1,4 +1,4 @@
-// Inject noisy background сразу по загрузке <head>
+// Inject noisy background сразу при загрузке <head>
 (function() {
   const svg = `
     <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'>
@@ -8,9 +8,12 @@
       </filter>
       <rect width='64' height='64' filter='url(#n)'/>
     </svg>`;
-  document.getElementById('noise-style').textContent = `
-    body { background: url(data:image/svg+xml;base64,${btoa(svg)}) repeat var(--bg); }
-  `;
+  const noiseStyle = document.getElementById('noise-style');
+  if (noiseStyle) {
+    noiseStyle.textContent = `
+      body { background: url(data:image/svg+xml;base64,${btoa(svg)}) repeat var(--bg); }
+    `;
+  }
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,22 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Плавное появление карточки
   const card = document.getElementById('main-card');
-  new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 }).observe(card);
+  if (card) {
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 }).observe(card);
+  }
 
   // Прогресс-бар прокрутки и кнопка "Наверх"
   const prog = document.getElementById('scroll-progress');
   const topBtn = document.getElementById('top-btn');
-  window.addEventListener('scroll', () => {
-    const d = document.documentElement;
-    const scrollRatio = d.scrollTop / (d.scrollHeight - d.clientHeight);
-    prog.style.transform = `scaleX(${scrollRatio})`;
-    topBtn.classList.toggle('show', d.scrollTop > 400);
-  });
-  topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (prog && topBtn) {
+    window.addEventListener('scroll', () => {
+      const d = document.documentElement;
+      const scrollRatio = d.scrollTop / (d.scrollHeight - d.clientHeight);
+      prog.style.transform = `scaleX(${scrollRatio})`;
+      topBtn.classList.toggle('show', d.scrollTop > 400);
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   // Переключатель темы
   const themeBtn = document.getElementById('theme-switch');
@@ -48,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
       html.setAttribute('data-theme', next);
       themeBtn.textContent = next === 'light' ? '🌙' : '☀️';
       const meta = document.getElementById('meta-theme');
-      meta.setAttribute('content', next === 'light' ? '#ffffff' : '#000000');
+      if (meta) {
+        meta.setAttribute('content', next === 'light' ? '#ffffff' : '#000000');
+      }
     });
   }
 
@@ -66,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (regForm) {
     regForm.addEventListener('submit', event => {
       const input = regForm.querySelector('input[name="_replyto"]');
+      if (!input) return;
       const value = input.value.trim();
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phonePattern = /^[\d+\-()\s]{5,20}$/;
