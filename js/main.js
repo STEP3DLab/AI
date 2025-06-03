@@ -1,85 +1,128 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Таймер
-  const updateTimer = (end, ids) => {
-    const t = setInterval(() => {
-      const diff = end - Date.now();
-      const d = Math.max(Math.floor(diff/86400000),0);
-      const h = Math.max(Math.floor((diff%86400000)/3600000),0);
-      const m = Math.max(Math.floor((diff%3600000)/60000),0);
-      const s = Math.max(Math.floor((diff%60000)/1000),0);
-      document.getElementById(ids.days).textContent    = d;
-      document.getElementById(ids.hours).textContent   = h;
-      document.getElementById(ids.minutes).textContent = m;
-      document.getElementById(ids.seconds).textContent = s;
-      if(diff<=0) clearInterval(t);
-    },1000);
-  };
-  updateTimer(new Date('2025-04-29T19:00:00+03:00'), { days:'days', hours:'hours', minutes:'minutes', seconds:'seconds' });
+// РџСЂРѕРіСЂРµСЃСЃ-Р±Р°СЂ Рё Р°РєС‚РёРІРЅС‹Р№ nav (СЃ aria-valuenow)
+document.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  const bar = document.getElementById('progress-bar');
+  bar.style.width = scrollPercent + '%';
+  bar.setAttribute('aria-valuenow', Math.round(scrollPercent));
 
-  // Меню
-  const burger = document.querySelector('.burger');
-  const nav    = document.querySelector('.nav');
-  burger.addEventListener('click', () => {
-    const open = burger.getAttribute('aria-expanded') === 'true';
-    burger.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('nav--open');
-  });
+  // РљРЅРѕРїРєР° В«РќР°РІРµСЂС…В»
+  const backBtn = document.getElementById('back-to-top');
+  if (scrollTop > 300) backBtn.classList.add('show');
+  else backBtn.classList.remove('show');
 
-  // Плавный скролл
-  document.querySelectorAll('.nav__list a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const tgt    = document.querySelector(link.getAttribute('href'));
-      const offset = nav.offsetHeight;
-      window.scrollTo({ top: tgt.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
-      if(nav.classList.contains('nav--open')) burger.click();
-    });
-  });
-
-  // Форма
-  const form   = document.getElementById('registration-form');
-  const btn    = form.querySelector('button[type="submit"]');
-  const status = document.getElementById('form-status');
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgAUEz5PIkSGFtu28LNZB9J7L5nF7AGHfkesGPrRz4Iju-G0upbBYPuzwm4rT7N1YUyw/exec';
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    status.textContent = '';
-    form.querySelectorAll('.input-error').forEach(el => el.textContent = '');
-    form.querySelectorAll('input').forEach(i => i.classList.remove('invalid'));
-
-    if (!form.checkValidity()) {
-      Array.from(form.elements).forEach(el => {
-        if(el.tagName==='INPUT' && !el.checkValidity()) {
-          el.classList.add('invalid');
-          el.nextElementSibling.textContent = el.validationMessage;
-        }
-      });
-      return;
-    }
-
-    btn.disabled = true;
-    status.style.color = 'var(--text)';
-    status.textContent   = 'Отправка…';
-
-    try {
-      const resp = await fetch(SCRIPT_URL, { method:'POST', mode:'cors', body:new FormData(form) });
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const data = await resp.json();
-      if (data.result==='success') {
-        form.innerHTML = `<p style="color:green;font-weight:600;">
-          Спасибо, <strong>${form.name.value}</strong>!<br>
-          Подтверждение отправлено на <strong>${form.email.value}</strong>.
-        </p>`;
+  // РђРєС‚РёРІРЅР°СЏ СЃСЃС‹Р»РєР°
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const section = document.querySelector(link.getAttribute('href'));
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.2 && rect.bottom >= window.innerHeight * 0.2) {
+        link.classList.add('active');
       } else {
-        throw new Error(data.message||'Ошибка сервера');
+        link.classList.remove('active');
       }
-    } catch (err) {
-      console.error(err);
-      status.style.color = 'var(--error)';
-      status.textContent = `Ошибка отправки: ${err.message}`;
-    } finally {
-      btn.disabled = false;
+    }
+  });
+});
+
+// В«РќР°РІРµСЂС…В»
+document.getElementById('back-to-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Intersection Observer РґР»СЏ СЃРµРєС†РёР№
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+});
+
+// РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ: РґРѕР±Р°РІР»СЏРµРј aria-hidden РЅР° main
+const modal = document.getElementById('modal');
+const openModalBtn = document.getElementById('open-modal');
+const closeModalBtn = document.getElementById('modal-close');
+const mainContent = document.querySelector('main');
+
+openModalBtn.addEventListener('click', e => {
+  e.preventDefault();
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  mainContent.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('name').focus();
+});
+
+function closeModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  mainContent.removeAttribute('aria-hidden');
+  document.body.style.overflow = '';
+  openModalBtn.focus();
+}
+closeModalBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeModal();
+});
+
+// РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РµРјС‹ РІ localStorage
+const themeToggle = document.getElementById('theme-toggle');
+
+if (localStorage.getItem('theme') === 'dark') {
+  themeToggle.checked = true;
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+themeToggle.addEventListener('change', () => {
+  if (themeToggle.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.removeItem('theme');
+  }
+});
+
+// РћР±РЅРѕРІР»РµРЅРёРµ С‚Р°Р№РјРµСЂР° РѕР±СЂР°С‚РЅРѕРіРѕ РѕС‚СЃС‡С‘С‚Р°
+function updateCountdown() {
+  const eventDate = new Date('2025-07-15T11:00:00');
+  const now = new Date();
+  const diff = eventDate - now;
+  const countdownTimer = document.getElementById('countdown-timer');
+  if (diff <= 0) {
+    countdownTimer.textContent = 'РЎРѕР±С‹С‚РёРµ РЅР°С‡Р°Р»РѕСЃСЊ!';
+    openModalBtn.disabled = true;
+    openModalBtn.textContent = 'Р РµРіРёСЃС‚СЂР°С†РёСЏ Р·Р°РєСЂС‹С‚Р°';
+    clearInterval(countdownInterval);
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  countdownTimer.textContent = `${days}Рґ ${hours}С‡ ${minutes}Рј ${seconds}СЃ`;
+}
+const countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Р“Р°РјР±СѓСЂРіРµСЂ-РјРµРЅСЋ
+const hamburgerBtn = document.getElementById('hamburger');
+const navigation = document.querySelector('nav.nav-links');
+hamburgerBtn.addEventListener('click', () => {
+  const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+  hamburgerBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+  navigation.classList.toggle('open');
+});
+document.querySelectorAll('nav.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navigation.classList.contains('open')) {
+      navigation.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
     }
   });
 });
