@@ -44,9 +44,6 @@ a:hover {
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
 }
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -56,6 +53,9 @@ a:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* 4. Заголовок карточки */
@@ -88,13 +88,13 @@ a:hover {
 }
 .info-list li {
   display: flex;
-  align-items: baseline;
+  align-items: center;            /* выравниваем иконку и текст по центру вертикали */
   margin-bottom: 0.5rem;
-  font-size: 0.9375rem;            /* ~15px */
+  font-size: 0.9375rem;           /* ~15px */
   color: #1c1c1e;
 }
 
-/* Иконки в списке деталей */
+/* Иконка рядом с меткой */
 .icon-wrapper {
   width: 24px;
   height: 24px;
@@ -178,7 +178,7 @@ a:hover {
   color: #1c1c1e;
 }
 
-/* Иконки в списке преимуществ */
+/* Иконка в списке преимуществ (inline) */
 .icon-wrapper-inline {
   width: 20px;
   height: 20px;
@@ -188,22 +188,14 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
-.icon-book,
-.icon-chat,
-.icon-shield,
-.icon-certificate,
-.icon-diploma {
+.icon-wrapper-inline .icon {
   width: 100%;
   height: 100%;
   stroke: #3c3c43;
   fill: none;
   transition: transform 0.3s ease, stroke 0.2s ease;
 }
-.icon-book:hover,
-.icon-chat:hover,
-.icon-shield:hover,
-.icon-certificate:hover,
-.icon-diploma:hover {
+.icon-wrapper-inline .icon:hover {
   transform: scale(1.1);
   stroke: #007aff;
 }
@@ -346,119 +338,4 @@ a:hover {
 .btn-calendar:hover {
   background: #0051a8;
 }
-.btn-pay:active,
-.btn-calendar:active {
-  transform: scale(0.97);
-}
-.btn-icon {
-  font-size: 1rem;                 /* стрелочка чуть больше */
-  opacity: 0.8;
-}
-
-/* 16. Блок контактов («Есть вопросы?») */
-.contact-block {
-  margin-top: 0.75rem;
-}
-.contact-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;             /* ~14px */
-  color: #3c3c43;
-  line-height: 1.4;
-  margin: 0.25rem 0;
-}
-.contact-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 0.5rem;
-  flex-shrink: 0;
-  color: #007aff;                  /* иконка цвета ссылок */
-  transition: transform 0.3s ease, color 0.2s ease;
-}
-.contact-icon:hover {
-  transform: scale(1.1);
-  color: #0051a8;
-}
-.contact-link {
-  color: #007aff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.contact-link:hover {
-  text-decoration: underline;
-  color: #0051a8;
-}
-
-/* 17. Страница «Спасибо» */
-.thankyou-card {
-  max-width: 400px;
-  margin: 2rem auto;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  background: #fcfcfc;
-}
-.thankyou-title {
-  font-size: 1.375rem;             /* ~22px */
-  font-weight: 600;
-  color: #1c1c1e;
-  margin-bottom: 0.75rem;
-}
-.thankyou-text {
-  font-size: 0.9375rem;             /* ~15px */
-  color: #1c1c1e;
-  margin-bottom: 0.5rem;
-}
-.thankyou-subtext {
-  font-size: 0.8125rem;             /* ~13px */
-  color: #636366;
-  margin-bottom: 1.5rem;
-}
-.btn-back {
-  display: inline-block;
-  padding: 0.75rem 1.25rem;
-  background: #007aff;
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-.btn-back:hover {
-  background: #0051a8;
-}
-.btn-back:active {
-  transform: scale(0.97);
-}
-
-/* 18. Адаптивные правки для мобильных */
-@media (max-width: 400px) {
-  .card,
-  .thankyou-card {
-    padding: 1rem;
-    border-radius: 10px;
-  }
-  .card-title,
-  .thankyou-title {
-    font-size: 1.25rem;             /* ~20px */
-  }
-  .info-list li,
-  .benefits-list li {
-    font-size: 0.875rem;            /* ~14px */
-  }
-  .input-field,
-  .btn-submit,
-  .btn-pay,
-  .btn-calendar {
-    height: 44px;
-  }
-  .btn-submit,
-  .btn-pay,
-  .btn-calendar {
-    font-size: 0.875rem;            /* ~14px */
-  }
-}
+.btn-
