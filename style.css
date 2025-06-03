@@ -93,13 +93,18 @@ a:hover {
   font-size: 0.9375rem;           /* ~15px */
   color: #1c1c1e;
 }
+/* Метка (label) фиксированной ширины, чтобы выровнять значения */
 .label {
-  width: 100px;                   /* одинаковая ширина для выравнивания */
+  display: inline-block;
+  width: 100px;                   /* подкорректируйте при необходимости */
   font-weight: 500;
   color: #3c3c43;
 }
 .subtext {
+  flex: 1;
   color: #636366;
+  line-height: 1.4;
+  word-break: break-word;
 }
 .count {
   font-weight: 600;
@@ -295,14 +300,37 @@ a:hover {
   opacity: 0.8;
 }
 
-/* 16. Информация о контактах */
-.contact-info {
-  font-size: 0.8125rem;           /* ~13px */
+/* 16. Блок контактов («Есть вопросы?») */
+.contact-block {
+  margin-top: 0.75rem;
+}
+.contact-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;           /* ~14px */
   color: #3c3c43;
   line-height: 1.4;
+  margin: 0.25rem 0;
+}
+.contact-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+  color: #007aff;                /* иконка того же цвета, что и ссылки */
+}
+.contact-link {
+  color: #007aff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.contact-link:hover {
+  text-decoration: underline;
+  color: #0051a8;
 }
 
-/* 17. Страница Thank You */
+/* 17. Страница «Спасибо» */
 .thankyou-card {
   max-width: 400px;
   margin: 2rem auto;
@@ -312,18 +340,18 @@ a:hover {
   background: #fcfcfc;
 }
 .thankyou-title {
-  font-size: 1.375rem;
+  font-size: 1.375rem;           /* ~22px */
   font-weight: 600;
   color: #1c1c1e;
   margin-bottom: 0.75rem;
 }
 .thankyou-text {
-  font-size: 0.9375rem;
+  font-size: 0.9375rem;           /* ~15px */
   color: #1c1c1e;
   margin-bottom: 0.5rem;
 }
 .thankyou-subtext {
-  font-size: 0.8125rem;
+  font-size: 0.8125rem;           /* ~13px */
   color: #636366;
   margin-bottom: 1.5rem;
 }
@@ -374,52 +402,3 @@ a:hover {
     font-size: 0.875rem;          /* ~14px */
   }
 }
-/* ---------- Обновлённый блок «Есть вопросы?» ---------- */
-
-.card-footer {
-  /* сохраняем существующие отступы */
-  padding-top: 1rem;
-  text-align: center;
-}
-
-/* Новые контейнер и строки контактов */
-.contact-block {
-  margin-top: 0.75rem;
-}
-
-.contact-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem; /* ~14px */
-  color: #3c3c43;
-  line-height: 1.4;
-  margin: 0.25rem 0;
-}
-
-.contact-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 0.5rem;
-  flex-shrink: 0;
-  color: #007aff; /* иконка того же цвета, что и ссылки */
-}
-
-.contact-link {
-  color: #007aff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.contact-link:hover {
-  text-decoration: underline;
-  color: #0051a8;
-}
-
-/* Кнопки под блоком уже существуют, их стили остаются такими же: */
-/*
-.btn-pay,
-.btn-calendar {
-  ... (уже описано ранее)
-}
-*/
-
