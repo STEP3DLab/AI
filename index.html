@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <main class="card fade-in-up">
-      
+
       <!-- Заголовок -->
       <header class="card-header">
         <h1 class="card-title">МАСТЕР-КЛАСС «ПРОМТИНЖИНИРИНГ»</h1>
@@ -19,21 +19,63 @@
       <!-- Блок деталей -->
       <section class="details">
         <ul class="info-list">
+          <!-- Когда -->
           <li>
+            <span class="icon-wrapper">
+              <!-- Иконка «Календарь» (hand-drawn style) -->
+              <svg class="icon icon-calendar" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="4" width="20" height="18" rx="2" ry="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="2" y1="10" x2="22" y2="10" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="7" y1="2" x2="7" y2="6" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="17" y1="2" x2="17" y2="6" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="label">Когда</span>
-            <span class="subtext">&nbsp;11 июня 2025 г. ∙ 19:00 – 20:30</span>
+            <span class="subtext">11 июня 2025 г. ∙ 19:00 – 20:30</span>
           </li>
+
+          <!-- Где -->
           <li>
+            <span class="icon-wrapper">
+              <!-- Иконка «Местоположение» -->
+              <svg class="icon icon-location" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="12" cy="9" r="2.5" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="label">Где</span>
-            <span class="subtext">&nbsp;Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</span>
+            <span class="subtext">Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</span>
           </li>
+
+          <!-- Стоимость -->
           <li>
+            <span class="icon-wrapper">
+              <!-- Иконка «Цена/Тег» -->
+              <svg class="icon icon-cost" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4h7l9 9-7 7-9-9z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="9" cy="9" r="1.5" fill="#3c3c43"/>
+                <path d="M14 2v4" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M18 6h-4" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="label">Стоимость</span>
-            <span class="subtext">&nbsp;5 000 ₽</span>
+            <span class="subtext">5 000 ₽</span>
           </li>
+
+          <!-- Свободные места -->
           <li>
+            <span class="icon-wrapper">
+              <!-- Иконка «Места» (стул или людей) -->
+              <svg class="icon icon-seats" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="10" width="20" height="10" rx="2" ry="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="6" y1="10" x2="6" y2="4" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="18" y1="10" x2="18" y2="4" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="6" cy="3" r="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="18" cy="3" r="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="label">Свободные места</span>
-            <span class="subtext">&nbsp;Очно <span id="offline-count">—</span> / 16 ∙ Онлайн <span id="online-count">—</span> / 20</span>
+            <span class="subtext">Очно <span id="offline-count">—</span> / 16 ∙ Онлайн <span id="online-count">—</span> / 20</span>
           </li>
         </ul>
         <hr class="divider" />
@@ -48,11 +90,59 @@
       <section class="benefits">
         <h2 class="section-title">После мастер-класса вы получите:</h2>
         <ul class="benefits-list">
-          <li>PDF-гайд по нейросетям</li>
-          <li>Доступ в закрытую Telegram-группу</li>
-          <li>Годовой VPN для всех устройств</li>
-          <li>Сертификат участника</li>
-          <li>Свидетельство РГСУ при 24+ часах</li>
+          <li>
+            <span class="icon-wrapper-inline">
+              <!-- Иконка «Книга/гайд» -->
+              <svg class="icon icon-book" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19H20V5H4z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <line x1="4" y1="9" x2="20" y2="9" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M8 5v14" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
+            PDF-гайд по нейросетям
+          </li>
+          <li>
+            <span class="icon-wrapper-inline">
+              <!-- Иконка «Чат/сообщество» -->
+              <svg class="icon icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2h16a2 2 0 0 1 2 2v14l-4-4H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
+            Доступ в закрытую Telegram-группу
+          </li>
+          <li>
+            <span class="icon-wrapper-inline">
+              <!-- Иконка «Щит/защита» -->
+              <svg class="icon icon-shield" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l7 4v6c0 5-4 9-7 10-3-1-7-5-7-10V6z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
+            Годовой VPN для всех устройств
+          </li>
+          <li>
+            <span class="icon-wrapper-inline">
+              <!-- Иконка «Сертификат/медаль» -->
+              <svg class="icon icon-certificate" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 3h16v12H4z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="12" cy="7" r="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M8 15v6l4-2 4 2v-6" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
+            Сертификат участника
+          </li>
+          <li>
+            <span class="icon-wrapper-inline">
+              <!-- Иконка «Диплом/файл» -->
+              <svg class="icon icon-diploma" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 2h12v20H6z" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M6 8h12" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M10 12h4" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <path d="M12 15l0 4" fill="none" stroke="#3c3c43" stroke-width="2"/>
+                <circle cx="12" cy="20" r="2" fill="none" stroke="#3c3c43" stroke-width="2"/>
+              </svg>
+            </span>
+            Свидетельство РГСУ при 24+ часах
+          </li>
         </ul>
       </section>
 
