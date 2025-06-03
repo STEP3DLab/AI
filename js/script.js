@@ -1,199 +1,89 @@
-// Прелоадер скрывается после загрузки
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  if (preloader) preloader.style.display = 'none';
-});
+// Inject noisy background сразу по загрузке <head>
+(function() {
+  const svg = `
+    <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'>
+      <filter id='n'>
+        <feTurbulence baseFrequency='.8' numOctaves='4'/>
+        <feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .32 -.05'/>
+      </filter>
+      <rect width='64' height='64' filter='url(#n)'/>
+    </svg>`;
+  document.getElementById('noise-style').textContent = `
+    body { background: url(data:image/svg+xml;base64,${btoa(svg)}) repeat var(--bg); }
+  `;
+})();
 
-// Скролл–прогресс бар и активная ссылка в навигации
-document.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  const bar = document.getElementById('progress-bar');
-  if (bar) {
-    bar.style.width = scrollPercent + '%';
-    bar.setAttribute('aria-valuenow', Math.round(scrollPercent));
-  }
-
-  // Показ/скрытие кнопки "Наверх"
-  const backBtn = document.getElementById('back-to-top');
-  if (backBtn) {
-    if (scrollTop > 300) backBtn.classList.add('show');
-    else backBtn.classList.remove('show');
-  }
-
-  // Подсветка активного пункта меню
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href || !href.startsWith('#')) return;
-    const section = document.querySelector(href);
-    if (section) {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= window.innerHeight * 0.2 && rect.bottom >= window.innerHeight * 0.2) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    }
-  });
-});
-
-// Кнопка "Наверх"
-document.getElementById('back-to-top')?.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Появление секций через IntersectionObserver
 document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver(entries => {
+  const html = document.documentElement;
+
+  // Автоматический выбор темы по системным настройкам
+  const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (preferDark) html.setAttribute('data-theme', 'dark');
+
+  // Плавное появление карточки
+  const card = document.getElementById('main-card');
+  new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 }).observe(card);
+
+  // Прогресс-бар прокрутки и кнопка "Наверх"
+  const prog = document.getElementById('scroll-progress');
+  const topBtn = document.getElementById('top-btn');
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const scrollRatio = d.scrollTop / (d.scrollHeight - d.clientHeight);
+    prog.style.transform = `scaleX(${scrollRatio})`;
+    topBtn.classList.toggle('show', d.scrollTop > 400);
+  });
+  topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Переключатель темы
+  const themeBtn = document.getElementById('theme-switch');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      themeBtn.textContent = next === 'light' ? '🌙' : '☀️';
+      const meta = document.getElementById('meta-theme');
+      meta.setAttribute('content', next === 'light' ? '#ffffff' : '#000000');
+    });
+  }
+
+  // Плавный скролл к форме при клике на "Получать анонсы"
+  const nlBtn = document.getElementById('nl-open');
+  if (nlBtn) {
+    nlBtn.addEventListener('click', () => {
+      const form = document.getElementById('reg-form');
+      if (form) form.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // Простая валидация поля E-mail/телефон
+  const regForm = document.getElementById('reg-form');
+  if (regForm) {
+    regForm.addEventListener('submit', event => {
+      const input = regForm.querySelector('input[name="_replyto"]');
+      const value = input.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^[\d+\-()\s]{5,20}$/;
+      if (!emailPattern.test(value) && !phonePattern.test(value)) {
+        event.preventDefault();
+        alert('Введите валидный E-mail или телефон');
+        input.focus();
       }
     });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.section').forEach(s => observer.observe(s));
-});
-
-// Модальное окно: открытие/закрытие и блокировка скролла
-const modal = document.getElementById('modal');
-const openModalBtn = document.getElementById('open-modal');
-const closeModalBtn = document.getElementById('modal-close');
-const mainContent = document.querySelector('main');
-
-function closeModal() {
-  if (!modal) return;
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden', 'true');
-  if (mainContent) mainContent.removeAttribute('aria-hidden');
-  document.body.style.overflow = '';
-  openModalBtn?.focus();
-}
-
-if (openModalBtn && modal) {
-  openModalBtn.addEventListener('click', e => {
-    e.preventDefault();
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    if (mainContent) mainContent.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('name')?.focus();
-  });
-}
-if (closeModalBtn) {
-  closeModalBtn.addEventListener('click', closeModal);
-}
-if (modal) {
-  modal.addEventListener('click', e => {
-    if (e.target === modal) closeModal();
-  });
-}
-
-// Сохранение темы (data-theme="dark") в localStorage
-const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-  if (localStorage.getItem('theme') === 'dark') {
-    themeToggle.checked = true;
-    document.documentElement.setAttribute('data-theme', 'dark');
   }
-  themeToggle.addEventListener('change', () => {
-    if (themeToggle.checked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.removeItem('theme');
-    }
-  });
-}
 
-// Валидация формы регистрации
-const form = document.getElementById('regForm');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const phoneInput = document.getElementById('phone');
-const errorName = document.getElementById('error-name');
-const errorEmail = document.getElementById('error-email');
-const errorPhone = document.getElementById('error-phone');
-const thankYou = document.getElementById('thank-you');
-
-function resetError(input, errorElem) {
-  if (!input || !errorElem) return;
-  input.addEventListener('input', () => {
-    errorElem.classList.remove('active');
-  });
-}
-resetError(nameInput, errorName);
-resetError(emailInput, errorEmail);
-resetError(phoneInput, errorPhone);
-
-if (form) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    let valid = true;
-    if (!nameInput.value.trim()) {
-      errorName.classList.add('active');
-      valid = false;
-    }
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(emailInput.value.trim())) {
-      errorEmail.classList.add('active');
-      valid = false;
-    }
-    const phonePattern = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/;
-    if (!phonePattern.test(phoneInput.value.trim())) {
-      errorPhone.classList.add('active');
-      valid = false;
-    }
-    if (!valid) return;
-    if (thankYou) thankYou.style.display = 'block';
-    form.reset();
-    setTimeout(() => {
-      if (thankYou) thankYou.style.display = 'none';
-      closeModal();
-    }, 3000);
-  });
-}
-
-// Фильтр FAQ
-const faqFilter = document.getElementById('faq-filter');
-faqFilter?.addEventListener('input', () => {
-  const query = faqFilter.value.trim().toLowerCase();
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const text = item.textContent.toLowerCase();
-    item.style.display = text.includes(query) ? '' : 'none';
-  });
-});
-document.querySelectorAll('.faq-item').forEach(detail => {
-  detail.addEventListener('toggle', () => {
-    if (detail.open) {
-      document.querySelectorAll('.faq-item').forEach(other => {
-        if (other !== detail) other.open = false;
-      });
-    }
-  });
-});
-
-// Обновление таймера обратного отсчёта
-function updateCountdown() {
-  const eventDate = new Date('2025-07-15T11:00:00');
-  const now = new Date();
-  const diff = eventDate - now;
-  const countdownTimer = document.getElementById('countdown-timer');
-  if (!countdownTimer) return;
-  if (diff <= 0) {
-    countdownTimer.textContent = 'Событие началось!';
-    openModalBtn.disabled = true;
-    openModalBtn.textContent = 'Регистрация закрыта';
-    clearInterval(countdownInterval);
-    return;
+  // Раскрытие текста публичной оферты
+  const offerLink = document.getElementById('offer-link');
+  const offerText = document.getElementById('offer-text');
+  if (offerLink && offerText) {
+    offerLink.addEventListener('click', e => {
+      e.preventDefault();
+      offerText.style.display = (offerText.style.display === 'none' ? 'block' : 'none');
+    });
   }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  countdownTimer.textContent = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
-}
-const countdownInterval = setInterval(updateCountdown, 1000);
-updateCountdown();
+});
