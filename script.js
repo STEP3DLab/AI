@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const MAX_ONLINE = 20;
 
   // Вставьте сюда URL вашего развернутого Google Apps Script (Web App)
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPDns031cBB_RQRiW1vPbcyi6U_99j66BWL-Vtl_WCMY0TcilKo_3tCh9_J1wWblMA/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzsT4H2FURE-561MI1SR5j-NkqT4LEXzF6jgPzjN0eHvpXVTg_p0gu7gOxsqs6jFbMm/exec";
 
   const offlineCountEl = document.getElementById("offline-count");
   const onlineCountEl = document.getElementById("online-count");
