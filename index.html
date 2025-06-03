@@ -5,29 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мастер-класс «Промтинжиниринг»</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Подключаем Lottie Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
   <div class="container">
     <main class="card fade-in-up">
       <header class="card-header">
-        <h1 class="card-title">
-          <span class="icon">🧠</span>Мастер-класс «Промтинжиниринг»
-        </h1>
+        <!-- Анимация «мозг» вместо эмоджи -->
+        <div class="icon-wrapper">
+          <lottie-player
+            src="https://assets5.lottiefiles.com/packages/lf20_jcikwtux.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
+            style="width: 40px; height: 40px;"
+          ></lottie-player>
+        </div>
+        <h1 class="card-title">Мастер-класс «Промтинжиниринг»</h1>
         <p class="speaker"><strong>Спикер:</strong> В. К. Ганьшин</p>
       </header>
 
       <section class="details">
         <ul class="info-list">
-          <li><span class="info-icon">📅</span><strong>Когда:</strong> 11 июня 2025 г., 19:00–20:30</li>
-          <li><span class="info-icon">📍</span><strong>Где:</strong> Ул. Беговая 12, РГСУ + онлайн (Google Meet)</li>
-          <li><span class="info-icon">💰</span><strong>Стоимость:</strong> 5 000 ₽</li>
           <li>
-            <span class="info-icon">🏢</span><strong>Мест офлайн:</strong>
-            <span id="offline-count" class="count">—</span> из 16
+            <div class="icon-wrapper">
+              <!-- Анимация «календарь» -->
+              <lottie-player
+                src="https://assets2.lottiefiles.com/packages/lf20_5tkype2h.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 30px; height: 30px;"
+              ></lottie-player>
+            </div>
+            <div class="info-text"><strong>Когда:</strong> 11 июня 2025 г., 19:00–20:30</div>
           </li>
           <li>
-            <span class="info-icon">🌐</span><strong>Онлайн:</strong>
-            <span id="online-count" class="count">—</span> из 20
+            <div class="icon-wrapper">
+              <!-- Анимация «местоположение» -->
+              <lottie-player
+                src="https://assets4.lottiefiles.com/packages/lf20_8Q1m4k.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 30px; height: 30px;"
+              ></lottie-player>
+            </div>
+            <div class="info-text">
+              <strong>Где:</strong> Ул. Беговая 12, РГСУ + онлайн (Google Meet)
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrapper">
+              <!-- Анимация «деньги» -->
+              <lottie-player
+                src="https://assets1.lottiefiles.com/packages/lf20_sUyGk5.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 30px; height: 30px;"
+              ></lottie-player>
+            </div>
+            <div class="info-text"><strong>Стоимость:</strong> 5 000 ₽</div>
+          </li>
+          <li>
+            <div class="icon-wrapper">
+              <!-- Анимация «офис» для оффлайн -->
+              <lottie-player
+                src="https://assets6.lottiefiles.com/packages/lf20_x62chJ.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 30px; height: 30px;"
+              ></lottie-player>
+            </div>
+            <div class="info-text">
+              <strong>Мест оффлайн:</strong>
+              <span id="offline-count" class="count">—</span> из 16
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrapper">
+              <!-- Анимация «глобус» для онлайн -->
+              <lottie-player
+                src="https://assets7.lottiefiles.com/packages/lf20_myejiggj.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 30px; height: 30px;"
+              ></lottie-player>
+            </div>
+            <div class="info-text">
+              <strong>Онлайн:</strong>
+              <span id="online-count" class="count">—</span> из 20
+            </div>
           </li>
         </ul>
         <p class="description">
@@ -40,11 +118,76 @@
       <section class="benefits">
         <h2 class="section-title">После мастер-класса:</h2>
         <ul class="benefits-list">
-          <li><span class="benefit-icon">📘</span>PDF-гайд по нейросетям</li>
-          <li><span class="benefit-icon">💬</span>Доступ в закрытую Telegram-группу</li>
-          <li><span class="benefit-icon">🛡️</span>Годовой VPN для всех устройств</li>
-          <li><span class="benefit-icon">📄</span>Сертификат всем участникам</li>
-          <li><span class="benefit-icon">🎓</span>При 24+ часах — свидетельство повышения квалификации РГСУ</li>
+          <li>
+            <div class="icon-wrapper-inline">
+              <!-- Анимация «книга» -->
+              <lottie-player
+                src="https://assets3.lottiefiles.com/packages/lf20_su7utbom.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 24px; height: 24px;"
+              ></lottie-player>
+            </div>
+            PDF-гайд по нейросетям
+          </li>
+          <li>
+            <div class="icon-wrapper-inline">
+              <!-- Анимация «чат» -->
+              <lottie-player
+                src="https://assets4.lottiefiles.com/packages/lf20_yjmtfazb.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 24px; height: 24px;"
+              ></lottie-player>
+            </div>
+            Доступ в закрытую Telegram-группу
+          </li>
+          <li>
+            <div class="icon-wrapper-inline">
+              <!-- Анимация «щит» -->
+              <lottie-player
+                src="https://assets2.lottiefiles.com/packages/lf20_5ngs2ksb.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 24px; height: 24px;"
+              ></lottie-player>
+            </div>
+            Годовой VPN для всех устройств
+          </li>
+          <li>
+            <div class="icon-wrapper-inline">
+              <!-- Анимация «сертификат» -->
+              <lottie-player
+                src="https://assets5.lottiefiles.com/packages/lf20_q5pkjgrz.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 24px; height: 24px;"
+              ></lottie-player>
+            </div>
+            Сертификат всем участникам
+          </li>
+          <li>
+            <div class="icon-wrapper-inline">
+              <!-- Анимация «диплом» -->
+              <lottie-player
+                src="https://assets6.lottiefiles.com/packages/lf20_fvy4f2bn.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style="width: 24px; height: 24px;"
+              ></lottie-player>
+            </div>
+            При 24+ часах — свидетельство повышения квалификации РГСУ
+          </li>
         </ul>
       </section>
 
