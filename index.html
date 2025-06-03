@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мастер-класс «Промтинжиниринг»</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Подключаем Lottie Player -->
+  <!-- Подключаем Lottie Player (CDN) -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
   <div class="container">
     <main class="card fade-in-up">
       <header class="card-header">
-        <!-- Анимация «мозг» вместо эмоджи -->
+        <!-- Локальный JSON: brain.json -->
         <div class="icon-wrapper">
           <lottie-player
-            src="https://assets5.lottiefiles.com/packages/lf20_jcikwtux.json"
+            src="assets/brain.json"
             background="transparent"
             speed="1"
             loop
@@ -31,9 +31,9 @@
         <ul class="info-list">
           <li>
             <div class="icon-wrapper">
-              <!-- Анимация «календарь» -->
+              <!-- Локальный JSON: calendar.json -->
               <lottie-player
-                src="https://assets2.lottiefiles.com/packages/lf20_5tkype2h.json"
+                src="assets/calendar.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -45,9 +45,9 @@
           </li>
           <li>
             <div class="icon-wrapper">
-              <!-- Анимация «местоположение» -->
+              <!-- Локальный JSON: location.json -->
               <lottie-player
-                src="https://assets4.lottiefiles.com/packages/lf20_8Q1m4k.json"
+                src="assets/location.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -61,9 +61,9 @@
           </li>
           <li>
             <div class="icon-wrapper">
-              <!-- Анимация «деньги» -->
+              <!-- Локальный JSON: money.json -->
               <lottie-player
-                src="https://assets1.lottiefiles.com/packages/lf20_sUyGk5.json"
+                src="assets/money.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -75,9 +75,9 @@
           </li>
           <li>
             <div class="icon-wrapper">
-              <!-- Анимация «офис» для оффлайн -->
+              <!-- Локальный JSON: office.json -->
               <lottie-player
-                src="https://assets6.lottiefiles.com/packages/lf20_x62chJ.json"
+                src="assets/office.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -92,9 +92,9 @@
           </li>
           <li>
             <div class="icon-wrapper">
-              <!-- Анимация «глобус» для онлайн -->
+              <!-- Локальный JSON: globe.json -->
               <lottie-player
-                src="https://assets7.lottiefiles.com/packages/lf20_myejiggj.json"
+                src="assets/globe.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -120,9 +120,9 @@
         <ul class="benefits-list">
           <li>
             <div class="icon-wrapper-inline">
-              <!-- Анимация «книга» -->
+              <!-- Локальный JSON: book.json -->
               <lottie-player
-                src="https://assets3.lottiefiles.com/packages/lf20_su7utbom.json"
+                src="assets/book.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -134,9 +134,9 @@
           </li>
           <li>
             <div class="icon-wrapper-inline">
-              <!-- Анимация «чат» -->
+              <!-- Локальный JSON: chat.json -->
               <lottie-player
-                src="https://assets4.lottiefiles.com/packages/lf20_yjmtfazb.json"
+                src="assets/chat.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -148,9 +148,9 @@
           </li>
           <li>
             <div class="icon-wrapper-inline">
-              <!-- Анимация «щит» -->
+              <!-- Локальный JSON: shield.json -->
               <lottie-player
-                src="https://assets2.lottiefiles.com/packages/lf20_5ngs2ksb.json"
+                src="assets/shield.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -162,9 +162,9 @@
           </li>
           <li>
             <div class="icon-wrapper-inline">
-              <!-- Анимация «сертификат» -->
+              <!-- Локальный JSON: certificate.json -->
               <lottie-player
-                src="https://assets5.lottiefiles.com/packages/lf20_q5pkjgrz.json"
+                src="assets/certificate.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -176,9 +176,9 @@
           </li>
           <li>
             <div class="icon-wrapper-inline">
-              <!-- Анимация «диплом» -->
+              <!-- Локальный JSON: diploma.json -->
               <lottie-player
-                src="https://assets6.lottiefiles.com/packages/lf20_fvy4f2bn.json"
+                src="assets/diploma.json"
                 background="transparent"
                 speed="1"
                 loop
@@ -231,7 +231,9 @@
       </section>
 
       <footer class="card-footer">
-        <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">💳 Оплатить участие</a>
+        <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">
+          💳 Оплатить участие
+        </a>
         <a
           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Промтинжиниринг&dates=20250611T160000Z/20250611T173000Z&location=РГСУ|Google+Meet"
           target="_blank"
@@ -244,7 +246,8 @@
           <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a>
           или
           <a href="tel:+70200000000">+7 020 000 00 00</a>
-          (<a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a>) — Никита, AI-ассистент
+          (<a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a>) —
+          Никита, AI-ассистент
         </p>
       </footer>
     </main>
