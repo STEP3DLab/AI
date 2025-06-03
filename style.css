@@ -62,26 +62,29 @@ a:hover {
 .card-header {
   margin-bottom: 1rem;
   text-align: center;
+  position: relative;
 }
 
 .card-title {
   font-size: 1.4rem;
   margin-bottom: 0.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   font-weight: 600;
   color: #1a1a1a;
 }
 
-.icon {
-  font-size: 1.6rem;
-  margin-right: 0.5rem;
+/* Обертка для Lottie-иконок в заголовке */
+.icon-wrapper {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* Описание спикера */
 .speaker {
   font-size: 0.95rem;
   color: #555;
+  margin-top: 2rem; /* чтобы не «налезало» на анимацию */
 }
 
 /* Секция с деталями */
@@ -91,23 +94,33 @@ a:hover {
 
 .info-list {
   list-style: none;
+  padding-left: 0;
 }
 
 .info-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: 0.5rem 0;
+}
+
+.info-text {
   font-size: 0.95rem;
   color: #444;
+  margin-left: 0.75rem;
+  line-height: 1.4;
 }
 
-.info-icon {
-  font-size: 1.2rem;
+/* Обертка для Lottie-иконок в списке деталей */
+.icon-wrapper, .icon-wrapper-inline {
+  flex-shrink: 0;
+}
+
+/* Если иконка размещается «инлайн» (для списка преимуществ) */
+.icon-wrapper-inline {
   margin-right: 0.5rem;
-  width: 1.4rem;
-  text-align: center;
 }
 
+/* Счетчики */
 .count {
   font-weight: 600;
   color: #007bff;
@@ -140,6 +153,7 @@ a:hover {
 
 .benefits-list {
   list-style: none;
+  padding-left: 0;
 }
 
 .benefits-list li {
@@ -148,13 +162,6 @@ a:hover {
   margin: 0.5rem 0;
   font-size: 0.95rem;
   color: #444;
-}
-
-.benefit-icon {
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  width: 1.4rem;
-  text-align: center;
 }
 
 /* Форма регистрации */
@@ -213,6 +220,9 @@ a:hover {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s ease;
 }
 
@@ -260,4 +270,75 @@ a:hover {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: #555;
+}
+
+/* ------------- THANKYOU PAGE STYLES ------------- */
+
+.thankyou-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  max-width: 400px;
+  margin: 2rem auto;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.thankyou-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.thankyou-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.thankyou-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.thankyou-subtext {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #007bff;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #0056b3;
+}
+
+/* ------------- SPINNER STYLES ------------- */
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.15);
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
