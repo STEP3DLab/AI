@@ -9,45 +9,46 @@
 <body>
   <div class="container">
     <main class="card fade-in-up">
+      
+      <!-- Заголовок -->
       <header class="card-header">
         <h1 class="card-title">МАСТЕР-КЛАСС «ПРОМТИНЖИНИРИНГ»</h1>
         <p class="speaker">СПИКЕР: В. К. ГАНЬШИН</p>
       </header>
 
+      <!-- Блок деталей -->
       <section class="details">
         <ul class="info-list">
           <li>
             <span class="label">Когда</span>
-            <span class="subtext">11 июня 2025 г. ∙ 19:00 – 20:30</span>
+            <span class="subtext">&nbsp;11 июня 2025 г. ∙ 19:00 – 20:30</span>
           </li>
           <li>
             <span class="label">Где</span>
-            <span class="subtext">Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</span>
+            <span class="subtext">&nbsp;Москва, ул. Беговая 12, РГСУ ∙ Онлайн (Google Meet)</span>
           </li>
           <li>
             <span class="label">Стоимость</span>
-            <span class="subtext">5 000 ₽</span>
+            <span class="subtext">&nbsp;5 000 ₽</span>
           </li>
           <li>
             <span class="label">Свободные места</span>
-            <span class="subtext">
-              Очно <span id="offline-count">—</span> / 16 ∙ Онлайн <span id="online-count">—</span> / 20
-            </span>
+            <span class="subtext">&nbsp;Очно <span id="offline-count">—</span> / 16 ∙ Онлайн <span id="online-count">—</span> / 20</span>
           </li>
         </ul>
         <hr class="divider" />
         <p class="description">
-          Вы научитесь правильно формулировать запросы и протестируете:
-          <br />
+          Вы научитесь правильно формулировать запросы и протестируете:<br />
           GPT-4o ∙ Gemini ∙ Claude ∙ Qwen ∙ Grok ∙ DeepSeek ∙ GigaChat
         </p>
         <p class="format">Формат ∙ очно / онлайн ∙ 16+</p>
       </section>
 
+      <!-- Блок преимуществ -->
       <section class="benefits">
         <h2 class="section-title">После мастер-класса вы получите:</h2>
         <ul class="benefits-list">
-          <li>PDF-гaйд по нейросетям</li>
+          <li>PDF-гайд по нейросетям</li>
           <li>Доступ в закрытую Telegram-группу</li>
           <li>Годовой VPN для всех устройств</li>
           <li>Сертификат участника</li>
@@ -55,8 +56,9 @@
         </ul>
       </section>
 
-      <hr class="divider" />
+      <hr class="divider divider--light" />
 
+      <!-- Форма регистрации -->
       <section class="registration">
         <form id="reg-form" class="reg-form">
           <div class="form-group">
@@ -90,7 +92,9 @@
             </label>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn-submit">Записаться</button>
+            <button type="submit" class="btn-submit">
+              Записаться
+            </button>
           </div>
           <div id="status-message" class="status-message"></div>
         </form>
@@ -98,11 +102,12 @@
 
       <hr class="divider divider--light" />
 
+      <!-- Футер -->
       <footer class="card-footer">
         <div class="actions">
           <a href="https://pay.example.com/step3d" target="_blank" class="btn-pay">
             Оплатить участие
-            <span class="btn-icon">→</span>
+            <span class="btn-icon">&rarr;</span>
           </a>
           <a
             href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Промтинжиниринг&amp;dates=20250611T160000Z/20250611T173000Z&amp;location=РГСУ|Google+Meet"
@@ -110,16 +115,26 @@
             class="btn-calendar"
           >
             Добавить в Google Календарь
-            <span class="btn-icon">→</span>
+            <span class="btn-icon">&rarr;</span>
           </a>
         </div>
-        <p class="contact-info">
-          Есть вопросы?
-          <a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a> ∙ 
-          <a href="tel:+70200000000">+7 020 000 00 00</a> ∙ 
-          <a href="https://t.me/step_3d_mngr" target="_blank">@step_3d_mngr</a> (Telegram)
-        </p>
+
+        <div class="contact-block">
+          <p class="contact-text">
+            <svg class="contact-icon mail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M2,6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6M4,6V8L12,13L20,8V6H4Z" />
+            </svg>
+            <a href="mailto:projects.step3d@gmail.com" class="contact-link">projects.step3d@gmail.com</a>
+          </p>
+          <p class="contact-text">
+            <svg class="contact-icon telegram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M21,3L3,10L8.5,11.5L9.5,17L13,12.5L21,3Z" />
+            </svg>
+            <a href="https://t.me/step_3d_mngr" target="_blank" class="contact-link">@step_3d_mngr</a>
+          </p>
+        </div>
       </footer>
+
     </main>
   </div>
 
