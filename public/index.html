@@ -46,7 +46,8 @@
     </script>
 </head>
 <body>
-    <div id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <div id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Прогресс прокрутки"></div>
+    <a href="#main" class="skip-link">Перейти к содержимому</a>
     <header class="hero container fade-in">
         <div class="hero-animation" aria-hidden="true"></div>
         <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
@@ -57,7 +58,7 @@
         <a href="#reg-form" class="primary-btn">Записаться</a>
         <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
     </header>
-    <main>
+    <main id="main">
 
     <section class="benefits container fade-in">
         <h2>Что получите за 1,5&nbsp;ч</h2>
@@ -104,14 +105,14 @@
     <section class="bonus container fade-in">
         <h2>Бонусы</h2>
         <ul>
-            <li><img src="chat.svg" alt="" loading="lazy" class="list-icon"> Доступ в закрытый Telegram-чат</li>
-            <li><img src="shield.svg" alt="" loading="lazy" class="list-icon"> Годовая VPN-подписка</li>
+            <li><img src="chat.svg" alt="Чат" loading="lazy" class="list-icon"> Доступ в закрытый Telegram-чат</li>
+            <li><img src="shield.svg" alt="Безопасность" loading="lazy" class="list-icon"> Годовая VPN-подписка</li>
         </ul>
     </section>
 
     </main>
     <footer class="container">
-                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>
+                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="telegram.svg" alt="Telegram" class="telegram-logo">Написать менеджеру Никите</a>
         <p class="hashtags">#МЕЧТАЙ #УЧИСЬ #ТВОРИ #ВДОХНОВЛЯЙ</p>
         <p>© 2025 ФГБОУ ВО РГСУ</p>
         <p class="legal">Нажимая кнопку «Записаться», вы соглашаетесь на <a href="privacy.html">обработку персональных данных</a> и принимаете <a href="offer.html">условия публичной оферты</a> от © STEP_3D | Lab.</p>
