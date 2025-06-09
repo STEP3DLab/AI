@@ -41,16 +41,20 @@
     </script>
 </head>
 <body>
-    <header class="hero container">
+    <a href="#reg-form" class="skip-link">Перейти к регистрации</a>
+    <header class="hero container" role="banner">
         <div class="hero-animation" aria-label="Robot animation"></div>
         <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
         <time id="event-date" class="hero-date" datetime="2025-06-11T19:00:00+03:00"></time>
         <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
-        <a href="event.ics" download class="calendar-btn"><img src="calendar.svg" alt="" class="calendar-icon" loading="lazy">Добавить событие в календарь</a>
-        <a href="#reg-form" class="primary-btn">Записаться</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
+        <a href="event.ics" download class="calendar-btn" rel="noopener"><img src="calendar.svg" alt="" class="calendar-icon" loading="lazy">Добавить событие в календарь</a>
+        <nav>
+            <a href="#reg-form" class="primary-btn">Записаться</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему" aria-pressed="false">🌙</button>
     </header>
 
+    <main id="content">
     <section class="benefits container">
         <h2>Что получите за 1,5&nbsp;ч</h2>
         <ul>
@@ -75,7 +79,7 @@
             <label for="email">E-mail</label>
             <input id="email" type="email" name="email" required aria-required="true" placeholder="you@example.com" autocomplete="email">
             <label for="phone">Телефон</label>
-            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90" autocomplete="tel">
+            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" minlength="10" inputmode="tel" placeholder="+7 123 456-78-90" autocomplete="tel">
             <fieldset>
                 <legend>Формат участия</legend>
                 <label for="mode-offline">
@@ -100,6 +104,19 @@
             <li><img src="shield.svg" alt="" loading="lazy" class="list-icon"> Годовая VPN-подписка</li>
         </ul>
     </section>
+
+    <section class="faq container">
+        <h2>Часто задаваемые вопросы</h2>
+        <details>
+            <summary>Нужен ли опыт работы с ИИ?</summary>
+            <p>Нет, мастер‑класс рассчитан на широкий круг слушателей.</p>
+        </details>
+        <details>
+            <summary>Будет ли доступна запись?</summary>
+            <p>Все зарегистрированные получат ссылку на видеозапись.</p>
+        </details>
+    </section>
+    </main>
 
     <footer class="container">
                 <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener"><img loading="lazy" src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>

@@ -70,7 +70,22 @@ form.addEventListener('submit', async (e) => {
 
 formatDate();
 updateSeats();
-themeToggle.addEventListener("click", () => document.body.classList.toggle("dark"));
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+    document.body.classList.toggle("dark", savedTheme === "dark");
+} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+}
+themeToggle.setAttribute("aria-pressed", document.body.classList.contains("dark"));
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    themeToggle.setAttribute("aria-pressed", isDark);
+});
+
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 100);
 });

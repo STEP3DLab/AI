@@ -8,6 +8,20 @@
 }
 
 html { scroll-behavior: smooth; }
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 1rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.skip-link:focus {
+    top: 0;
+}
 
 .container {
     max-width: 640px;
@@ -31,6 +45,9 @@ body.dark {
 header.hero {
     text-align: center;
     padding: 2rem 1rem;
+}
+header.hero nav {
+    display: inline-block;
 }
 
 .hero-animation {
@@ -79,6 +96,8 @@ header.hero {
 }
 .benefits li { position: relative; padding-left: 28px; }
 .bonus li { position: relative; padding-left: 28px; }
+.faq details { margin-bottom: 0.5rem; }
+.faq summary { cursor: pointer; font-weight: 700; }
 .list-icon { width: 20px; height: 20px; position: absolute; left: 0; top: 0; animation: pulse 2s infinite; }
 
 form label,
@@ -180,9 +199,18 @@ footer {
 }
 
 
-a:focus, button:focus, input:focus {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+    transition: outline 0.2s;
+}
+.primary-btn:hover,
+.calendar-btn:hover,
+.contact-btn:hover,
+.back-to-top:hover {
+    filter: brightness(1.1);
 }
 .theme-toggle {
     background: none;
