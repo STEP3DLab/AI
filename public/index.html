@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222222">
     <title>Промтинжиниринг — мастер‑класс StepAI 2025</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="prefetch" href="event.ics">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" onload="this.rel='stylesheet'">
@@ -43,10 +46,12 @@
     </script>
 </head>
 <body>
+    <div id="progress" aria-hidden="true"></div>
     <header class="hero container">
         <div class="hero-animation" aria-hidden="true"></div>
         <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
         <time id="event-date" class="hero-date" datetime="2025-06-11T19:00:00+03:00"></time>
+        <p id="countdown" class="countdown" aria-live="polite"></p>
         <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
         <a href="event.ics" download class="calendar-btn"><img src="calendar.svg" alt="" class="calendar-icon" loading="lazy">Добавить событие в календарь</a>
         <a href="#reg-form" class="primary-btn">Записаться</a>
@@ -54,7 +59,7 @@
     </header>
     <main>
 
-    <section class="benefits container">
+    <section class="benefits container fade-in">
         <h2>Что получите за 1,5&nbsp;ч</h2>
         <ul>
             <li><img src="star.svg" alt="" aria-hidden="true" loading="lazy" class="list-icon"> Навыки точного формулирования запросов к ИИ</li>
@@ -64,21 +69,21 @@
         </ul>
     </section>
 
-    <section class="speaker container">
+    <section class="speaker container fade-in">
         <h2>Спикер</h2>
         <p><strong>Владимир Ганьшин</strong> — руководитель технопарка РГСУ и член ученого совета университета по стратегическому планированию. Автор курсов «Промышленный дизайн и инжиниринг», «Инженерный дизайн (САПР)», соавтор курса «Реверсивный инжиниринг и технологии аддитивного производства».</p>
         <p>Окончил МГТУ «Станкин» по направлениям машиностроения, имеет более 9&nbsp;лет педагогического стажа. Тренер сборной России по реверсивному инжинирингу (WorldSkills 2019–2021), призер и победитель российских и международных чемпионатов.</p>
     </section>
 
-    <section class="form-section container">
+    <section class="form-section container fade-in">
         <h2>Регистрация</h2>
         <form id="reg-form">
             <label for="name">Имя</label>
-            <input id="name" type="text" name="name" required aria-required="true" placeholder="Ваше имя" autocomplete="name">
+            <input id="name" type="text" name="name" required aria-required="true" placeholder="Ваше имя" autocomplete="name" autofocus maxlength="30">
             <label for="email">E-mail</label>
-            <input id="email" type="email" name="email" required aria-required="true" placeholder="you@example.com" autocomplete="email">
+            <input id="email" type="email" name="email" required aria-required="true" placeholder="you@example.com" autocomplete="email" maxlength="50">
             <label for="phone">Телефон</label>
-            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90" autocomplete="tel">
+            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90" autocomplete="tel" inputmode="tel" maxlength="20">
             <fieldset>
                 <legend>Формат участия</legend>
                 <label for="mode-offline">
@@ -96,7 +101,7 @@
         </form>
     </section>
 
-    <section class="bonus container">
+    <section class="bonus container fade-in">
         <h2>Бонусы</h2>
         <ul>
             <li><img src="chat.svg" alt="" loading="lazy" class="list-icon"> Доступ в закрытый Telegram-чат</li>

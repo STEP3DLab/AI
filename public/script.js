@@ -9,6 +9,8 @@ const spinner = document.getElementById('spinner');
 const messageEl = document.getElementById('message');
 const themeToggle = document.getElementById("theme-toggle");
 const backToTop = document.querySelector(".back-to-top");
+const progressBar = document.getElementById('progress');
+const countdownEl = document.getElementById('countdown');
 
 function applyTheme(isDark) {
     document.body.classList.toggle('dark', isDark);
@@ -19,6 +21,7 @@ function applyTheme(isDark) {
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 applyTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+progressBar.style.width = '0%';
 function formatDate() {
     const date = new Date('2025-06-11T19:00:00+03:00');
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -45,7 +48,9 @@ function showMessage(text, isError = false) {
     messageEl.textContent = text;
     messageEl.className = isError ? 'error' : 'success';
     messageEl.hidden = false;
+    messageEl.classList.add('visible');
     setTimeout(() => {
+        messageEl.classList.remove('visible');
         messageEl.hidden = true;
     }, 4000);
 }
@@ -66,6 +71,7 @@ form.addEventListener('submit', async (e) => {
         if (res.status === 'ok') {
             showMessage('Успешно! Инструкция отправлена на почту');
             form.reset();
+            ['name','email','phone','mode'].forEach(k => localStorage.removeItem(k));
             updateSeats();
         } else {
             showMessage('Ошибка: ' + res.message, true);
@@ -87,9 +93,57 @@ themeToggle.addEventListener('click', () => {
 });
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 100);
+    const progress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+    progressBar.style.width = `${progress * 100}%`;
 });
 backToTop.addEventListener("click", e => {
     e.preventDefault();
     window.scrollTo({top:0, behavior:"smooth"});
+});
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+restoreForm();
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+function updateCountdown() {
+    const eventDate = new Date('2025-06-11T19:00:00+03:00');
+    const diff = eventDate - new Date();
+    if (diff <= 0) { countdownEl.textContent = 'Событие началось'; return; }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor(diff / (1000*60*60) % 24);
+    const m = Math.floor(diff / (1000*60) % 60);
+    const s = Math.floor(diff / 1000 % 60);
+    countdownEl.textContent = `${d}д ${h}ч ${m}м ${s}с`;
+}
+
+function restoreForm() {
+    ['name','email','phone','mode'].forEach(id => {
+        const val = localStorage.getItem(id);
+        if (val) {
+            const el = form.querySelector(`[name="${id}"]`);
+            if (el.type === 'radio') {
+                form.querySelector(`[value="${val}"]`).checked = true;
+            } else {
+                el.value = val;
+            }
+        }
+    });
+}
+
+form.addEventListener('input', e => {
+    if (e.target.name) {
+        localStorage.setItem(e.target.name, e.target.value);
+    }
 });
 
