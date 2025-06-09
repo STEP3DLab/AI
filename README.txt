@@ -19,3 +19,19 @@
 5. Подставьте этот URL в `public/script.js` вместо `<YOUR_WEB_APP_URL>`.
 
 После деплоя форма будет отправлять данные в Google Sheets, а пользователю придёт подтверждение на почту.
+
+## Telegram Bot
+
+Файл `telegram_bot.py` содержит простой бот для регистрации на мастер-класс. Перед запуском установите зависимости:
+
+```bash
+pip install -r requirements.txt
+```
+
+Затем запустите бота командой:
+
+```bash
+python telegram_bot.py
+```
+
+Бот будет запрашивать имя, email, телефон и формат участия (offline/online), а затем отправлять данные в Google Apps Script.
