@@ -34,13 +34,41 @@ header.hero {
 }
 
 .hero-animation {
-    border-radius: 50%;
-    background: conic-gradient(var(--accent), #fff, var(--accent));
-    animation: spin 4s linear infinite;
     width: 120px;
     height: 120px;
-        
+    margin: 0 auto 1rem;
+    perspective: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.hero-animation .cube {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transform-style: preserve-3d;
+    animation: rotateCube 6s linear infinite;
+}
+
+.hero-animation .face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--accent);
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.hero-animation .face.front  { transform: translateZ(40px); }
+.hero-animation .face.back   { transform: rotateY(180deg) translateZ(40px); }
+.hero-animation .face.right  { transform: rotateY(90deg) translateZ(40px); }
+.hero-animation .face.left   { transform: rotateY(-90deg) translateZ(40px); }
+.hero-animation .face.top    { transform: rotateX(90deg) translateZ(40px); }
+.hero-animation .face.bottom { transform: rotateX(-90deg) translateZ(40px); }
 
 
 .hero-title {
@@ -183,7 +211,7 @@ a:focus, button:focus, input:focus {
     display: block;
 }
 @media (prefers-reduced-motion: reduce) {
-    .hero-animation, .spinner {
+    .hero-animation .cube, .spinner {
         animation: none;
     }
 }
@@ -200,4 +228,9 @@ a:focus, button:focus, input:focus {
 @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+@keyframes rotateCube {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
 }
