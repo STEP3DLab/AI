@@ -10,69 +10,69 @@ const messageEl = document.getElementById('message');
 const themeToggle = document.getElementById('theme-toggle');
 
 function formatDate() {
-  const date = new Date('2025-06-11T19:00:00+03:00');
-  const options = { weekday: 'long', day: 'numeric', month: 'long' };
-  const timeOptions = { hour: '2-digit', minute: '2-digit' };
-  document.getElementById('event-date').textContent =
-    `${new Intl.DateTimeFormat('ru-RU', options).format(date)} ` +
-    `${new Intl.DateTimeFormat('ru-RU', timeOptions).format(date)}–20:30 МСК`;
+    const date = new Date('2025-06-11T19:00:00+03:00');
+    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit' };
+    document.getElementById('event-date').textContent =
+        `${new Intl.DateTimeFormat('ru-RU', options).format(date)} ` +
+        `${new Intl.DateTimeFormat('ru-RU', timeOptions).format(date)}–20:30 МСК`;
 }
 
 async function updateSeats() {
-  try {
-    const resp = await fetch(`${WEB_APP_URL}?action=count`);
-    const data = await resp.json();
-    offlineLeftEl.textContent = data.offline;
-    onlineLeftEl.textContent = data.online;
-    if (data.offline <= 0) form.querySelector('input[value="offline"]').disabled = true;
-    if (data.online <= 0) form.querySelector('input[value="online"]').disabled = true;
-  } catch (e) {
-    console.error('Не удалось получить данные мест', e);
-  }
+    try {
+        const resp = await fetch(`${WEB_APP_URL}?action=count`);
+        const data = await resp.json();
+        offlineLeftEl.textContent = data.offline;
+        onlineLeftEl.textContent = data.online;
+        if (data.offline <= 0) form.querySelector('input[value="offline"]').disabled = true;
+        if (data.online <= 0) form.querySelector('input[value="online"]').disabled = true;
+    } catch (e) {
+        console.error('Не удалось получить данные мест', e);
+    }
 }
 
 function showMessage(text, isError = false) {
-  messageEl.textContent = text;
-  messageEl.className = isError ? 'error' : 'success';
-  messageEl.hidden = false;
-  setTimeout(() => {
-    messageEl.hidden = true;
-  }, 4000);
+    messageEl.textContent = text;
+    messageEl.className = isError ? 'error' : 'success';
+    messageEl.hidden = false;
+    setTimeout(() => {
+        messageEl.hidden = true;
+    }, 4000);
 }
 
 form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  submitBtn.disabled = true;
-  spinner.hidden = false;
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
-  try {
-    const resp = await fetch(WEB_APP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const res = await resp.json();
-    if (res.status === 'ok') {
-      showMessage('Успешно! Инструкция отправлена на почту');
-      form.reset();
-      updateSeats();
-    } else {
-      showMessage('Ошибка: ' + res.message, true);
+    e.preventDefault();
+    submitBtn.disabled = true;
+    spinner.hidden = false;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    try {
+        const resp = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const res = await resp.json();
+        if (res.status === 'ok') {
+            showMessage('Успешно! Инструкция отправлена на почту');
+            form.reset();
+            updateSeats();
+        } else {
+            showMessage('Ошибка: ' + res.message, true);
+        }
+    } catch (err) {
+        showMessage('Ошибка отправки', true);
+    } finally {
+        submitBtn.disabled = false;
+        spinner.hidden = true;
     }
-  } catch (err) {
-    showMessage('Ошибка отправки', true);
-  } finally {
-    submitBtn.disabled = false;
-    spinner.hidden = true;
-  }
 });
 
 formatDate();
 updateSeats();
 
 themeToggle.addEventListener('click', () => {
-  const isDark = document.documentElement.dataset.theme === 'dark';
-  document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
-  themeToggle.textContent = isDark ? 'Тёмная тема' : 'Светлая тема';
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+    themeToggle.textContent = isDark ? 'Тёмная тема' : 'Светлая тема';
 });
