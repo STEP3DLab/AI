@@ -9,6 +9,16 @@ const spinner = document.getElementById('spinner');
 const messageEl = document.getElementById('message');
 const themeToggle = document.getElementById("theme-toggle");
 const backToTop = document.querySelector(".back-to-top");
+
+function applyTheme(isDark) {
+    document.body.classList.toggle('dark', isDark);
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    themeToggle.setAttribute('aria-label', isDark ? 'Светлая тема' : 'Темная тема');
+}
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
 function formatDate() {
     const date = new Date('2025-06-11T19:00:00+03:00');
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -70,7 +80,11 @@ form.addEventListener('submit', async (e) => {
 
 formatDate();
 updateSeats();
-themeToggle.addEventListener("click", () => document.body.classList.toggle("dark"));
+themeToggle.addEventListener('click', () => {
+    const isDark = !document.body.classList.contains('dark');
+    applyTheme(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 100);
 });
