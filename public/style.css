@@ -1,176 +1,176 @@
 :root {
-  --accent: #0066FF;
-  --text-dark: #222;
-  font-family: Inter, -apple-system, sans-serif;
+    --accent: #0066FF;
+    --text-dark: #222;
+    font-family: Inter, -apple-system, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
 
 .container {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 1rem;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  color: var(--text-dark);
-  background: #fff;
-  line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    background: #fff;
+    line-height: 1.4;
 }
 
 header.hero {
-  text-align: center;
-  padding: 2rem 1rem;
+    text-align: center;
+    padding: 2rem 1rem;
 }
 
 .hero-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .hero-img:hover {
-  transform: rotate(5deg) scale(1.05);
+    transform: rotate(5deg) scale(1.05);
 }
 
 .hero-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
 }
 
 .hero-date,
 .hero-slogan {
-  margin: 0.25rem 0;
+    margin: 0.25rem 0;
 }
 
 .benefits,
 .form-section,
 .bonus {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .benefits ul,
 .bonus ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .benefits li,
 .bonus li {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 form label,
 form fieldset {
-  display: block;
-  margin-bottom: 0.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
 }
 
 form input[type="text"],
 form input[type="email"],
 form input[type="tel"] {
-  width: 100%;
-  padding: 0.5rem;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 fieldset {
-  border: none;
-  padding: 0;
+    border: none;
+    padding: 0;
 }
 
 button#submit-btn {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 button[disabled] {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid var(--accent);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  animation: spin 1s linear infinite;
-  margin: 0.5rem auto;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin: 0.5rem auto;
 }
 
 #message {
-  text-align: center;
-  margin-top: 0.5rem;
-  font-weight: 700;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 700;
 }
 
 #message.success { color: var(--accent); }
 #message.error { color: #cc0000; }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.875rem;
-  background: #f9f9f9;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.875rem;
+    background: #f9f9f9;
 }
 
 .contact-btn {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  color: var(--accent);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
 }
 
 .primary-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 4px;
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
 }
 
 #theme-toggle {
-  background: none;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
 }
 
 .hashtags {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 [data-theme="dark"] {
-  background: #222;
-  color: #eee;
+    background: #222;
+    color: #eee;
 }
 
 [data-theme="dark"] footer {
-  background: #333;
+    background: #333;
 }
 
 [data-theme="dark"] .primary-btn {
-  background: #4c8cff;
+    background: #4c8cff;
 }
 
 @media (min-width: 600px) {
-  .hero-title { font-size: 2rem; }
+    .hero-title { font-size: 2rem; }
 }
