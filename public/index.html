@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>Промтинжиниринг — мастер‑класс StepAI 2025</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
     <link rel="icon" href="favicon.ico">
     <meta name="description" content="Практика применения ИИ в профессиональной деятельности">
     <meta property="og:title" content="Мастер-класс «Промтинжиниринг»">
@@ -42,7 +44,7 @@
 </head>
 <body>
     <header class="hero container">
-        <div class="hero-animation" aria-label="Robot animation"></div>
+        <div class="hero-animation" aria-hidden="true"></div>
         <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
         <time id="event-date" class="hero-date" datetime="2025-06-11T19:00:00+03:00"></time>
         <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
@@ -50,6 +52,7 @@
         <a href="#reg-form" class="primary-btn">Записаться</a>
         <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
     </header>
+    <main>
 
     <section class="benefits container">
         <h2>Что получите за 1,5&nbsp;ч</h2>
@@ -101,8 +104,9 @@
         </ul>
     </section>
 
+    </main>
     <footer class="container">
-                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener"><img loading="lazy" src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>
+                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>
         <p class="hashtags">#МЕЧТАЙ #УЧИСЬ #ТВОРИ #ВДОХНОВЛЯЙ</p>
         <p>© 2025 ФГБОУ ВО РГСУ</p>
         <p class="legal">Нажимая кнопку «Записаться», вы соглашаетесь на <a href="privacy.html">обработку персональных данных</a> и принимаете <a href="offer.html">условия публичной оферты</a> от © STEP_3D | Lab.</p>

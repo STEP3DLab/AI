@@ -4,10 +4,18 @@
     --text-light: #eee;
     --bg-light: #fff;
     --bg-dark: #222;
+    --bg-footer-light: #f9f9f9;
+    --bg-footer-dark: #1b1b1b;
+    --link-light: #0066FF;
+    --link-dark: #66aaff;
+    --card-light: #fff;
+    --card-dark: #333;
+    --border-radius: 8px;
     font-family: "Inter", -apple-system, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
+img { max-width: 100%; height: auto; }
 
 .container {
     max-width: 640px;
@@ -21,6 +29,7 @@ body {
     color: var(--text-dark);
     background: var(--bg-light);
     line-height: 1.4;
+    font-size: 16px;
     transition: background 0.3s, color 0.3s;
 }
 body.dark {
@@ -31,6 +40,12 @@ body.dark {
 header.hero {
     text-align: center;
     padding: 2rem 1rem;
+    background: var(--card-light);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+body.dark header.hero {
+    background: var(--card-dark);
 }
 
 .hero-animation {
@@ -39,6 +54,9 @@ header.hero {
     animation: spin 4s linear infinite;
     width: 120px;
     height: 120px;
+body.dark .hero-animation {
+    background: conic-gradient(var(--accent), #000, var(--accent));
+}
         
 }
 
@@ -64,6 +82,15 @@ header.hero {
 .bonus,
 .speaker {
     padding: 1rem;
+    background: var(--card-light);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+body.dark .benefits,
+body.dark .form-section,
+body.dark .bonus,
+body.dark .speaker {
+    background: var(--card-dark);
 }
 
 .benefits ul,
@@ -142,13 +169,28 @@ footer {
     text-align: center;
     padding: 1rem;
     font-size: 0.875rem;
-    background: #f9f9f9;
+    background: var(--bg-footer-light);
+}
+body.dark footer {
+    background: var(--bg-footer-dark);
+}
+.contact-btn,
+a {
+    color: var(--link-light);
+    transition: color 0.3s;
+}
+body.dark .contact-btn,
+body.dark a {
+    color: var(--link-dark);
+}
+::selection {
+    background: var(--accent);
+    color: #fff;
 }
 
 .contact-btn {
     display: inline-block;
     margin-bottom: 0.5rem;
-    color: var(--accent);
 }
 .telegram-logo { width: 1em; vertical-align: middle; margin-right: 0.25rem; }
 
@@ -159,7 +201,11 @@ footer {
     color: #fff;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
+    transition: background 0.3s;
+}
+.primary-btn:hover {
+    background: #0050cc;
 }
 .calendar-btn {
     display: inline-block;
@@ -169,8 +215,19 @@ footer {
     color: var(--accent);
     padding: 0.5rem 1rem;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--accent);
+    transition: background 0.3s, color 0.3s;
+}
+body.dark .calendar-btn {
+    background: #333;
+    color: var(--link-dark);
+}
+.calendar-btn:hover {
+    background: #e6e6e6;
+}
+body.dark .calendar-btn:hover {
+    background: #444;
 }
 .calendar-icon {
     width: 1em;
@@ -180,7 +237,7 @@ footer {
 }
 
 
-a:focus, button:focus, input:focus {
+a:focus-visible, button:focus-visible, input:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
@@ -190,6 +247,7 @@ a:focus, button:focus, input:focus {
     cursor: pointer;
     font-size: 1.2rem;
     margin-left: 0.5rem;
+    transition: transform 0.3s;
 }
 .back-to-top {
     position: fixed;
@@ -198,12 +256,17 @@ a:focus, button:focus, input:focus {
     background: var(--accent);
     color: #fff;
     padding: 0.5rem;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     text-decoration: none;
     display: none;
+    transition: opacity 0.3s;
 }
 .back-to-top.visible {
     display: block;
+    opacity: 0.8;
+}
+.back-to-top:hover {
+    opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
     .hero-animation, .spinner {
