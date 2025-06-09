@@ -8,6 +8,7 @@ const form = document.getElementById('reg-form');
 const spinner = document.getElementById('spinner');
 const messageEl = document.getElementById('message');
 const themeToggle = document.getElementById("theme-toggle");
+const cbToggle = document.getElementById("cb-toggle");
 const backToTop = document.querySelector(".back-to-top");
 const progressBar = document.getElementById('progress');
 const countdownEl = document.getElementById('countdown');
@@ -18,9 +19,16 @@ function applyTheme(isDark) {
     themeToggle.setAttribute('aria-label', isDark ? 'Светлая тема' : 'Темная тема');
 }
 
+function applyColorblind(isCB) {
+    document.body.classList.toggle('colorblind', isCB);
+    cbToggle.setAttribute('aria-label', isCB ? 'Обычная схема' : 'Цветовая схема для дальтоников');
+}
+
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 applyTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+const savedCB = localStorage.getItem('cb');
+applyColorblind(savedCB === 'on');
 progressBar.style.width = '0%';
 function formatDate() {
     const date = new Date('2025-06-11T19:00:00+03:00');
@@ -62,6 +70,10 @@ messageEl.addEventListener('click', () => {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!form.checkValidity()) {
+        showMessage('Проверьте правильность заполнения формы', true);
+        return;
+    }
     submitBtn.disabled = true;
     spinner.hidden = false;
     const formData = new FormData(form);
@@ -97,6 +109,13 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     themeToggle.classList.add('active');
     setTimeout(() => themeToggle.classList.remove('active'), 600);
+});
+cbToggle.addEventListener('click', () => {
+    const isCB = !document.body.classList.contains('colorblind');
+    applyColorblind(isCB);
+    localStorage.setItem('cb', isCB ? 'on' : 'off');
+    cbToggle.classList.add('active');
+    setTimeout(() => cbToggle.classList.remove('active'), 600);
 });
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 100);
@@ -155,4 +174,32 @@ form.addEventListener('input', e => {
         localStorage.setItem(e.target.name, e.target.value);
     }
 });
+
+// Timeline interaction
+const timelineSteps = [
+    'Краткое знакомство с темой',
+    'Практические упражнения с ИИ',
+    'Ответы на вопросы участников'
+];
+const tlDesc = document.getElementById('tl-desc');
+document.querySelectorAll('.tl-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tl-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        tlDesc.textContent = timelineSteps[btn.dataset.step];
+    });
+});
+if (tlDesc) tlDesc.textContent = timelineSteps[0];
+
+// Simple quiz
+const quiz = document.getElementById('quiz');
+const quizResult = document.getElementById('quiz-result');
+if (quiz) {
+    quiz.addEventListener('click', e => {
+        if (e.target.tagName === 'BUTTON') {
+            const correct = e.target.dataset.answer === '1';
+            quizResult.textContent = correct ? 'Верно!' : 'Неверно. Попробуйте ещё.';
+        }
+    });
+}
 
