@@ -56,7 +56,8 @@ header.hero {
 
 .benefits,
 .form-section,
-.bonus {
+.bonus,
+.speaker {
     padding: 1rem;
 }
 
