@@ -1,7 +1,10 @@
 :root {
     --accent: #0066FF;
     --text-dark: #222;
-    font-family: Inter, -apple-system, sans-serif;
+    --text-light: #eee;
+    --bg-light: #fff;
+    --bg-dark: #222;
+    font-family: "Inter", -apple-system, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -16,8 +19,13 @@ body {
     margin: 0;
     padding: 0;
     color: var(--text-dark);
-    background: #fff;
+    background: var(--bg-light);
     line-height: 1.4;
+    transition: background 0.3s, color 0.3s;
+}
+body.dark {
+    color: var(--text-light);
+    background: var(--bg-dark);
 }
 
 header.hero {
@@ -148,6 +156,36 @@ footer {
 }
 
 
+a:focus, button:focus, input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: none;
+}
+.back-to-top.visible {
+    display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-animation, .spinner {
+        animation: none;
+    }
+}
 .hashtags {
     font-weight: 700;
 }
