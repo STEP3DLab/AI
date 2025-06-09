@@ -35,8 +35,8 @@ async function updateSeats() {
     try {
         const resp = await fetch(`${WEB_APP_URL}?action=count`);
         const data = await resp.json();
-        offlineLeftEl.textContent = data.offline;
-        onlineLeftEl.textContent = data.online;
+        offlineLeftEl.textContent = (data.offline>0?data.offline:"нет");
+        onlineLeftEl.textContent = (data.online>0?data.online:"нет");
         if (data.offline <= 0) form.querySelector('input[value="offline"]').disabled = true;
         if (data.online <= 0) form.querySelector('input[value="online"]').disabled = true;
     } catch (e) {
