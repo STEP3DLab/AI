@@ -55,6 +55,11 @@ function showMessage(text, isError = false) {
     }, 4000);
 }
 
+messageEl.addEventListener('click', () => {
+    messageEl.classList.remove('visible');
+    messageEl.hidden = true;
+});
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     submitBtn.disabled = true;
@@ -90,11 +95,15 @@ themeToggle.addEventListener('click', () => {
     const isDark = !document.body.classList.contains('dark');
     applyTheme(isDark);
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeToggle.classList.add('active');
+    setTimeout(() => themeToggle.classList.remove('active'), 600);
 });
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 100);
     const progress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-    progressBar.style.width = `${progress * 100}%`;
+    const percent = Math.round(progress * 100);
+    progressBar.style.width = `${percent}%`;
+    progressBar.setAttribute('aria-valuenow', percent);
 });
 backToTop.addEventListener("click", e => {
     e.preventDefault();
