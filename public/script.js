@@ -6,6 +6,8 @@ const onlineLeftEl = document.getElementById('online-left');
 const submitBtn = document.getElementById('submit-btn');
 const form = document.getElementById('reg-form');
 const spinner = document.getElementById('spinner');
+const messageEl = document.getElementById('message');
+const themeToggle = document.getElementById('theme-toggle');
 
 function formatDate() {
   const date = new Date('2025-06-11T19:00:00+03:00');
@@ -29,6 +31,15 @@ async function updateSeats() {
   }
 }
 
+function showMessage(text, isError = false) {
+  messageEl.textContent = text;
+  messageEl.className = isError ? 'error' : 'success';
+  messageEl.hidden = false;
+  setTimeout(() => {
+    messageEl.hidden = true;
+  }, 4000);
+}
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   submitBtn.disabled = true;
@@ -43,14 +54,14 @@ form.addEventListener('submit', async (e) => {
     });
     const res = await resp.json();
     if (res.status === 'ok') {
-      alert('Успешно! Инструкция отправлена на почту');
+      showMessage('Успешно! Инструкция отправлена на почту');
       form.reset();
       updateSeats();
     } else {
-      alert('Ошибка: ' + res.message);
+      showMessage('Ошибка: ' + res.message, true);
     }
   } catch (err) {
-    alert('Ошибка отправки');
+    showMessage('Ошибка отправки', true);
   } finally {
     submitBtn.disabled = false;
     spinner.hidden = true;
@@ -59,3 +70,9 @@ form.addEventListener('submit', async (e) => {
 
 formatDate();
 updateSeats();
+
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+  themeToggle.textContent = isDark ? 'Тёмная тема' : 'Светлая тема';
+});
