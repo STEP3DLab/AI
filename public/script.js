@@ -1,5 +1,5 @@
 // RU: URL веб-приложения Apps Script
-const WEB_APP_URL = '<YOUR_WEB_APP_URL>'; // замените на URL деплоя
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwaj2ykBqQ3vRHPktKr_YBEoVkeJ7cTX5kG-HzZ7sV7JBmY0SFM1w1peCzEER0asT7H/exec'; // замените на URL деплоя
 
 const offlineLeftEl = document.getElementById('offline-left');
 const onlineLeftEl = document.getElementById('online-left');
