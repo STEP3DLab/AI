@@ -7,6 +7,8 @@ const submitBtn = document.getElementById('submit-btn');
 const form = document.getElementById('reg-form');
 const spinner = document.getElementById('spinner');
 const messageEl = document.getElementById('message');
+const themeToggle = document.getElementById("theme-toggle");
+const backToTop = document.querySelector(".back-to-top");
 function formatDate() {
     const date = new Date('2025-06-11T19:00:00+03:00');
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -68,4 +70,12 @@ form.addEventListener('submit', async (e) => {
 
 formatDate();
 updateSeats();
+themeToggle.addEventListener("click", () => document.body.classList.toggle("dark"));
+window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("visible", window.scrollY > 100);
+});
+backToTop.addEventListener("click", e => {
+    e.preventDefault();
+    window.scrollTo({top:0, behavior:"smooth"});
+});
 
