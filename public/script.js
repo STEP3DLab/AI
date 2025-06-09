@@ -13,8 +13,8 @@ function formatDate() {
     const date = new Date('2025-06-11T19:00:00+03:00');
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
     const timeOptions = { hour: '2-digit', minute: '2-digit' };
-    document.getElementById('event-date').textContent =
-        `${new Intl.DateTimeFormat('ru-RU', options).format(date)} ` +
+    document.getElementById('event-date').innerHTML =
+        `${new Intl.DateTimeFormat('ru-RU', options).format(date)},<br>` +
         `${new Intl.DateTimeFormat('ru-RU', timeOptions).format(date)}–20:30 МСК`;
 }
 
