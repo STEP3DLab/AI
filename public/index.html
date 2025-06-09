@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Промтинжиниринг — мастер‑класс StepAI 2025</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Промтинжиниринг",
+    "startDate": "2025-06-11T19:00:00+03:00",
+    "endDate": "2025-06-11T20:30:00+03:00",
+    "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+    "location": [
+      {
+        "@type": "Place",
+        "name": "Москва, ул. Беговая, 12"
+      },
+      {
+        "@type": "VirtualLocation",
+        "url": "https://zoom.us/j/placeholder"
+      }
+    ],
+    "description": "Практика применения ИИ в проф. деятельности",
+    "organizer": {
+      "@type": "Organization",
+      "name": "StepAI"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <img src="robot-placeholder.png" alt="Robot" class="hero-img">
+    <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
+    <p class="hero-date" id="event-date"></p>
+    <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
+  </header>
+
+  <section class="benefits">
+    <h2>Что получите за 1,5&nbsp;ч</h2>
+    <ul>
+      <li>Навыки точного формулирования запросов к ИИ</li>
+      <li>Список топ‑инструментов для работы</li>
+      <li>Чек‑лист интеграции ИИ в проекты</li>
+      <li>Разбор реальных кейсов от экспертов</li>
+    </ul>
+  </section>
+
+  <section class="form-section">
+    <h2>Регистрация</h2>
+    <form id="reg-form">
+      <label>
+        Имя
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        E-mail
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Телефон
+        <input type="tel" name="phone">
+      </label>
+      <fieldset>
+        <legend>Формат участия</legend>
+        <label>
+          <input type="radio" name="mode" value="offline" required>
+          Очно — 5 000 ₽ (<span id="offline-left">11</span> мест)
+        </label>
+        <label>
+          <input type="radio" name="mode" value="online">
+          Онлайн (Zoom) — 2 500 ₽ (<span id="online-left">8</span> мест)
+        </label>
+      </fieldset>
+      <button type="submit" id="submit-btn">Записаться</button>
+      <div class="spinner" id="spinner" hidden></div>
+    </form>
+  </section>
+
+  <section class="bonus">
+    <h2>Бонусы</h2>
+    <ul>
+      <li>Доступ в закрытый Telegram-чат</li>
+      <li>Годовая VPN-подписка</li>
+    </ul>
+  </section>
+
+  <footer>
+    <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr">Написать менеджеру Никите</a>
+    <p class="hashtags">#МЕЧТАЙ #УЧИСЬ #ТВОРИ #ВДОХНОВЛЯЙ</p>
+    <p>© 2025 ФГБОУ ВО РГСУ</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
