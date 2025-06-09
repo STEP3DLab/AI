@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Промтинжиниринг — мастер‑класс StepAI 2025</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <meta name="description" content="Практика применения ИИ в профессиональной деятельности">
+    <meta property="og:title" content="Мастер-класс «Промтинжиниринг»">
+    <meta property="og:description" content="Практика применения ИИ в проф. деятельности">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:image" content="og_image.png">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -38,15 +47,16 @@
         <p class="hero-date" id="event-date"></p>
         <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
         <a href="#reg-form" class="primary-btn">Записаться</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
     </header>
 
     <section class="benefits container">
         <h2>Что получите за 1,5&nbsp;ч</h2>
         <ul>
-            <li><img src="star.svg" alt="" class="list-icon"> Навыки точного формулирования запросов к ИИ</li>
-            <li><img src="star.svg" alt="" class="list-icon"> Список топ‑инструментов для работы</li>
-            <li><img src="star.svg" alt="" class="list-icon"> Чек‑лист интеграции ИИ в проекты</li>
-            <li><img src="star.svg" alt="" class="list-icon"> Разбор реальных кейсов от экспертов</li>
+            <li><img src="star.svg" alt="" aria-hidden="true" loading="lazy" class="list-icon"> Навыки точного формулирования запросов к ИИ</li>
+            <li><img src="star.svg" alt="" aria-hidden="true" loading="lazy" class="list-icon"> Список топ‑инструментов для работы</li>
+            <li><img src="star.svg" alt="" aria-hidden="true" loading="lazy" class="list-icon"> Чек‑лист интеграции ИИ в проекты</li>
+            <li><img src="star.svg" alt="" aria-hidden="true" loading="lazy" class="list-icon"> Разбор реальных кейсов от экспертов</li>
         </ul>
     </section>
 
@@ -54,11 +64,11 @@
         <h2>Регистрация</h2>
         <form id="reg-form">
             <label for="name">Имя</label>
-            <input id="name" type="text" name="name" required aria-required="true">
+            <input id="name" type="text" name="name" required aria-required="true" placeholder="Ваше имя" autocomplete="name">
             <label for="email">E-mail</label>
-            <input id="email" type="email" name="email" required aria-required="true">
+            <input id="email" type="email" name="email" required aria-required="true" placeholder="you@example.com" autocomplete="email">
             <label for="phone">Телефон</label>
-            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90">
+            <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90" autocomplete="tel">
             <fieldset>
                 <legend>Формат участия</legend>
                 <label for="mode-offline">
@@ -66,13 +76,13 @@
                     Очно — 5 000 ₽ (<span id="offline-left">11</span> мест)
                 </label>
                 <label for="mode-online">
-                    <input id="mode-online" type="radio" name="mode" value="online" aria-checked="false">
+                    <input id="mode-online" type="radio" name="mode" value="online" aria-checked="false" required aria-checked="false">
                     Онлайн (Zoom) — 2 500 ₽ (<span id="online-left">8</span> мест)
                 </label>
             </fieldset>
             <button type="submit" id="submit-btn">Записаться</button>
             <div class="spinner" id="spinner" hidden></div>
-            <div id="message" hidden role="alert"></div>
+            <div id="message" hidden role="status" aria-live="polite"></div>
         </form>
     </section>
 
@@ -85,11 +95,12 @@
     </section>
 
     <footer class="container">
-                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr"><img src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>
+                <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr" target="_blank" rel="noopener"><img loading="lazy" src="telegram.svg" alt="" class="telegram-logo">Написать менеджеру Никите</a>
         <p class="hashtags">#МЕЧТАЙ #УЧИСЬ #ТВОРИ #ВДОХНОВЛЯЙ</p>
         <p>© 2025 ФГБОУ ВО РГСУ</p>
     </footer>
+    <a href="#" class="back-to-top" aria-label="Наверх">↑</a>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
