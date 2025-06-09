@@ -46,8 +46,8 @@
     </script>
 </head>
 <body>
-    <div id="progress" aria-hidden="true"></div>
-    <header class="hero container">
+    <div id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <header class="hero container fade-in">
         <div class="hero-animation" aria-hidden="true"></div>
         <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
         <time id="event-date" class="hero-date" datetime="2025-06-11T19:00:00+03:00"></time>
@@ -96,7 +96,7 @@
                 </label>
             </fieldset>
             <button type="submit" id="submit-btn">Записаться</button>
-            <div class="spinner" id="spinner" hidden></div>
+            <div class="spinner" id="spinner" role="status" aria-busy="true" hidden></div>
             <div id="message" hidden role="status" aria-live="polite"></div>
         </form>
     </section>
