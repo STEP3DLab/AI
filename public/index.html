@@ -32,14 +32,15 @@
   </script>
 </head>
 <body>
-  <header class="hero">
+  <header class="hero container">
     <img src="robot-placeholder.png" alt="Robot" class="hero-img">
     <h1 class="hero-title">Мастер-класс «Промтинжиниринг»</h1>
     <p class="hero-date" id="event-date"></p>
     <p class="hero-slogan">Практика применения ИИ в проф. деятельности</p>
+    <a href="#reg-form" class="primary-btn">Записаться</a>
   </header>
 
-  <section class="benefits">
+  <section class="benefits container">
     <h2>Что получите за 1,5&nbsp;ч</h2>
     <ul>
       <li>Навыки точного формулирования запросов к ИИ</li>
@@ -49,38 +50,33 @@
     </ul>
   </section>
 
-  <section class="form-section">
+  <section class="form-section container">
     <h2>Регистрация</h2>
     <form id="reg-form">
-      <label>
-        Имя
-        <input type="text" name="name" required>
-      </label>
-      <label>
-        E-mail
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Телефон
-        <input type="tel" name="phone">
-      </label>
+      <label for="name">Имя</label>
+      <input id="name" type="text" name="name" required aria-required="true">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" name="email" required aria-required="true">
+      <label for="phone">Телефон</label>
+      <input id="phone" type="tel" name="phone" pattern="\+?[0-9\s\-]{10,}" placeholder="+7 123 456-78-90">
       <fieldset>
         <legend>Формат участия</legend>
-        <label>
-          <input type="radio" name="mode" value="offline" required>
+        <label for="mode-offline">
+          <input id="mode-offline" type="radio" name="mode" value="offline" required aria-checked="false">
           Очно — 5 000 ₽ (<span id="offline-left">11</span> мест)
         </label>
-        <label>
-          <input type="radio" name="mode" value="online">
+        <label for="mode-online">
+          <input id="mode-online" type="radio" name="mode" value="online" aria-checked="false">
           Онлайн (Zoom) — 2 500 ₽ (<span id="online-left">8</span> мест)
         </label>
       </fieldset>
       <button type="submit" id="submit-btn">Записаться</button>
       <div class="spinner" id="spinner" hidden></div>
+      <div id="message" hidden role="alert"></div>
     </form>
   </section>
 
-  <section class="bonus">
+  <section class="bonus container">
     <h2>Бонусы</h2>
     <ul>
       <li>Доступ в закрытый Telegram-чат</li>
@@ -88,7 +84,8 @@
     </ul>
   </section>
 
-  <footer>
+  <footer class="container">
+    <button id="theme-toggle" type="button">Тёмная тема</button>
     <a class="contact-btn" href="tg://resolve?domain=Step_3D_Mngr">Написать менеджеру Никите</a>
     <p class="hashtags">#МЕЧТАЙ #УЧИСЬ #ТВОРИ #ВДОХНОВЛЯЙ</p>
     <p>© 2025 ФГБОУ ВО РГСУ</p>

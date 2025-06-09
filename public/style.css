@@ -4,6 +4,14 @@
   font-family: Inter, -apple-system, sans-serif;
 }
 
+html { scroll-behavior: smooth; }
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -21,6 +29,11 @@ header.hero {
   width: 120px;
   height: 120px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.hero-img:hover {
+  transform: rotate(5deg) scale(1.05);
 }
 
 .hero-title {
@@ -95,6 +108,15 @@ button[disabled] {
   margin: 0.5rem auto;
 }
 
+#message {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+#message.success { color: var(--accent); }
+#message.error { color: #cc0000; }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -113,8 +135,40 @@ footer {
   color: var(--accent);
 }
 
+.primary-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
 .hashtags {
   font-weight: 700;
+}
+
+[data-theme="dark"] {
+  background: #222;
+  color: #eee;
+}
+
+[data-theme="dark"] footer {
+  background: #333;
+}
+
+[data-theme="dark"] .primary-btn {
+  background: #4c8cff;
 }
 
 @media (min-width: 600px) {
