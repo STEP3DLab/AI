@@ -1,0 +1,122 @@
+:root {
+  --accent: #0066FF;
+  --text-dark: #222;
+  font-family: Inter, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+  background: #fff;
+  line-height: 1.4;
+}
+
+header.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.hero-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.hero-date,
+.hero-slogan {
+  margin: 0.25rem 0;
+}
+
+.benefits,
+.form-section,
+.bonus {
+  padding: 1rem;
+}
+
+.benefits ul,
+.bonus ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits li,
+.bonus li {
+  margin-bottom: 0.5rem;
+}
+
+form label,
+form fieldset {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"] {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+button#submit-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 0.5rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  background: #f9f9f9;
+}
+
+.contact-btn {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.hashtags {
+  font-weight: 700;
+}
+
+@media (min-width: 600px) {
+  .hero-title { font-size: 2rem; }
+}
