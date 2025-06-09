@@ -191,6 +191,11 @@ a:focus, button:focus, input:focus {
     font-weight: 700;
 }
 
+.legal {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
 
 
 
