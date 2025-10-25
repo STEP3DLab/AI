@@ -469,6 +469,18 @@
       transform: translateY(0);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      body::before,
+      body::after,
+      .particles span,
+      .timer-box,
+      .reveal {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+
     @media (min-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -700,17 +712,21 @@
   </footer>
 
   <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Лёгкие частицы
-    const particlesContainer = document.querySelector('.particles');
-    const particlesCount = 36;
-    for (let i = 0; i < particlesCount; i++) {
-      const particle = document.createElement('span');
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.animationDelay = (Math.random() * 12) + 's';
-      particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-      particle.style.opacity = (0.15 + Math.random() * 0.35).toFixed(2);
-      particle.style.transform = `scale(${0.6 + Math.random()})`;
-      particlesContainer.appendChild(particle);
+    if (!prefersReducedMotion) {
+      const particlesContainer = document.querySelector('.particles');
+      const particlesCount = 36;
+      for (let i = 0; i < particlesCount; i++) {
+        const particle = document.createElement('span');
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDelay = (Math.random() * 12) + 's';
+        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+        particle.style.opacity = (0.15 + Math.random() * 0.35).toFixed(2);
+        particle.style.transform = `scale(${0.6 + Math.random()})`;
+        particlesContainer.appendChild(particle);
+      }
     }
 
     // Таймер обратного отсчёта
@@ -724,11 +740,10 @@
 
     const upcomingEvent = events.find(date => date > now) || new Date(`${year + 1}-11-09T12:00:00`);
 
-    function updateCountdown() {
-      const diff = upcomingEvent - new Date();
+    function buildCountdown(referenceDate = new Date()) {
+      const diff = upcomingEvent - referenceDate;
       if (diff <= 0) {
-        countdownContainer.innerHTML = '<div class="timer-box"><span>0</span><small>минут</small></div>';
-        return;
+        return '<div class="timer-box"><span>0</span><small>минут</small></div>';
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -741,7 +756,7 @@
           <small>${label}</small>
         </div>`;
 
-      countdownContainer.innerHTML = [
+      return [
         [days, 'дней'],
         [hours, 'часов'],
         [minutes, 'минут'],
@@ -749,21 +764,33 @@
       ].map(template).join('');
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    if (prefersReducedMotion) {
+      countdownContainer.innerHTML = buildCountdown(now);
+    } else {
+      function updateCountdown() {
+        countdownContainer.innerHTML = buildCountdown();
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
 
     // Анимация появления при скролле
     const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
+    if (prefersReducedMotion) {
+      revealElements.forEach(el => el.classList.add('visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
 
-    revealElements.forEach(el => observer.observe(el));
+      revealElements.forEach(el => observer.observe(el));
+    }
 
     // Обработка формы
     const form = document.getElementById('registration-form');
