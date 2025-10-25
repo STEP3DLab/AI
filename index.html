@@ -36,6 +36,10 @@
       min-height: 100vh;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     body::before,
     body::after {
       content: "";
@@ -524,10 +528,119 @@
     }
 
     footer {
-      text-align: center;
       color: rgba(255, 255, 255, 0.45);
       font-size: 0.85rem;
       padding: 40px 0 60px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .footer-link,
+    .footer-links a {
+      color: var(--fg-light);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: 2px;
+      background: none;
+      border-radius: 0;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .footer-link:hover,
+    .footer-links a:hover {
+      color: var(--accent);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-note {
+      text-align: center;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 50;
+    }
+
+    .modal.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      max-width: min(840px, 100%);
+      max-height: min(90vh, 960px);
+      overflow-y: auto;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: var(--shadow);
+      line-height: 1.7;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 14px;
+    }
+
+    .modal-content h3 {
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .modal-content p,
+    .modal-content li {
+      color: var(--muted);
+    }
+
+    .modal-content ul,
+    .modal-content ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .modal-close {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--fg-light);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
     }
 
     .reveal {
@@ -772,8 +885,67 @@
   </main>
 
   <footer>
-    © <span id="year"></span> Технопарк РГСУ · Интенсив по искусственному интеллекту
+    <div class="container footer-inner">
+      <nav class="footer-links" aria-label="Полезные ссылки">
+        <a href="https://t.me/STEP_3D_Lab" target="_blank" rel="noopener">Telegram-канал STEP 3D Lab</a>
+        <a href="https://techno.rgsu.net" target="_blank" rel="noopener">Сайт Технопарка РГСУ</a>
+        <button class="footer-link" data-modal-target="offerModal">Публичная оферта</button>
+        <button class="footer-link" data-modal-target="agreementModal">Пользовательское соглашение</button>
+      </nav>
+      <p class="footer-note">© <span id="year"></span> Технопарк РГСУ · Интенсив по искусственному интеллекту</p>
+    </div>
   </footer>
+
+  <div class="modal" id="offerModal" role="dialog" aria-modal="true" aria-labelledby="offerTitle" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="offerTitle">Договор публичной оферты</h2>
+      <p>Настоящий документ является официальным предложением Технопарка РГСУ (далее — «Организатор») заключить договор на оказание образовательных услуг, указанных на сайте интенсивов по искусственному интеллекту.</p>
+      <h3>1. Общие положения</h3>
+      <ol>
+        <li>Публикация настоящей оферты на сайте Организатора является предложением, адресованным любому дееспособному лицу.</li>
+        <li>Оплата услуг считается акцептом оферты и подтверждает заключение договора на условиях, изложенных в документе.</li>
+      </ol>
+      <h3>2. Предмет договора</h3>
+      <p>Организатор предоставляет обучающие мероприятия, мастер-классы и материалы по тематике искусственного интеллекта, а Заказчик принимает и оплачивает услуги.</p>
+      <h3>3. Права и обязанности сторон</h3>
+      <ul>
+        <li>Организатор обязуется предоставить доступ к мероприятиям, записям и методическим материалам в срок, указанный при регистрации.</li>
+        <li>Заказчик обязуется предоставить достоверные данные при регистрации и соблюдать правила участия в мероприятиях.</li>
+      </ul>
+      <h3>4. Стоимость и порядок расчётов</h3>
+      <p>Стоимость услуг определяется в соответствии с выбранным тарифом на сайте Организатора и подлежит полной оплате до начала мероприятия. Оплата производится безналичным способом через предложенные платёжные сервисы.</p>
+      <h3>5. Возврат средств</h3>
+      <p>Возврат денежных средств возможен в порядке и сроки, указанные в разделе FAQ сайта. Для оформления возврата Заказчик направляет письменное заявление на электронную почту Организатора.</p>
+      <h3>6. Ответственность</h3>
+      <p>Стороны несут ответственность в соответствии с законодательством Российской Федерации. Организатор не отвечает за невозможность доступа к мероприятиям по причинам, зависящим от Заказчика.</p>
+      <h3>7. Заключительные положения</h3>
+      <p>Оферта может быть изменена Организатором в одностороннем порядке путём публикации новой редакции на сайте. Действующая редакция доступна по постоянной ссылке в подвале сайта.</p>
+      <button class="modal-close" data-modal-close>Закрыть</button>
+    </div>
+  </div>
+
+  <div class="modal" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementTitle" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="agreementTitle">Пользовательское соглашение</h2>
+      <p>Настоящее соглашение устанавливает правила использования материалов, сервисов и коммуникаций, предоставляемых Технопарком РГСУ в рамках интенсивов по искусственному интеллекту.</p>
+      <h3>1. Термины</h3>
+      <p>«Пользователь» — физическое или юридическое лицо, прошедшее регистрацию и получившее доступ к мероприятиям Организатора.</p>
+      <h3>2. Использование материалов</h3>
+      <ul>
+        <li>Материалы, полученные в ходе мероприятий, предназначены для личного использования Пользователя.</li>
+        <li>Запрещается передавать доступ к платным материалам и записям третьим лицам без письменного разрешения Организатора.</li>
+      </ul>
+      <h3>3. Коммуникации</h3>
+      <p>Пользователь соглашается получать информационные сообщения на указанный при регистрации адрес электронной почты и через Telegram-канал Организатора. Пользователь вправе отказаться от рассылки, следуя инструкциям в письме.</p>
+      <h3>4. Персональные данные</h3>
+      <p>Обработка персональных данных осуществляется в соответствии с политикой конфиденциальности Организатора и законодательством Российской Федерации.</p>
+      <h3>5. Ограничение ответственности</h3>
+      <p>Организатор не несёт ответственность за убытки, возникшие в результате некорректного использования Пользователем рекомендаций или технических сбоев, не зависящих от Организатора.</p>
+      <h3>6. Прочие условия</h3>
+      <p>Организатор вправе обновлять условия соглашения. Продолжение использования сервисов после изменения условий означает согласие Пользователя с новой редакцией.</p>
+      <button class="modal-close" data-modal-close>Закрыть</button>
+    </div>
+  </div>
 
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -947,6 +1119,63 @@
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
+    const modals = document.querySelectorAll('.modal');
+
+    const openModal = (modal) => {
+      if (!modal) return;
+      modals.forEach((other) => {
+        if (other !== modal) {
+          closeModal(other);
+        }
+      });
+      modal.classList.add('visible');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable) {
+        focusable.focus({ preventScroll: true });
+      }
+    };
+
+    const closeModal = (modal) => {
+      if (!modal) return;
+      modal.classList.remove('visible');
+      modal.setAttribute('aria-hidden', 'true');
+      if (!document.querySelector('.modal.visible')) {
+        document.body.classList.remove('modal-open');
+      }
+    };
+
+    modalTriggers.forEach((trigger) => {
+      const targetId = trigger.getAttribute('data-modal-target');
+      const targetModal = document.getElementById(targetId);
+      trigger.addEventListener('click', () => openModal(targetModal));
+    });
+
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener('click', () => closeModal(button.closest('.modal')));
+    });
+
+    modals.forEach((modal) => {
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        modals.forEach((modal) => {
+          if (modal.classList.contains('visible')) {
+            closeModal(modal);
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
