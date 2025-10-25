@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="">
   <style>
     :root {
       color-scheme: dark;
@@ -293,6 +294,151 @@
       display: grid;
       gap: 18px;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .map-card {
+      margin-top: 28px;
+      border: 1px solid rgba(132, 126, 255, 0.18);
+      border-radius: 20px;
+      padding: 18px;
+      background:
+        linear-gradient(145deg, rgba(132, 126, 255, 0.12), rgba(12, 12, 20, 0.88));
+      box-shadow: 0 22px 48px rgba(8, 8, 24, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 112, 207, 0.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .map-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-card-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .map-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    .legend-dot.offline {
+      color: #8f6dff;
+      background: linear-gradient(135deg, #6d6afe, #8f6dff);
+    }
+
+    .legend-dot.online {
+      color: #ff70cf;
+      background: linear-gradient(135deg, #ff70cf, #ffa8e7);
+    }
+
+    #locations-map {
+      height: 280px;
+      border-radius: 16px;
+      filter: saturate(1.15);
+      position: relative;
+      z-index: 0;
+    }
+
+    .map-marker {
+      background: none;
+      border: none;
+    }
+
+    .map-marker span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 18px rgba(132, 126, 255, 0.7);
+    }
+
+    .map-marker span::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      opacity: 0.35;
+      filter: blur(8px);
+    }
+
+    .map-marker--offline span {
+      background: linear-gradient(135deg, #6d6afe, #8f6dff);
+    }
+
+    .map-marker--offline span::after {
+      background: rgba(132, 126, 255, 0.8);
+    }
+
+    .map-marker--online span {
+      background: linear-gradient(135deg, #ff70cf, #ffa8e7);
+      box-shadow: 0 0 18px rgba(255, 112, 207, 0.65);
+    }
+
+    .map-marker--online span::after {
+      background: rgba(255, 112, 207, 0.75);
+    }
+
+    .leaflet-container {
+      background: transparent;
+      border-radius: inherit;
+    }
+
+    .leaflet-control-container .leaflet-control {
+      border-radius: 14px;
+      border: 1px solid rgba(132, 126, 255, 0.2);
+      box-shadow: 0 12px 24px rgba(8, 8, 20, 0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .leaflet-control-zoom a {
+      background: rgba(12, 12, 20, 0.85);
+      color: var(--fg-light);
+    }
+
+    .leaflet-popup-content-wrapper {
+      background: rgba(12, 12, 20, 0.92);
+      color: var(--fg-light);
+      border-radius: 16px;
+      border: 1px solid rgba(132, 126, 255, 0.3);
+      box-shadow: 0 18px 34px rgba(8, 8, 24, 0.6);
+    }
+
+    .leaflet-popup-tip {
+      background: rgba(12, 12, 20, 0.92);
+      border: 1px solid rgba(132, 126, 255, 0.3);
     }
 
     .card {
@@ -772,6 +918,15 @@
         padding: 14px;
       }
 
+      .map-card {
+        margin-top: 22px;
+        padding: 16px;
+      }
+
+      #locations-map {
+        height: 240px;
+      }
+
       .form-actions {
         flex-direction: column;
       }
@@ -817,6 +972,16 @@
             <strong>Онлайн-сессия</strong>
             <span>Google Meet · международное подключение</span>
           </div>
+        </div>
+        <div class="map-card" aria-label="Карта площадок интенсива">
+          <div class="map-card-header">
+            <h3>Карта площадок</h3>
+            <div class="map-legend" aria-hidden="true">
+              <span><span class="legend-dot offline"></span>Офлайн</span>
+              <span><span class="legend-dot online"></span>Онлайн</span>
+            </div>
+          </div>
+          <div id="locations-map" role="presentation"></div>
         </div>
       </div>
     </section>
@@ -1034,6 +1199,7 @@
     </div>
   </div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kGStb6tLi7g2U5jVFU3yfXw2z8gDn1kS4f0JM=" crossorigin=""></script>
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1263,6 +1429,94 @@
         });
       }
     });
+
+    const mapElement = document.getElementById('locations-map');
+    if (mapElement && window.L) {
+      mapElement.setAttribute('tabindex', '0');
+
+      const map = L.map(mapElement, {
+        zoomControl: true,
+        scrollWheelZoom: false,
+        attributionControl: false,
+        dragging: window.innerWidth > 640,
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> & <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(map);
+
+      const offlineIcon = L.divIcon({
+        className: 'map-marker map-marker--offline',
+        html: '<span></span>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 24],
+        popupAnchor: [0, -22]
+      });
+
+      const onlineIcon = L.divIcon({
+        className: 'map-marker map-marker--online',
+        html: '<span></span>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 24],
+        popupAnchor: [0, -22]
+      });
+
+      const eventLocations = [
+        {
+          type: 'offline',
+          title: '9 ноября · 12:00–17:00',
+          description: 'Вильгельма Пика 4с8, ауд. 306 (ВДНХ)',
+          coords: [55.8263, 37.6413]
+        },
+        {
+          type: 'offline',
+          title: '12 ноября · 13:00–18:00',
+          description: 'Беговая, 12 (Беговая)',
+          coords: [55.7765, 37.5476]
+        },
+        {
+          type: 'online',
+          title: 'Онлайн-сессия',
+          description: 'Google Meet · международное подключение',
+          coords: [55.7512, 37.6184]
+        }
+      ];
+
+      const bounds = [];
+
+      eventLocations.forEach((eventPoint) => {
+        const icon = eventPoint.type === 'online' ? onlineIcon : offlineIcon;
+        const marker = L.marker(eventPoint.coords, { icon }).addTo(map);
+        marker.bindPopup(`
+          <strong>${eventPoint.title}</strong><br>
+          <span>${eventPoint.description}</span>
+        `);
+        bounds.push(eventPoint.coords);
+      });
+
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [32, 32] });
+      }
+
+      mapElement.addEventListener('focusin', () => {
+        map.scrollWheelZoom.enable();
+      });
+
+      mapElement.addEventListener('focusout', () => {
+        map.scrollWheelZoom.disable();
+      });
+
+      window.addEventListener('resize', () => {
+        map.options.dragging = window.innerWidth > 640;
+        if (map.options.dragging) {
+          map.dragging.enable();
+        } else {
+          map.dragging.disable();
+        }
+        map.invalidateSize();
+      });
+    }
   </script>
 </body>
 </html>
