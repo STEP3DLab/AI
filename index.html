@@ -659,6 +659,42 @@
       letter-spacing: 0.06em;
     }
 
+    .seat-counter--stacked {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+      background: transparent;
+      letter-spacing: normal;
+      align-items: flex-end;
+    }
+
+    .seat-counter--stacked .seat-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 14px;
+      background: rgba(132, 126, 255, 0.22);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 12px 24px rgba(12, 10, 34, 0.25);
+    }
+
+    .seat-counter--stacked .seat-day {
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      color: rgba(245, 247, 255, 0.72);
+    }
+
+    .seat-counter--stacked .seat-amount {
+      font-weight: 500;
+      color: var(--fg-light);
+      white-space: nowrap;
+    }
+
     .format-card ul {
       margin-top: 12px;
       padding-left: 18px;
@@ -1155,7 +1191,16 @@
       <h2>Форматы участия и условия</h2>
       <div class="formats">
         <div class="format-card">
-          <div class="seat-counter" id="offline-seats">Осталось 16 мест</div>
+          <div class="seat-counter seat-counter--stacked" aria-live="polite">
+            <div class="seat-pill">
+              <span class="seat-day">Среда</span>
+              <span class="seat-amount" id="offline-wed-seats">Осталось 8 мест</span>
+            </div>
+            <div class="seat-pill">
+              <span class="seat-day">Суббота</span>
+              <span class="seat-amount" id="offline-sat-seats">Осталось 5 мест</span>
+            </div>
+          </div>
           <h3>Офлайн-группы</h3>
         </div>
         <div class="format-card">
