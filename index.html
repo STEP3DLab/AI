@@ -633,37 +633,200 @@
 
     .formats {
       display: grid;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: clamp(22px, 3vw, 28px);
+      align-items: stretch;
     }
 
     .format-card {
-      padding: 22px;
-      border-radius: 18px;
-      background: linear-gradient(150deg, rgba(132, 126, 255, 0.18), rgba(33, 35, 60, 0.24));
-      border: 1px solid rgba(132, 126, 255, 0.18);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: clamp(24px, 4vw, 30px);
+      border-radius: 20px;
+      background: linear-gradient(150deg, rgba(132, 126, 255, 0.18), rgba(33, 35, 60, 0.22));
+      border: 1px solid rgba(132, 126, 255, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(12, 12, 20, 0.35);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .format-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(132, 126, 255, 0.16), transparent 70%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    .format-card:hover,
+    .format-card:focus-within {
+      transform: translateY(-8px);
+      border-color: rgba(208, 210, 255, 0.55);
+      box-shadow: 0 30px 68px rgba(40, 35, 120, 0.45);
+    }
+
+    .format-card:hover::before,
+    .format-card:focus-within::before {
+      opacity: 1;
     }
 
     .format-card h3 {
-      margin-bottom: 10px;
+      margin-top: 18px;
+      font-size: 1.28rem;
+    }
+
+    .format-card p,
+    .format-card li {
+      font-size: 0.96rem;
+      color: rgba(228, 228, 255, 0.86);
+    }
+
+    .format-card ul {
+      margin-top: 8px;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
     }
 
     .seat-counter {
       position: absolute;
-      top: 22px;
-      right: 22px;
-      background: rgba(132, 126, 255, 0.22);
+      top: 20px;
+      right: 20px;
       padding: 6px 12px;
       border-radius: 999px;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(132, 126, 255, 0.24);
+      border: 1px solid rgba(132, 126, 255, 0.35);
+      color: #fdfdff;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
     }
 
-    .format-card ul {
-      margin-top: 12px;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .seat-counter.sold-out {
+      background: rgba(220, 38, 38, 0.25);
+      border-color: rgba(248, 113, 113, 0.55);
+      color: #fecaca;
+    }
+
+    .format-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(12, 12, 20, 0.65);
+      border: 1px solid rgba(132, 126, 255, 0.35);
+      box-shadow: 0 12px 24px rgba(10, 10, 26, 0.35);
+    }
+
+    .format-badge.badge-popular {
+      background: rgba(99, 102, 241, 0.32);
+      border-color: rgba(129, 140, 248, 0.6);
+    }
+
+    .format-badge.badge-teams {
+      background: rgba(16, 185, 129, 0.24);
+      border-color: rgba(110, 231, 183, 0.55);
+      color: #d1fae5;
+    }
+
+    .format-badge.badge-async {
+      background: rgba(244, 114, 182, 0.24);
+      border-color: rgba(249, 168, 212, 0.6);
+      color: #fce7f3;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .price small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(208, 210, 255, 0.75);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .format-limit {
+      font-size: 0.9rem;
+      color: rgba(255, 192, 203, 0.85);
+    }
+
+    .format-note {
+      font-size: 0.82rem;
+      color: rgba(208, 210, 255, 0.65);
+    }
+
+    .format-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .format-footer .btn {
+      width: 100%;
+    }
+
+    .format-footer .btn.secondary {
+      border-color: rgba(132, 126, 255, 0.35);
+    }
+
+    .seat-hints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .seat-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(132, 126, 255, 0.3);
+      background: rgba(18, 18, 36, 0.55);
+      font-size: 0.8rem;
+      color: rgba(228, 228, 255, 0.85);
+      transition: border-color var(--transition), background var(--transition), color var(--transition);
+    }
+
+    .seat-pill.sold-out {
+      border-color: rgba(248, 113, 113, 0.45);
+      background: rgba(69, 10, 10, 0.6);
+      color: #fecaca;
+    }
+
+    .format-card:hover .seat-counter:not(.sold-out),
+    .format-card:focus-within .seat-counter:not(.sold-out) {
+      background: rgba(159, 132, 255, 0.32);
+      border-color: rgba(208, 210, 255, 0.75);
+    }
+
+    @media (max-width: 720px) {
+      .formats {
+        grid-template-columns: 1fr;
+      }
+
+      .format-card {
+        padding: 22px;
+      }
+
+      .format-card h3 {
+        margin-top: 14px;
+      }
     }
 
     form {
@@ -1155,24 +1318,54 @@
       <h2>Форматы участия и условия</h2>
       <div class="formats">
         <div class="format-card">
-          <div class="seat-counter" id="offline-seats">Осталось 16 мест</div>
+          <span class="format-badge badge-popular">Популярно</span>
+          <div class="seat-counter" id="offline-seats" data-seat-type="offline" aria-live="polite">Осталось 16 мест</div>
           <h3>Офлайн-группы</h3>
+          <p class="price">8 900 ₽ <small>за человека</small></p>
+          <p class="format-description">Погружение в кампусах РГСУ: практика с наставником, живые демонстрации и разбор ваших задач.</p>
+          <ul>
+            <li>5 часов занятий + кофе-брейк</li>
+            <li>Индивидуальная помощь наставника</li>
+            <li>Доступ к презентациям и промт-лайбру 30 дней</li>
+          </ul>
+          <p class="format-limit">Группа до 16 человек, требуется ноутбук.</p>
+          <p class="format-note">Возврат 100% за 72 часа и 50% за 24 часа до старта (см. FAQ).</p>
+          <div class="format-footer">
+            <a class="btn" href="#register" data-format-cta="offline">Записаться офлайн</a>
+          </div>
         </div>
         <div class="format-card">
-          <div class="seat-counter" id="online-seats">Осталось 14 мест</div>
+          <span class="format-badge badge-teams">Для команд</span>
+          <div class="seat-counter" id="online-seats" data-seat-type="online" aria-live="polite">Осталось 14 мест</div>
           <h3>Онлайн-подключение</h3>
-          <p>14 мест · Google Meet. Запись доступна за дополнительную плату.</p>
+          <p class="price">6 500 ₽ <small>за подключение</small></p>
+          <p class="format-description">Присоединяйтесь из любой точки: участвуйте командой, задавайте вопросы в live-чате и получите запись.</p>
           <ul>
-            <li>Доступ к материалам 7 дней</li>
+            <li>Подключение до 3 сотрудников</li>
+            <li>Доступ к материалам и записи 7 дней</li>
+            <li>Онлайн-чат с куратором</li>
           </ul>
+          <p class="format-limit">Всего 25 подключений, запись включена.</p>
+          <p class="format-note">Возврат 100% за 72 часа и 50% за 24 часа до старта (см. FAQ).</p>
+          <div class="format-footer">
+            <a class="btn secondary" href="#register" data-format-cta="online">Забронировать онлайн</a>
+          </div>
         </div>
         <div class="format-card">
+          <span class="format-badge badge-async">Самостоятельно</span>
           <h3>Запись интенсива</h3>
-          <p>Доступ в закрытый Telegram-канал с записью и материалами. Можно приобрести отдельно.</p>
+          <p class="price">4 200 ₽ <small>за доступ</small></p>
+          <p class="format-description">Telegram-канал с записью и дополнительными материалами для повторения и самостоятельной практики.</p>
           <ul>
-            <li>Подключение после оплаты</li>
-            <li>Обновления материалов на протяжении месяца</li>
+            <li>Подключение в течение 24 часов после оплаты</li>
+            <li>Обновление материалов и ссылки 30 дней</li>
+            <li>Ответы на вопросы в тематическом чате</li>
           </ul>
+          <p class="format-limit">Без живого участия и обратной связи на занятии.</p>
+          <p class="format-note">Возврат 100% за 72 часа и 50% за 24 часа до старта (см. FAQ).</p>
+          <div class="format-footer">
+            <a class="btn secondary" href="#register" data-format-cta="recording">Получить запись</a>
+          </div>
         </div>
       </div>
     </section>
@@ -1201,6 +1394,11 @@
             <option value="online">Онлайн · Google Meet</option>
           </select>
         </div>
+        <div class="seat-hints" id="seatHints" role="status" aria-live="polite">
+          <span class="seat-pill" data-seat-inline="offline">Офлайн: осталось 16 мест</span>
+          <span class="seat-pill" data-seat-inline="online">Онлайн: осталось 14 мест</span>
+        </div>
+        <p class="field-hint" id="seatSummary" aria-live="polite">В офлайн-группах осталось 16 мест, онлайн — 14.</p>
         <div>
           <label for="tariff">Тариф</label>
           <select id="tariff" name="tariff" required autocomplete="off">
@@ -1223,6 +1421,7 @@
           <button type="submit" class="btn">Оплатить через СБП</button>
           <button type="button" class="btn secondary">Счёт для юрлица (ООО)</button>
         </div>
+        <p class="field-hint">Возврат 100% за 72 часа и 50% за 24 часа до старта (детали в разделе FAQ).</p>
         <div class="success-message" role="alert" id="successMessage" tabindex="-1">
           Спасибо! Мы отправим ссылку на оплату на ваш E-mail.
         </div>
@@ -1416,6 +1615,99 @@
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
       return forms[2];
     };
+
+    const defaultSeatAvailability = {
+      offline: { remaining: 16, pillLabel: 'Офлайн', summaryLabel: 'Офлайн-группы' },
+      online: { remaining: 14, pillLabel: 'Онлайн', summaryLabel: 'Онлайн' }
+    };
+
+    let seatAvailabilityState = Object.fromEntries(
+      Object.entries(defaultSeatAvailability).map(([key, value]) => [key, { ...value }])
+    );
+
+    const seatCounters = document.querySelectorAll('[data-seat-type]');
+    const seatPills = document.querySelectorAll('[data-seat-inline]');
+    const seatSummary = document.getElementById('seatSummary');
+
+    const formatSeatText = (remaining) => {
+      if (typeof remaining !== 'number') return '';
+      if (remaining <= 0) {
+        return 'Свободных мест нет';
+      }
+      return `Осталось ${remaining} ${pluralize(remaining, ['место', 'места', 'мест'])}`;
+    };
+
+    const renderSeatAvailability = () => {
+      seatCounters.forEach((element) => {
+        const type = element.dataset.seatType;
+        const state = seatAvailabilityState[type];
+        if (!state) return;
+        const text = formatSeatText(state.remaining);
+        element.textContent = text;
+        element.classList.toggle('sold-out', state.remaining <= 0);
+      });
+
+      seatPills.forEach((element) => {
+        const type = element.dataset.seatInline;
+        const state = seatAvailabilityState[type];
+        if (!state) return;
+        const label = state.pillLabel || defaultSeatAvailability[type]?.pillLabel || '';
+        let text;
+        if (state.remaining > 0) {
+          text = `${label}: ${state.remaining} ${pluralize(state.remaining, ['место', 'места', 'мест'])}`;
+        } else {
+          text = `${label}: мест нет`;
+        }
+        element.textContent = text;
+        element.classList.toggle('sold-out', state.remaining <= 0);
+      });
+
+      if (seatSummary) {
+        const summaryParts = Object.entries(seatAvailabilityState).map(([type, state]) => {
+          const summaryLabel = state.summaryLabel || defaultSeatAvailability[type]?.summaryLabel || type;
+          if (state.remaining > 0) {
+            return `${summaryLabel} — ${state.remaining} ${pluralize(state.remaining, ['место', 'места', 'мест'])}`;
+          }
+          return `${summaryLabel} — нет мест`;
+        });
+
+        seatSummary.textContent = summaryParts.join(', ');
+      }
+    };
+
+    const updateSeatAvailability = (partialState = {}) => {
+      let changed = false;
+
+      Object.entries(partialState).forEach(([type, value]) => {
+        if (!seatAvailabilityState[type]) return;
+        const nextValue = typeof value === 'number' ? { remaining: value } : value;
+        if (!nextValue || typeof nextValue.remaining !== 'number') return;
+
+        seatAvailabilityState[type] = {
+          ...defaultSeatAvailability[type],
+          ...seatAvailabilityState[type],
+          ...nextValue
+        };
+        changed = true;
+      });
+
+      if (changed) {
+        renderSeatAvailability();
+      }
+    };
+
+    document.addEventListener('seatAvailabilityChange', (event) => {
+      if (!event.detail) return;
+      updateSeatAvailability(event.detail);
+    });
+
+    window.updateSeatAvailability = updateSeatAvailability;
+    window.getSeatAvailability = () => ({
+      offline: { ...seatAvailabilityState.offline },
+      online: { ...seatAvailabilityState.online }
+    });
+
+    renderSeatAvailability();
 
     function ensureUpcomingEvent(referenceMoment) {
       if (!upcomingEventDate || referenceMoment >= upcomingEventDate) {
