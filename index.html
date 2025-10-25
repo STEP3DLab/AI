@@ -1,14 +1,789 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
+  <title>Интенсив по ИИ — Технопарк РГСУ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-dark: rgba(8, 8, 10, 0.9);
+      --fg-light: #f7f7f7;
+      --accent: #ffffff;
+      --muted: rgba(255, 255, 255, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      --radius: 18px;
+      --transition: 0.35s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #050505;
+      color: var(--fg-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -50vmax;
+      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08), transparent 65%),
+                  radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.04), transparent 60%);
+      filter: blur(60px);
+      animation: glow 18s infinite alternate;
+      z-index: -2;
+    }
+
+    body::after {
+      animation-delay: -9s;
+      opacity: 0.8;
+    }
+
+    @keyframes glow {
+      from { transform: translate3d(-6%, -4%, 0) scale(1.05); }
+      to   { transform: translate3d(8%, 6%, 0) scale(1.12); }
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      display: block;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      animation: float 12s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(30vh) scale(0.6); opacity: 0; }
+      20% { opacity: 0.5; }
+      60% { opacity: 0.3; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 8, 10, 0.65);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .container {
+      width: min(1180px, 92vw);
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .logo img {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px;
+      border: 1px solid var(--border);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(60px, 8vw, 90px);
+      padding-bottom: 100px;
+    }
+
+    section {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 5vw, 48px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    section:hover::before {
+      opacity: 1;
+    }
+
+    .hero {
+      display: grid;
+      gap: 36px;
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 24px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2.7vw, 2.2rem);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    p.lead {
+      font-size: clamp(1.05rem, 2.1vw, 1.3rem);
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: #060606;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--fg-light);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .timer {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      min-width: 100px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
+      transition: transform var(--transition);
+    }
+
+    .timer-box span {
+      display: block;
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+
+    .timer-box small {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .timer-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .schedule {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .program-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .program-item {
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: border-color var(--transition);
+    }
+
+    .program-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .program-item p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .program-item:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .formats {
+      display: grid;
+      gap: 24px;
+    }
+
+    .format-card {
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+    }
+
+    .format-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .seat-counter {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+
+    .format-card ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--fg-light);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(255, 255, 255, 0.5);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .form-actions .btn {
+      flex: 1 1 220px;
+    }
+
+    .success-message {
+      display: none;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #bbf7d0;
+      font-size: 0.95rem;
+    }
+
+    .speaker {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: center;
+    }
+
+    .speaker-photo {
+      aspect-ratio: 3 / 4;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.08em;
+    }
+
+    .speaker-content p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: var(--fg-light);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 2px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.85rem;
+      padding: 40px 0 60px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        align-items: center;
+      }
+
+      .hero-content {
+        padding-right: 24px;
+      }
+
+      .schedule {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      header .container {
+        padding: 14px 0;
+      }
+
+      .timer {
+        gap: 12px;
+      }
+
+      .timer-box {
+        min-width: 88px;
+        padding: 14px;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Hello, world!</h1>
-    <p>This is a basic HTML page.</p>
+  <div class="particles" aria-hidden="true"></div>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <img src="https://via.placeholder.com/120x120.png?text=Logo" alt="Технопарк РГСУ логотип">
+        <span>Интенсив по ИИ — Технопарк РГСУ</span>
+      </div>
+      <a class="btn secondary" href="#register">Регистрация</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero reveal">
+      <div class="hero-content">
+        <h1>Быстрый старт в современном ИИ: от промт-инжиниринга до Sora 2</h1>
+        <p class="lead">5-часовой интенсив от Ганьшина В.К. — офлайн и онлайн. Практика с реальными задачами: документы, сайты, изображения, 3D-модели, агенты и видео.</p>
+        <div class="actions">
+          <a class="btn" href="#register">Зарегистрироваться</a>
+          <a class="btn secondary" href="#formats">Форматы и цены</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <h2>До ближайшего потока</h2>
+        <div class="timer" id="countdown" aria-live="polite"></div>
+        <div class="schedule" aria-label="Даты и площадки интенсива">
+          <div class="card">
+            <strong>9 ноября · 12:00–17:00</strong>
+            <span>ВДНХ, аудитория 306</span>
+          </div>
+          <div class="card">
+            <strong>12 ноября · 13:00–18:00</strong>
+            <span>Беговая, 12</span>
+          </div>
+          <div class="card">
+            <strong>Онлайн-сессия</strong>
+            <span>Google Meet · международное подключение</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="program" class="reveal">
+      <h2>Программа 5-часового интенсива</h2>
+      <div class="program-list">
+        <div class="program-item">
+          <h3>Промт-инжиниринг</h3>
+          <p>Документы, сайты и веб-приложения за один запрос; обзор GPT-5+, Qwen 3 Max, Gemini 2.5 Pro.</p>
+        </div>
+        <div class="program-item">
+          <h3>Изображения</h3>
+          <p>ChatGPT и Nano Banana: логотипы, буклеты, интерьерные решения, дизайн 3D.</p>
+        </div>
+        <div class="program-item">
+          <h3>3D-модели</h3>
+          <p>Текст → 3D, Hugging Face / GenCAD, 2D→CAD, автоматизация скриптами.</p>
+        </div>
+        <div class="program-item">
+          <h3>Агенты</h3>
+          <p>Perplexity Browser, Google Notebook LM: делегирование задач и планирование.</p>
+        </div>
+        <div class="program-item">
+          <h3>Видео и звук</h3>
+          <p>Sora 2: создание роликов, музыкальных треков и песен с AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="formats" class="reveal">
+      <h2>Форматы участия и условия</h2>
+      <div class="formats">
+        <div class="format-card">
+          <div class="seat-counter" id="offline-seats">Осталось 16 мест</div>
+          <h3>Офлайн-группы</h3>
+          <p>16 мест · локации: ВДНХ или Беговая. Практика в оборудованных аудиториях.</p>
+          <ul>
+            <li>Возвраты — 100% за 72 ч, 50% за 24 ч</li>
+            <li>Протоколы участия — предоставляются</li>
+            <li>Сетевые паузы и нетворкинг</li>
+          </ul>
+        </div>
+        <div class="format-card">
+          <div class="seat-counter" id="online-seats">Осталось 14 мест</div>
+          <h3>Онлайн-подключение</h3>
+          <p>14 мест · Google Meet. Запись доступна за дополнительную плату.</p>
+          <ul>
+            <li>Возвраты — 100% за 72 ч, 50% за 24 ч</li>
+            <li>Протоколы участия — предоставляются</li>
+            <li>Доступ к материалам 7 дней</li>
+          </ul>
+        </div>
+        <div class="format-card">
+          <h3>Запись интенсива</h3>
+          <p>Доступ в закрытый Telegram-канал с записью и материалами. Можно приобрести отдельно.</p>
+          <ul>
+            <li>Подключение после оплаты</li>
+            <li>Обновления материалов на протяжении месяца</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="register" class="reveal">
+      <h2>Регистрация и оплата</h2>
+      <form id="registration-form" novalidate>
+        <div>
+          <label for="fullName">ФИО</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="Иванов Иван Иванович">
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div>
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" pattern="^\+?[0-9\s\-()]{7,}$">
+        </div>
+        <div>
+          <label for="date">Дата / формат</label>
+          <select id="date" name="date" required>
+            <option value="">Выберите дату</option>
+            <option value="offline-vdnkh">9 ноября · 12:00–17:00 · ВДНХ</option>
+            <option value="offline-begovaya">12 ноября · 13:00–18:00 · Беговая</option>
+            <option value="online">Онлайн · Google Meet</option>
+          </select>
+        </div>
+        <div>
+          <label for="tariff">Тариф</label>
+          <select id="tariff" name="tariff" required>
+            <option value="">Выберите тариф</option>
+            <option value="standard">Стандарт</option>
+            <option value="pro">Pro + материалы</option>
+            <option value="team">Командный (до 3 человек)</option>
+          </select>
+        </div>
+        <div>
+          <label for="promo">Промокод</label>
+          <input type="text" id="promo" name="promo" placeholder="PROMO2024">
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" id="recordOnly" name="recordOnly">
+          Покупаю только запись (Telegram-канал)
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn">Оплатить через СБП</button>
+          <button type="button" class="btn secondary">Счёт для юрлица (ООО)</button>
+        </div>
+        <div class="success-message" role="alert" id="successMessage" tabindex="-1">
+          Спасибо! Мы отправим ссылку на оплату на ваш E-mail.
+        </div>
+      </form>
+    </section>
+
+    <section class="reveal" id="speaker">
+      <h2>О спикере</h2>
+      <div class="speaker">
+        <div class="speaker-photo">Фото</div>
+        <div class="speaker-content">
+          <h3>Ганьшин В.К.</h3>
+          <p>Руководитель Технопарка РГСУ. Опыт в образовании, инжиниринге, 3D-производстве, внедрении AI в обучении и бизнес-процессах.</p>
+          <div class="links">
+            <a href="#">Telegram</a>
+            <a href="#">Кейсы</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Нужен ли ноутбук?</h3>
+          <p>Да. Для практики потребуется ноутбук с доступом в интернет.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Будет ли запись?</h3>
+          <p>Да, запись доступна отдельно в закрытом Telegram-канале.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Возвраты</h3>
+          <p>100% за 72 часа до старта, 50% за 24 часа.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Сертификат</h3>
+          <p>Предоставляется по запросу.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    © <span id="year"></span> Технопарк РГСУ · Интенсив по искусственному интеллекту
+  </footer>
+
+  <script>
+    // Лёгкие частицы
+    const particlesContainer = document.querySelector('.particles');
+    const particlesCount = 36;
+    for (let i = 0; i < particlesCount; i++) {
+      const particle = document.createElement('span');
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDelay = (Math.random() * 12) + 's';
+      particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+      particle.style.opacity = (0.15 + Math.random() * 0.35).toFixed(2);
+      particle.style.transform = `scale(${0.6 + Math.random()})`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Таймер обратного отсчёта
+    const countdownContainer = document.getElementById('countdown');
+    const now = new Date();
+    const year = now.getFullYear();
+    const events = [
+      new Date(`${year}-11-09T12:00:00`),
+      new Date(`${year}-11-12T13:00:00`)
+    ];
+
+    const upcomingEvent = events.find(date => date > now) || new Date(`${year + 1}-11-09T12:00:00`);
+
+    function updateCountdown() {
+      const diff = upcomingEvent - new Date();
+      if (diff <= 0) {
+        countdownContainer.innerHTML = '<div class="timer-box"><span>0</span><small>минут</small></div>';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      const template = ([value, label]) => `
+        <div class="timer-box">
+          <span>${String(value).padStart(2, '0')}</span>
+          <small>${label}</small>
+        </div>`;
+
+      countdownContainer.innerHTML = [
+        [days, 'дней'],
+        [hours, 'часов'],
+        [minutes, 'минут'],
+        [seconds, 'секунд']
+      ].map(template).join('');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Анимация появления при скролле
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Обработка формы
+    const form = document.getElementById('registration-form');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      successMessage.style.display = 'block';
+      successMessage.focus({ preventScroll: true });
+      form.reset();
+
+      // Здесь может быть интеграция с Google Таблицей, СБП, ЮKassa или Т-Банк Кассой
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
