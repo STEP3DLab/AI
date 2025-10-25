@@ -281,6 +281,37 @@
       font-size: 0.95rem;
     }
 
+    .location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .location-text {
+      display: inline-block;
+    }
+
+    .metro-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .metro-badge.orange {
+      background: #f58220;
+    }
+
+    .metro-badge.purple {
+      background: #8d4799;
+    }
+
     .card:hover {
       transform: translateY(-6px);
       border-color: rgba(255, 255, 255, 0.3);
@@ -607,11 +638,11 @@
         <div class="schedule" aria-label="Даты и площадки интенсива">
           <div class="card">
             <strong>9 ноября · 12:00–17:00</strong>
-            <span>ВДНХ, аудитория 306</span>
+            <span class="location"><span class="metro-badge orange" aria-hidden="true">М</span><span class="location-text">Вильгельма Пика 4с8, ауд. 306</span></span>
           </div>
           <div class="card">
             <strong>12 ноября · 13:00–18:00</strong>
-            <span>Беговая, 12</span>
+            <span class="location"><span class="metro-badge purple" aria-hidden="true">М</span><span class="location-text">Беговая, 12</span></span>
           </div>
           <div class="card">
             <strong>Онлайн-сессия</strong>
@@ -653,7 +684,7 @@
         <div class="format-card">
           <div class="seat-counter" id="offline-seats">Осталось 16 мест</div>
           <h3>Офлайн-группы</h3>
-          <p>16 мест · локации: ВДНХ или Беговая. Практика в оборудованных аудиториях.</p>
+          <p>16 мест · локации: Вильгельма Пика 4с8 (ВДНХ) или Беговая. Практика в оборудованных аудиториях.</p>
           <ul>
             <li>Возвраты — 100% за 72 ч, 50% за 24 ч</li>
             <li>Протоколы участия — предоставляются</li>
@@ -700,7 +731,7 @@
           <label for="date">Дата / формат</label>
           <select id="date" name="date" required autocomplete="off">
             <option value="">Выберите дату</option>
-            <option value="offline-vdnkh">9 ноября · 12:00–17:00 · ВДНХ</option>
+            <option value="offline-vdnkh">9 ноября · 12:00–17:00 · Вильгельма Пика 4с8 (ВДНХ)</option>
             <option value="offline-begovaya">12 ноября · 13:00–18:00 · Беговая</option>
             <option value="online">Онлайн · Google Meet</option>
           </select>
