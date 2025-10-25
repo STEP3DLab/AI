@@ -974,31 +974,6 @@
       color: rgba(228, 228, 255, 0.85);
       transition: border-color var(--transition), background var(--transition), color var(--transition);
     }
-
-    .seat-pill.sold-out {
-      border-color: rgba(248, 113, 113, 0.45);
-      background: rgba(69, 10, 10, 0.6);
-      color: #fecaca;
-    }
-
-    .format-card:hover .seat-counter:not(.sold-out),
-    .format-card:focus-within .seat-counter:not(.sold-out) {
-      background: rgba(159, 132, 255, 0.32);
-      border-color: rgba(208, 210, 255, 0.75);
-    }
-
-    @media (max-width: 720px) {
-      .formats {
-        grid-template-columns: 1fr;
-      }
-
-      .format-card {
-        padding: 22px;
-      }
-
-      .format-card h3 {
-        margin-top: 14px;
-      }
     }
 
     form {
@@ -1574,8 +1549,7 @@
       <h2>Форматы участия и условия</h2>
       <div class="formats">
         <div class="format-card">
-          <span class="format-badge badge-popular">Популярно</span>
-          <div class="seat-counter" id="offline-seats" data-seat-type="offline" aria-live="polite">Осталось 16 мест</div>
+
           <h3>Офлайн-группы</h3>
         </div>
         <div class="format-card">
