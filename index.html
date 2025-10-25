@@ -286,32 +286,91 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .program-list {
+    #program {
+      background: rgba(17, 17, 17, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+      color: #e4e4e4;
+    }
+
+    #program > h2 {
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      font-weight: 600;
+      margin-bottom: clamp(22px, 4vw, 32px);
+    }
+
+    .program-grid {
       display: grid;
-      gap: 18px;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
-    .program-item {
-      padding: 18px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: border-color var(--transition);
+    @media (min-width: 700px) {
+      .program-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    .program-item h3 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
+    @media (min-width: 1100px) {
+      .program-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
-    .program-item p {
-      color: var(--muted);
+    .program-card {
+      position: relative;
+      background: rgba(17, 17, 17, 0.6);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: clamp(20px, 3vw, 26px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+    }
+
+    .program-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 65%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    .program-card h3 {
+      font-size: 1.12rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .program-card p {
+      color: rgba(228, 228, 228, 0.82);
       font-size: 0.98rem;
+      line-height: 1.5;
     }
 
-    .program-item:hover {
-      border-color: rgba(255, 255, 255, 0.25);
+    .program-card:hover {
+      transform: translate3d(0, -8px, 0);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
     }
+
+    .program-card:hover::before {
+      opacity: 0.9;
+    }
+
+    #program.visible .program-card {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    #program.visible .program-card:nth-child(1) { animation-delay: 0.1s; }
+    #program.visible .program-card:nth-child(2) { animation-delay: 0.16s; }
+    #program.visible .program-card:nth-child(3) { animation-delay: 0.22s; }
+    #program.visible .program-card:nth-child(4) { animation-delay: 0.26s; }
+    #program.visible .program-card:nth-child(5) { animation-delay: 0.3s; }
 
     .formats {
       display: grid;
@@ -481,16 +540,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      body::before,
-      body::after,
-      .particles span,
-      .timer-box,
-      .reveal {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
       }
     }
 
@@ -574,27 +623,27 @@
 
     <section id="program" class="reveal">
       <h2>Программа 5-часового интенсива</h2>
-      <div class="program-list">
-        <div class="program-item">
+      <div class="program-grid">
+        <article class="program-card">
           <h3>Промт-инжиниринг</h3>
-          <p>Документы, сайты и веб-приложения за один запрос; обзор GPT-5+, Qwen 3 Max, Gemini 2.5 Pro.</p>
-        </div>
-        <div class="program-item">
+          <p>Создание документов, сайтов и приложений за один запрос. Разбор моделей GPT-5+, Qwen 3 Max, Gemini 2.5 Pro.</p>
+        </article>
+        <article class="program-card">
           <h3>Изображения</h3>
-          <p>ChatGPT и Nano Banana: логотипы, буклеты, интерьерные решения, дизайн 3D.</p>
-        </div>
-        <div class="program-item">
+          <p>ChatGPT и Nano Banana: логотипы, буклеты, интерьеры, 3D-дизайн.</p>
+        </article>
+        <article class="program-card">
           <h3>3D-модели</h3>
-          <p>Текст → 3D, Hugging Face / GenCAD, 2D→CAD, автоматизация скриптами.</p>
-        </div>
-        <div class="program-item">
+          <p>Hugging Face / GenCAD, 2D → CAD, генерация 3D из текста и картинок.</p>
+        </article>
+        <article class="program-card">
           <h3>Агенты</h3>
-          <p>Perplexity Browser, Google Notebook LM: делегирование задач и планирование.</p>
-        </div>
-        <div class="program-item">
+          <p>Perplexity Browser, Google Notebook LM: делегирование и автоматизация задач.</p>
+        </article>
+        <article class="program-card">
           <h3>Видео и звук</h3>
-          <p>Sora 2: создание роликов, музыкальных треков и песен с AI.</p>
-        </div>
+          <p>Sora 2 — создание видео, роликов и музыки с AI.</p>
+        </article>
       </div>
     </section>
 
