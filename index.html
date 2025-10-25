@@ -351,6 +351,12 @@
       color: var(--muted);
     }
 
+    .field-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
     input, select {
       width: 100%;
       padding: 14px;
@@ -623,19 +629,19 @@
       <form id="registration-form" novalidate>
         <div>
           <label for="fullName">ФИО</label>
-          <input type="text" id="fullName" name="fullName" required placeholder="Иванов Иван Иванович">
+          <input type="text" id="fullName" name="fullName" required placeholder="Иванов Иван Иванович" autocomplete="name">
         </div>
         <div>
           <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com">
+          <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
         </div>
         <div>
           <label for="phone">Телефон</label>
-          <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" pattern="^\+?[0-9\s\-()]{7,}$">
+          <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" pattern="^\+?[0-9\s\-()]{7,}$" autocomplete="tel" inputmode="tel">
         </div>
         <div>
           <label for="date">Дата / формат</label>
-          <select id="date" name="date" required>
+          <select id="date" name="date" required autocomplete="off">
             <option value="">Выберите дату</option>
             <option value="offline-vdnkh">9 ноября · 12:00–17:00 · ВДНХ</option>
             <option value="offline-begovaya">12 ноября · 13:00–18:00 · Беговая</option>
@@ -644,7 +650,7 @@
         </div>
         <div>
           <label for="tariff">Тариф</label>
-          <select id="tariff" name="tariff" required>
+          <select id="tariff" name="tariff" required autocomplete="off">
             <option value="">Выберите тариф</option>
             <option value="standard">Стандарт</option>
             <option value="pro">Pro + материалы</option>
@@ -653,10 +659,11 @@
         </div>
         <div>
           <label for="promo">Промокод</label>
-          <input type="text" id="promo" name="promo" placeholder="PROMO2024">
+          <input type="text" id="promo" name="promo" placeholder="PROMO2024" autocomplete="one-time-code" aria-describedby="promoHint">
+          <p id="promoHint" class="field-hint">Если у вас есть промокод, введите его здесь.</p>
         </div>
         <label class="checkbox">
-          <input type="checkbox" id="recordOnly" name="recordOnly">
+          <input type="checkbox" id="recordOnly" name="recordOnly" autocomplete="off">
           Покупаю только запись (Telegram-канал)
         </label>
         <div class="form-actions">
