@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="">
   <style>
     :root {
       color-scheme: dark;
@@ -353,92 +352,115 @@
       box-shadow: 0 0 10px currentColor;
     }
 
-    .legend-dot.offline {
+    .map-legend .legend-dot--main {
       color: #8f6dff;
       background: linear-gradient(135deg, #6d6afe, #8f6dff);
     }
 
-    .legend-dot.online {
-      color: #ff70cf;
+    .map-legend .legend-dot--partner {
+      color: #ff8fdc;
       background: linear-gradient(135deg, #ff70cf, #ffa8e7);
     }
 
     #locations-map {
-      height: 280px;
-      border-radius: 16px;
-      filter: saturate(1.15);
       position: relative;
-      z-index: 0;
-    }
-
-    .map-marker {
-      background: none;
-      border: none;
-    }
-
-    .map-marker span {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 18px rgba(132, 126, 255, 0.7);
-    }
-
-    .map-marker span::after {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      opacity: 0.35;
-      filter: blur(8px);
-    }
-
-    .map-marker--offline span {
-      background: linear-gradient(135deg, #6d6afe, #8f6dff);
-    }
-
-    .map-marker--offline span::after {
-      background: rgba(132, 126, 255, 0.8);
-    }
-
-    .map-marker--online span {
-      background: linear-gradient(135deg, #ff70cf, #ffa8e7);
-      box-shadow: 0 0 18px rgba(255, 112, 207, 0.65);
-    }
-
-    .map-marker--online span::after {
-      background: rgba(255, 112, 207, 0.75);
-    }
-
-    .leaflet-container {
-      background: transparent;
-      border-radius: inherit;
-    }
-
-    .leaflet-control-container .leaflet-control {
-      border-radius: 14px;
-      border: 1px solid rgba(132, 126, 255, 0.2);
-      box-shadow: 0 12px 24px rgba(8, 8, 20, 0.45);
-      backdrop-filter: blur(8px);
-    }
-
-    .leaflet-control-zoom a {
-      background: rgba(12, 12, 20, 0.85);
-      color: var(--fg-light);
-    }
-
-    .leaflet-popup-content-wrapper {
-      background: rgba(12, 12, 20, 0.92);
-      color: var(--fg-light);
+      aspect-ratio: 1 / 1;
       border-radius: 16px;
-      border: 1px solid rgba(132, 126, 255, 0.3);
-      box-shadow: 0 18px 34px rgba(8, 8, 24, 0.6);
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 30%, rgba(132, 126, 255, 0.16), rgba(8, 8, 18, 0.85));
     }
 
-    .leaflet-popup-tip {
-      background: rgba(12, 12, 20, 0.92);
-      border: 1px solid rgba(132, 126, 255, 0.3);
+    .schematic-map {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-ring {
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    .map-ring--outer {
+      stroke: rgba(143, 134, 255, 0.35);
+      stroke-width: 2.2;
+    }
+
+    .map-ring--middle {
+      stroke: rgba(143, 134, 255, 0.22);
+      stroke-width: 1.6;
+      stroke-dasharray: 8 10;
+    }
+
+    .map-core {
+      fill: rgba(24, 26, 52, 0.65);
+      stroke: rgba(143, 134, 255, 0.25);
+      stroke-width: 1.4;
+    }
+
+    .map-river {
+      fill: none;
+      stroke: rgba(104, 180, 255, 0.75);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 12px rgba(80, 150, 255, 0.35));
+    }
+
+    .map-grid line {
+      stroke: rgba(110, 114, 160, 0.18);
+      stroke-width: 1;
+    }
+
+    .tech-marker .marker-orbit {
+      fill: rgba(143, 134, 255, 0.14);
+      stroke: rgba(143, 134, 255, 0.55);
+      stroke-width: 1.6;
+    }
+
+    .tech-marker .marker-core {
+      fill: #9fa2ff;
+      stroke: rgba(18, 18, 38, 0.6);
+      stroke-width: 1;
+    }
+
+    .tech-marker--partner .marker-orbit {
+      fill: rgba(255, 140, 220, 0.16);
+      stroke: rgba(255, 140, 220, 0.6);
+    }
+
+    .tech-marker--partner .marker-core {
+      fill: #ff92db;
+    }
+
+    .marker-link {
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      opacity: 0.75;
+    }
+
+    .tech-marker--main .marker-link {
+      stroke: rgba(143, 134, 255, 0.75);
+    }
+
+    .tech-marker--partner .marker-link {
+      stroke: rgba(255, 160, 224, 0.75);
+    }
+
+    .marker-label {
+      fill: #f5f7ff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      filter: drop-shadow(0 0 6px rgba(5, 6, 14, 0.85));
+    }
+
+    .marker-label--left {
+      text-anchor: end;
+    }
+
+    .marker-label--right {
+      text-anchor: start;
     }
 
     .card {
@@ -1035,15 +1057,70 @@
             <span>Google Meet · международное подключение</span>
           </div>
         </div>
-        <div class="map-card" aria-label="Карта площадок интенсива">
+        <div class="map-card" aria-label="Карта технопарков Москвы">
           <div class="map-card-header">
-            <h3>Карта площадок</h3>
+            <h3>Карта технопарков</h3>
             <div class="map-legend" aria-hidden="true">
-              <span><span class="legend-dot offline"></span>Офлайн</span>
-              <span><span class="legend-dot online"></span>Онлайн</span>
+              <span><span class="legend-dot legend-dot--main"></span>Технопарк РГСУ</span>
+              <span><span class="legend-dot legend-dot--partner"></span>Партнёрские технопарки</span>
             </div>
           </div>
-          <div id="locations-map" role="presentation"></div>
+          <div id="locations-map" role="img" aria-label="Схематичная карта Москвы с ключевыми технопарками">
+            <svg class="schematic-map" viewBox="0 0 400 400" aria-hidden="true">
+              <defs>
+                <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(32, 36, 72, 0.9)" />
+                  <stop offset="60%" stop-color="rgba(18, 20, 40, 0.85)" />
+                  <stop offset="100%" stop-color="rgba(8, 8, 18, 0.7)" />
+                </radialGradient>
+              </defs>
+              <circle class="map-ring map-ring--outer" cx="200" cy="200" r="170"></circle>
+              <circle class="map-ring map-ring--middle" cx="200" cy="200" r="125"></circle>
+              <circle class="map-core" cx="200" cy="200" r="90" fill="url(#cityGlow)"></circle>
+              <g class="map-grid">
+                <line x1="200" y1="30" x2="200" y2="370"></line>
+                <line x1="30" y1="200" x2="370" y2="200"></line>
+                <line x1="80" y1="80" x2="320" y2="320"></line>
+                <line x1="320" y1="80" x2="80" y2="320"></line>
+              </g>
+              <path class="map-river" d="M 70 240 C 110 210, 130 220, 170 190 C 210 160, 230 170, 270 190 C 310 210, 320 240, 330 260" />
+
+              <g class="tech-marker tech-marker--main">
+                <circle class="marker-orbit" cx="258" cy="122" r="16"></circle>
+                <circle class="marker-core" cx="258" cy="122" r="6"></circle>
+                <line class="marker-link" x1="268" y1="116" x2="334" y2="94"></line>
+                <text class="marker-label marker-label--right" x="340" y="94" dominant-baseline="middle">Технопарк РГСУ (ВДНХ)</text>
+              </g>
+
+              <g class="tech-marker tech-marker--partner">
+                <circle class="marker-orbit" cx="138" cy="156" r="15"></circle>
+                <circle class="marker-core" cx="138" cy="156" r="5.5"></circle>
+                <line class="marker-link" x1="130" y1="150" x2="86" y2="132"></line>
+                <text class="marker-label marker-label--left" x="80" y="132" dominant-baseline="middle">Технопарк «Строгино»</text>
+              </g>
+
+              <g class="tech-marker tech-marker--partner">
+                <circle class="marker-orbit" cx="246" cy="214" r="15"></circle>
+                <circle class="marker-core" cx="246" cy="214" r="5.5"></circle>
+                <line class="marker-link" x1="256" y1="208" x2="310" y2="200"></line>
+                <text class="marker-label marker-label--right" x="316" y="200" dominant-baseline="middle">Технополис «Москва»</text>
+              </g>
+
+              <g class="tech-marker tech-marker--partner">
+                <circle class="marker-orbit" cx="124" cy="248" r="15"></circle>
+                <circle class="marker-core" cx="124" cy="248" r="5.5"></circle>
+                <line class="marker-link" x1="116" y1="254" x2="70" y2="278"></line>
+                <text class="marker-label marker-label--left" x="64" y="278" dominant-baseline="middle">Технопарк «Сколково»</text>
+              </g>
+
+              <g class="tech-marker tech-marker--partner">
+                <circle class="marker-orbit" cx="214" cy="158" r="14"></circle>
+                <circle class="marker-core" cx="214" cy="158" r="5"></circle>
+                <line class="marker-link" x1="222" y1="150" x2="272" y2="140"></line>
+                <text class="marker-label marker-label--right" x="278" y="140" dominant-baseline="middle">Технопарк «Физтех XXI»</text>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
     </section>
@@ -1253,7 +1330,6 @@
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kGStb6tLi7g2U5jVFU3yfXw2z8gDn1kS4f0JM=" crossorigin=""></script>
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1484,93 +1560,6 @@
       }
     });
 
-    const mapElement = document.getElementById('locations-map');
-    if (mapElement && window.L) {
-      mapElement.setAttribute('tabindex', '0');
-
-      const map = L.map(mapElement, {
-        zoomControl: true,
-        scrollWheelZoom: false,
-        attributionControl: false,
-        dragging: window.innerWidth > 640,
-      });
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> & <a href="https://carto.com/attributions">CARTO</a>'
-      }).addTo(map);
-
-      const offlineIcon = L.divIcon({
-        className: 'map-marker map-marker--offline',
-        html: '<span></span>',
-        iconSize: [24, 24],
-        iconAnchor: [12, 24],
-        popupAnchor: [0, -22]
-      });
-
-      const onlineIcon = L.divIcon({
-        className: 'map-marker map-marker--online',
-        html: '<span></span>',
-        iconSize: [24, 24],
-        iconAnchor: [12, 24],
-        popupAnchor: [0, -22]
-      });
-
-      const eventLocations = [
-        {
-          type: 'offline',
-          title: '9 ноября · 12:00–17:00',
-          description: 'Вильгельма Пика 4с8, ауд. 306 (ВДНХ)',
-          coords: [55.8263, 37.6413]
-        },
-        {
-          type: 'offline',
-          title: '12 ноября · 13:00–18:00',
-          description: 'Беговая, 12 (Беговая)',
-          coords: [55.7765, 37.5476]
-        },
-        {
-          type: 'online',
-          title: 'Онлайн-сессия',
-          description: 'Google Meet · международное подключение',
-          coords: [55.7512, 37.6184]
-        }
-      ];
-
-      const bounds = [];
-
-      eventLocations.forEach((eventPoint) => {
-        const icon = eventPoint.type === 'online' ? onlineIcon : offlineIcon;
-        const marker = L.marker(eventPoint.coords, { icon }).addTo(map);
-        marker.bindPopup(`
-          <strong>${eventPoint.title}</strong><br>
-          <span>${eventPoint.description}</span>
-        `);
-        bounds.push(eventPoint.coords);
-      });
-
-      if (bounds.length) {
-        map.fitBounds(bounds, { padding: [32, 32] });
-      }
-
-      mapElement.addEventListener('focusin', () => {
-        map.scrollWheelZoom.enable();
-      });
-
-      mapElement.addEventListener('focusout', () => {
-        map.scrollWheelZoom.disable();
-      });
-
-      window.addEventListener('resize', () => {
-        map.options.dragging = window.innerWidth > 640;
-        if (map.options.dragging) {
-          map.dragging.enable();
-        } else {
-          map.dragging.disable();
-        }
-        map.invalidateSize();
-      });
-    }
   </script>
 </body>
 </html>
