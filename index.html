@@ -716,12 +716,23 @@
       background: rgba(132, 126, 255, 0.12);
       border-radius: 18px;
       border: 1px solid rgba(132, 126, 255, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: rgba(222, 224, 255, 0.6);
-      letter-spacing: 0.08em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .speaker-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(8, 8, 16, 0.25);
+      pointer-events: none;
+    }
+
+    .speaker-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .speaker-content p {
@@ -1154,7 +1165,9 @@
     <section class="reveal" id="speaker">
       <h2>О спикере</h2>
       <div class="speaker">
-        <div class="speaker-photo">Фото</div>
+        <div class="speaker-photo">
+          <img src="assets/images/speaker-vk-ganishin.jpg" alt="Ганьшин В.К." loading="lazy">
+        </div>
         <div class="speaker-content">
           <h3>Ганьшин В.К.</h3>
           <p>Руководитель Технопарка РГСУ. Опыт в образовании, инжиниринге, 3D-производстве, внедрении AI в обучении и бизнес-процессах.</p>
