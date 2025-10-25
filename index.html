@@ -528,145 +528,34 @@
 
     #locations-map {
       position: relative;
-      aspect-ratio: 1 / 1;
       border-radius: 16px;
       overflow: hidden;
-      background: radial-gradient(circle at 30% 30%, rgba(132, 126, 255, 0.16), rgba(8, 8, 18, 0.85));
+      height: 360px;
+      background: linear-gradient(135deg, rgba(32, 34, 68, 0.85), rgba(12, 12, 24, 0.95));
     }
 
-    #locations-map.is-interactive {
-      min-height: 320px;
     }
 
-    .map-fallback {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-      padding: 18px;
-      text-align: center;
-      color: var(--muted);
+    #locations-map .ymaps-2-1-79-controls__control {
+      filter: drop-shadow(0 12px 30px rgba(10, 10, 26, 0.35));
     }
 
-    .map-fallback p {
-      margin: 0;
-    }
 
-    .map-fallback .map-fallback-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
 
-    .map-fallback .map-fallback-links a {
-      color: var(--fg-light);
-      font-weight: 500;
-      border-bottom: 1px solid rgba(132, 126, 255, 0.35);
-      text-decoration: none;
-    }
 
-    .map-fallback .map-fallback-links a:hover,
-    .map-fallback .map-fallback-links a:focus {
-      color: rgba(223, 225, 255, 0.98);
-    }
 
-    .map-fallback svg {
-      width: 100%;
-      height: auto;
-    }
 
-    .schematic-map {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
 
-    .map-ring {
-      fill: none;
-      stroke-linecap: round;
-    }
 
-    .map-ring--outer {
-      stroke: rgba(143, 134, 255, 0.35);
-      stroke-width: 2.2;
-    }
 
-    .map-ring--middle {
-      stroke: rgba(143, 134, 255, 0.22);
-      stroke-width: 1.6;
-      stroke-dasharray: 8 10;
-    }
 
-    .map-core {
-      fill: rgba(24, 26, 52, 0.65);
-      stroke: rgba(143, 134, 255, 0.25);
-      stroke-width: 1.4;
-    }
 
-    .map-river {
-      fill: none;
-      stroke: rgba(104, 180, 255, 0.75);
-      stroke-width: 6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 12px rgba(80, 150, 255, 0.35));
-    }
 
-    .map-grid line {
-      stroke: rgba(110, 114, 160, 0.18);
-      stroke-width: 1;
-    }
 
-    .tech-marker .marker-orbit {
-      fill: rgba(143, 134, 255, 0.14);
-      stroke: rgba(143, 134, 255, 0.55);
-      stroke-width: 1.6;
-    }
 
-    .tech-marker .marker-core {
-      fill: #9fa2ff;
-      stroke: rgba(18, 18, 38, 0.6);
-      stroke-width: 1;
-    }
 
-    .tech-marker--partner .marker-orbit {
-      fill: rgba(255, 140, 220, 0.16);
-      stroke: rgba(255, 140, 220, 0.6);
-    }
 
-    .tech-marker--partner .marker-core {
-      fill: #ff92db;
-    }
 
-    .marker-link {
-      stroke-width: 1.4;
-      stroke-linecap: round;
-      opacity: 0.75;
-    }
-
-    .tech-marker--main .marker-link {
-      stroke: rgba(143, 134, 255, 0.75);
-    }
-
-    .tech-marker--partner .marker-link {
-      stroke: rgba(255, 160, 224, 0.75);
-    }
-
-    .marker-label {
-      fill: #f5f7ff;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      filter: drop-shadow(0 0 6px rgba(5, 6, 14, 0.85));
-    }
-
-    .marker-label--left {
-      text-anchor: end;
-    }
-
-    .marker-label--right {
-      text-anchor: start;
-    }
 
     .card {
       background: linear-gradient(155deg, rgba(132, 126, 255, 0.14), rgba(38, 40, 72, 0.22));
@@ -1514,9 +1403,22 @@
         padding: 16px;
       }
 
-      #locations-map {
-        height: 240px;
-      }
+    #locations-map {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 320px;
+      background: linear-gradient(135deg, rgba(32, 34, 68, 0.85), rgba(12, 12, 24, 0.95));
+    }
+
+    #locations-map .ymaps-2-1-79-map {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    #locations-map .ymaps-2-1-79-controls__control {
+      filter: drop-shadow(0 12px 30px rgba(10, 10, 26, 0.35));
+    }
 
       .form-actions {
         flex-direction: column;
@@ -1577,7 +1479,7 @@
         <p class="next-event" id="next-event-info" aria-live="polite"></p>
         <div class="schedule" aria-label="Даты и площадки интенсива">
           <div class="card">
-            <strong><span class="day-badge">среда</span><span class="timeslot">9 ноября · 12:00–17:00</span></strong>
+            <strong><span class="day-badge day-badge--weekend">воскресенье</span><span class="timeslot">9 ноября · 12:00–17:00</span></strong>
             <span class="location"><span class="metro-badge orange" aria-hidden="true">М</span><span class="location-text">Вильгельма Пика 4с8, ауд. 306<span class="metro-chip metro-chip--compact metro-chip--orange">м. ВДНХ</span></span></span>
           </div>
           <div class="card">
@@ -1638,74 +1540,6 @@
               <span><span class="legend-dot legend-dot--partner"></span>Партнёрские технопарки</span>
             </div>
           </div>
-          <div id="locations-map" role="img" aria-label="Схематичная карта Москвы с ключевыми технопарками" aria-describedby="map-locations-description">
-            <div id="map-fallback" class="map-fallback">
-              <p id="map-status-message">Интерактивная карта загружается. Если она не появится, воспользуйтесь статичной схемой и ссылками ниже.</p>
-              <svg class="schematic-map" viewBox="0 0 400 400" aria-hidden="true">
-              <defs>
-                <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(32, 36, 72, 0.9)" />
-                  <stop offset="60%" stop-color="rgba(18, 20, 40, 0.85)" />
-                  <stop offset="100%" stop-color="rgba(8, 8, 18, 0.7)" />
-                </radialGradient>
-              </defs>
-              <circle class="map-ring map-ring--outer" cx="200" cy="200" r="170"></circle>
-              <circle class="map-ring map-ring--middle" cx="200" cy="200" r="125"></circle>
-              <circle class="map-core" cx="200" cy="200" r="90" fill="url(#cityGlow)"></circle>
-              <g class="map-grid">
-                <line x1="200" y1="30" x2="200" y2="370"></line>
-                <line x1="30" y1="200" x2="370" y2="200"></line>
-                <line x1="80" y1="80" x2="320" y2="320"></line>
-                <line x1="320" y1="80" x2="80" y2="320"></line>
-              </g>
-              <path class="map-river" d="M 70 240 C 110 210, 130 220, 170 190 C 210 160, 230 170, 270 190 C 310 210, 320 240, 330 260" />
-
-              <g class="tech-marker tech-marker--main">
-                <circle class="marker-orbit" cx="258" cy="122" r="16"></circle>
-                <circle class="marker-core" cx="258" cy="122" r="6"></circle>
-                <line class="marker-link" x1="268" y1="116" x2="334" y2="94"></line>
-                <text class="marker-label marker-label--right" x="340" y="94" dominant-baseline="middle">Технопарк РГСУ (ВДНХ)</text>
-              </g>
-
-              <g class="tech-marker tech-marker--partner">
-                <circle class="marker-orbit" cx="138" cy="156" r="15"></circle>
-                <circle class="marker-core" cx="138" cy="156" r="5.5"></circle>
-                <line class="marker-link" x1="130" y1="150" x2="86" y2="132"></line>
-                <text class="marker-label marker-label--left" x="80" y="132" dominant-baseline="middle">Технопарк «Строгино»</text>
-              </g>
-
-              <g class="tech-marker tech-marker--partner">
-                <circle class="marker-orbit" cx="246" cy="214" r="15"></circle>
-                <circle class="marker-core" cx="246" cy="214" r="5.5"></circle>
-                <line class="marker-link" x1="256" y1="208" x2="310" y2="200"></line>
-                <text class="marker-label marker-label--right" x="316" y="200" dominant-baseline="middle">Технополис «Москва»</text>
-              </g>
-
-              <g class="tech-marker tech-marker--partner">
-                <circle class="marker-orbit" cx="124" cy="248" r="15"></circle>
-                <circle class="marker-core" cx="124" cy="248" r="5.5"></circle>
-                <line class="marker-link" x1="116" y1="254" x2="70" y2="278"></line>
-                <text class="marker-label marker-label--left" x="64" y="278" dominant-baseline="middle">Технопарк «Сколково»</text>
-              </g>
-
-              <g class="tech-marker tech-marker--partner">
-                <circle class="marker-orbit" cx="214" cy="158" r="14"></circle>
-                <circle class="marker-core" cx="214" cy="158" r="5"></circle>
-                <line class="marker-link" x1="222" y1="150" x2="272" y2="140"></line>
-                <text class="marker-label marker-label--right" x="278" y="140" dominant-baseline="middle">Технопарк «Физтех XXI»</text>
-              </g>
-              </svg>
-              <div class="map-fallback-links" aria-label="Внешние карты">
-                <a href="https://yandex.ru/maps/?um=constructor%3A1f3ac1e7a7&amp;source=constructorLink" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах</a>
-                <a href="https://www.google.com/maps/d/viewer?mid=1aHN6TechParkDemo" target="_blank" rel="noopener noreferrer">Открыть в Google Maps</a>
-              </div>
-            </div>
-          </div>
-          <ul id="map-locations-description" class="visually-hidden">
-            <li>Технопарк РГСУ на ВДНХ — Москва, ул. Вильгельма Пика, д. 4 стр. 8. Метро ВДНХ.</li>
-            <li>Партнёрский кампус на Беговой — Москва, ул. Беговая, д. 12. Метро Беговая.</li>
-            <li>Онлайн-сессия — подключение через Google Meet, трансляция из студии на ВДНХ.</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -1799,7 +1633,7 @@
           <label for="date">Дата / формат</label>
           <select id="date" name="date" required autocomplete="off">
               <option value="">Выберите дату</option>
-              <option value="offline-vdnkh">СРЕДА · 9 ноября · 12:00–17:00 · Вильгельма Пика 4с8 · м. ВДНХ</option>
+              <option value="offline-vdnkh">ВОСКРЕСЕНЬЕ · 9 ноября · 12:00–17:00 · Вильгельма Пика 4с8 · м. ВДНХ</option>
               <option value="offline-begovaya">СУББОТА · 12 ноября · 13:00–18:00 · Беговая, 12 · м. Беговая</option>
               <option value="online">Онлайн · Google Meet</option>
           </select>
@@ -1939,8 +1773,85 @@
     </div>
   </div>
 
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mapContainer = document.getElementById('locations-map');
+
+    if (mapContainer && typeof ymaps !== 'undefined') {
+      const mapLocations = [
+        {
+          coords: [55.8218, 37.6421],
+          title: 'Технопарк РГСУ (ВДНХ)',
+          address: 'Москва, ул. Вильгельма Пика, 4с8, ауд. 306',
+          preset: 'islands#violetCircleIcon'
+        },
+        {
+          coords: [55.7808, 37.5612],
+          title: 'Партнёрская площадка «Беговая»',
+          address: 'Москва, ул. Беговая, 12',
+          preset: 'islands#pinkCircleIcon'
+        }
+      ];
+
+      ymaps.ready(() => {
+        const map = new ymaps.Map('locations-map', {
+          center: mapLocations[0].coords,
+          zoom: 12,
+          controls: ['zoomControl', 'geolocationControl', 'routeButtonControl']
+        }, {
+          suppressMapOpenBlock: true
+        });
+
+        map.behaviors.disable('scrollZoom');
+
+        const collection = new ymaps.GeoObjectCollection();
+        mapLocations.forEach((location) => {
+          const placemark = new ymaps.Placemark(location.coords, {
+            balloonContentHeader: location.title,
+            balloonContentBody: location.address,
+            hintContent: location.title
+          }, {
+            preset: location.preset
+          });
+
+          placemark.events.add('click', () => {
+            const routeControl = map.controls.get('routeButtonControl');
+            if (routeControl) {
+              const currentState = routeControl.routePanel.state.get();
+              routeControl.routePanel.state.set({
+                ...currentState,
+                to: location.address
+              });
+            }
+          });
+
+          collection.add(placemark);
+        });
+
+        map.geoObjects.add(collection);
+
+        const bounds = collection.getBounds();
+        if (bounds) {
+          map.setBounds(bounds, { checkZoomRange: true, zoomMargin: 40 });
+        }
+
+        const routeControl = map.controls.get('routeButtonControl');
+        if (routeControl) {
+          routeControl.routePanel.options.set({
+            allowSwitch: true,
+            float: 'right'
+          });
+          routeControl.routePanel.state.set({
+            type: 'masstransit',
+            toEnabled: true,
+            fromEnabled: true,
+            to: mapLocations[0].address
+          });
+        }
+      });
+    }
 
     const mapContainer = document.getElementById('locations-map');
     const mapFallback = document.getElementById('map-fallback');
@@ -2096,7 +2007,8 @@
 
     const dayBadgeClassMap = {
       'среда': '',
-      'суббота': 'day-badge--weekend'
+      'суббота': 'day-badge--weekend',
+      'воскресенье': 'day-badge--weekend'
     };
 
     function getDayBadgeClass(weekday) {
